@@ -9,20 +9,22 @@ public class NetSystem: MonoBehaviour
     // public Field[] fields = new Field[3];
 
     public Field field;
-    public List<GameObject> particles = new List<GameObject>();
 
-    private float dt = 0.001F;
+    private float dt = 0.01F;
 
+    public GameObject spawner;
+
+    List<Particle> particles = new List<Particle>();
 
     void Start()
     {
         field = new Field();
-        foreach (GameObject g in particles) {
-            float x = Random.Range(-10,10);
+        for (int i = 0; i < 10; i++) {
+            float x = Random.Range(-8,8);
+            float z = Random.Range(-8,8);
+            float y = Random.Range(2,18);
 
-            float y = Random.Range(1,20);
-            float z = Random.Range(-10,10);
-            Instantiate(g, new Vector3(x,y,z), Quaternion.identity);
+            particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
         }
         
     }
@@ -30,11 +32,12 @@ public class NetSystem: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        foreach (GameObject A in particles) {
-            foreach (GameObject B in particles) {
-                
+        foreach (Particle A in particles) {
+            foreach (Particle B in particles) {
+                A.applyForce(B.particle, dt);
             }
         }
+
         
     }
 }
