@@ -41,6 +41,9 @@ public class ParticleBehaviour : MonoBehaviour
           charge = -1;
           cubeRenderer.material.SetColor("_Color", Color.blue);
         }
+
+        // Rigidbody.AddForce(400, 400, 400);
+
         mass = 1;
 
     }

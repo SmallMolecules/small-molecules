@@ -10,7 +10,7 @@ public class NetSystem: MonoBehaviour
 
     public Field field;
 
-    private float dt = 0.01F;
+    private float dt = 1F;
 
     public GameObject spawner;
 
