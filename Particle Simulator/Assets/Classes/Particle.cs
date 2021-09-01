@@ -6,7 +6,7 @@ public class Particle
 {
     public GameObject particle;
 
-    private float k = 300f;
+    public float k = 30f;
 
     // public Vector3 velocity;
 
@@ -23,8 +23,8 @@ public class Particle
     
     public Vector3 coloumb(GameObject B) {
 
-        int q1 = B.GetComponent<ParticleBehaviour>().charge;
-        int q2 = particle.GetComponent<ParticleBehaviour>().charge;
+        float q1 = B.GetComponent<ParticleBehaviour>().charge;
+        float q2 = particle.GetComponent<ParticleBehaviour>().charge;
 
         float r = Vector3.Distance(particle.transform.position, B.transform.position);
 

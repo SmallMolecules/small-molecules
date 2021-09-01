@@ -10,7 +10,7 @@ public class NetSystem: MonoBehaviour
 
     public Field field;
 
-    private float dt = 1F;
+    private float dt = 0.1F;
 
     public GameObject spawner;
 
@@ -19,7 +19,7 @@ public class NetSystem: MonoBehaviour
     void Start()
     {
         field = new Field();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             float x = Random.Range(-8,8);
             float z = Random.Range(-8,8);
             float y = Random.Range(2,18);

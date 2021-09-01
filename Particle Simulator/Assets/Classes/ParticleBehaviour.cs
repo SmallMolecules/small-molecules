@@ -9,7 +9,7 @@ public class ParticleBehaviour : MonoBehaviour
 
     
 
-    public int charge;
+    public float charge;
 
     public int mass;
 
@@ -22,7 +22,7 @@ public class ParticleBehaviour : MonoBehaviour
       if (collision.gameObject.tag == "particle")
       {
         
-        Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+        // Physics.IgnoreCollision(collision.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
       }
     }
     // Start is called before the first frame update
@@ -34,11 +34,11 @@ public class ParticleBehaviour : MonoBehaviour
         var cubeRenderer = GetComponent<Renderer>();
         
         if (Random.Range(0f,1f) < 0.5f) {
-          charge = 1;
+          charge = 1f;
           cubeRenderer.material.SetColor("_Color", Color.red);
         }
         else {
-          charge = -1;
+          charge = -1f;
           cubeRenderer.material.SetColor("_Color", Color.blue);
         }
 
