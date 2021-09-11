@@ -4,39 +4,45 @@ using UnityEngine;
 
 public class Particle 
 {
-    public GameObject particle;
+    public float charge;
+    public int mass;
 
-    public float k = 30f;
-
-    // public Vector3 velocity;
+    private Vector3 velocity;
+    private GameObject particle;
 
     public Particle(GameObject p) {
         particle = p;
-        // velocity = new Vector3(0f,0f,0f);
+        velocity = new Vector3(0.0f,0.0f,0.0f);
+
+        var cubeRenderer = particle.GetComponent<Renderer>();
+        
+        // assign charge randomly and give colour
+        if (Random.Range(0f,1f) < 0.5f) {
+          charge = 1f;
+          cubeRenderer.material.SetColor("_Color", Color.red);
+        }
+        else {
+          charge = -1f;
+          cubeRenderer.material.SetColor("_Color", Color.blue);
+        }
+        mass = 1;
     }
 
-    public void applyForce(GameObject B, float dt) {
-        Vector3 F = coloumb(B);
-        particle.GetComponent<Rigidbody>().AddForce(F*dt);
+    // getter method to get position (and protect var particle)
+    public Vector3 getPos() {
+        return particle.transform.position;
+    }
+
+    // add force contribution to vecolicty
+    public void addFoce(Vector3 F) {
+        velocity += F/mass; //NOTE: mass is currently 1
+    }
+
+    // update position of gameobject according to velocity
+    public void step(float dt) {
+        particle.transform.Translate(velocity*dt);
     }
 
     
-    public Vector3 coloumb(GameObject B) {
 
-        float q1 = B.GetComponent<ParticleBehaviour>().charge;
-        float q2 = particle.GetComponent<ParticleBehaviour>().charge;
-
-        float r = Vector3.Distance(particle.transform.position, B.transform.position);
-
-        if (r < 1) {
-            r = 1;
-        }
-
-
-        float con = k*q1*q2/r;
-
-        return con*Vector3.Normalize(particle.transform.position - B.transform.position);
-
-
-    }
 }
