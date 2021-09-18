@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class Particle 
 {
+<<<<<<< Updated upstream
     public GameObject particle;
+=======
+    public float charge;
+    public float mass;
+    public float radius;
+>>>>>>> Stashed changes
 
     private float k = 300f;
 
     // public Vector3 velocity;
 
-    public Particle(GameObject p) {
+    public Particle(GameObject p, float setRad, float setMass) {
         particle = p;
+<<<<<<< Updated upstream
         // velocity = new Vector3(0f,0f,0f);
+=======
+        velocity = new Vector3(0.0f,0.0f,0.0f);
+
+        var cubeRenderer = particle.GetComponent<Renderer>();
+        
+        // assign charge randomly and give colour
+        if (Random.Range(0f,1f) < 0.5f) {
+          charge = 1f;
+          cubeRenderer.material.SetColor("_Color", Color.red);
+        }
+        else {
+          charge = -1f;
+          cubeRenderer.material.SetColor("_Color", Color.blue);
+        }
+
+        var myCollider = particle.GetComponent<SphereCollider>();
+
+        myCollider.radius = setRad;
+        mass = setMass;
+>>>>>>> Stashed changes
     }
 
     public void applyForce(GameObject B, float dt) {
