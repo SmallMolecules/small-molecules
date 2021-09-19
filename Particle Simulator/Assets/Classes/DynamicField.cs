@@ -4,6 +4,7 @@ using UnityEngine;
 
 
 // Superclass for dynamic fields (particle-particle interactions)
+[System.Serializable]
 public class DynamicField
 {   
     // constructor
@@ -11,7 +12,7 @@ public class DynamicField
 
     }
 
-    // returns force contribution from B on A:
+    // Returns force contribution from B on A:
     // THIS IS WHERE THE LOGIC GOES FOR NEW FIELDS
     public virtual Vector3 force(Particle A, Particle B) {
         return new Vector3(0.0f, 0.0f, 0.0f);

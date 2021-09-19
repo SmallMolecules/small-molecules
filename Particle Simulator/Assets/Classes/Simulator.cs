@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleSystem: MonoBehaviour
+public class Simulator: MonoBehaviour
 {
     // Fields
     [SerializeField]
@@ -14,9 +14,10 @@ public class ParticleSystem: MonoBehaviour
     public GameObject spawner;
 
     // lists of particles, dynamic fields and static fields
-    List<Particle> particles = new List<Particle>();
-    List<DynamicField> dynamicFields = new List<DynamicField>();
-    List<StaticField> staticFields = new List<StaticField>();
+    [SerializeField]
+    private List<Particle> particles;
+    private List<DynamicField> dynamicFields = new List<DynamicField>();
+    public List<StaticField> staticFields = new List<StaticField>();
 
 
     // Called once initially
@@ -29,10 +30,8 @@ public class ParticleSystem: MonoBehaviour
 
             particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
         }
-
         dynamicFields.Add(new Coloumb());
-        staticFields.Add(new Wind());
-        
+        // staticFields.Add(new Wind());      
     }
 
     // Called once per frame
