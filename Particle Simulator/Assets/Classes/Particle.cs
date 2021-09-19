@@ -15,6 +15,7 @@ public class Particle
     // Default particle
     public Particle(GameObject p) {
         particle = p;
+        velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         var cubeRenderer = particle.GetComponent<Renderer>();
         
@@ -37,6 +38,7 @@ public class Particle
     // Variable particle
     public Particle(GameObject p, float setRad, float setMass) {
         particle = p;
+        velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         var cubeRenderer = particle.GetComponent<Renderer>();
         
