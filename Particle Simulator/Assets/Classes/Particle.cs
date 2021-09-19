@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Particle 
 {
+    private GameObject particle;
+    
+    public float mass;
+    public float radius;
     public float charge;
-    public int mass;
 
     private Vector3 velocity;
-    private GameObject particle;
 
+    // Default particle
     public Particle(GameObject p) {
         particle = p;
-        velocity = new Vector3(0.0f,0.0f,0.0f);
 
         var cubeRenderer = particle.GetComponent<Renderer>();
         
@@ -25,7 +27,31 @@ public class Particle
           charge = -1f;
           cubeRenderer.material.SetColor("_Color", Color.blue);
         }
-        mass = 1;
+
+        mass = 100f;
+        radius = 1f;
+    }
+
+    // Variable particle
+    public Particle(GameObject p, float setRad, float setMass) {
+        particle = p;
+
+        var cubeRenderer = particle.GetComponent<Renderer>();
+        
+        // assign charge randomly and give colour
+        if (Random.Range(0f,1f) < 0.5f) {
+          charge = 1f;
+          cubeRenderer.material.SetColor("_Color", Color.red);
+        }
+        else {
+          charge = -1f;
+          cubeRenderer.material.SetColor("_Color", Color.blue);
+        }
+
+        var myCollider = particle.GetComponent<SphereCollider>();
+
+        myCollider.radius = setRad;
+        mass = setMass;
     }
 
     // getter method to get position (and protect var particle)
