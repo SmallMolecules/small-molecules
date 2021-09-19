@@ -29,7 +29,9 @@ public class Particle
         }
 
         mass = 100f;
-        radius = 1f;
+        radius = 10f;
+
+        particle.transform.localScale = new Vector3(radius/2, radius/2, radius/2);
     }
 
     // Variable particle
@@ -52,6 +54,9 @@ public class Particle
 
         myCollider.radius = setRad;
         mass = setMass;
+
+        particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
+
     }
 
     // getter method to get position (and protect var particle)

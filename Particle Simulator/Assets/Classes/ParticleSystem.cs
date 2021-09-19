@@ -30,7 +30,7 @@ public class ParticleSystem: MonoBehaviour
             if (i % 2 == 0) {
                 particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
             } else {
-                float radius = Random.Range(0, 10);
+                float radius = Random.Range(0, 5);
                 float mass = Random.Range(0, 10);
                 particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity), radius, mass));
             }
