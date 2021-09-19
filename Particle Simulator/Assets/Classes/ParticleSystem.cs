@@ -18,6 +18,7 @@ public class ParticleSystem: MonoBehaviour
     List<DynamicField> dynamicFields = new List<DynamicField>();
     List<StaticField> staticFields = new List<StaticField>();
 
+    public System.Random ran = new System.Random();
 
     // Called once initially
     void Start()
@@ -38,6 +39,24 @@ public class ParticleSystem: MonoBehaviour
     // Called once per frame
     void Update()
     {
+        if(Input.GetMouseButtonUp(0)) {
+            
+            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
+                if (particles.Count > 0) {
+                int del = ran.Next(0, particles.Count-1);
+                Destroy(particles[del].getGameObject());
+                particles.RemoveAt(del);
+                }
+            }
+            else {
+                float x = Random.Range(-8,8);
+                float z = Random.Range(-8,8);
+                float y = Random.Range(2,18);
+                particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
+            }
+
+        }
+
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
             foreach (Particle A in particles) {

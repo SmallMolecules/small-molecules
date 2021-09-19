@@ -43,6 +43,10 @@ public class Particle
         particle.transform.Translate(velocity*dt);
     }
 
+    public GameObject getGameObject() {
+        return particle;
+    }
+
     
 
 }

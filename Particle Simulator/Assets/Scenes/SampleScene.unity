@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641252, b: 0.574817, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641222, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -524,7 +524,7 @@ Transform:
   - {fileID: 1467518531}
   - {fileID: 2101187915}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1072705773
 BoxCollider:
@@ -853,7 +853,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1991546707
 MonoBehaviour:
@@ -864,10 +864,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1991546705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40151ac968611d36fa8bf8adb1a50435, type: 3}
+  m_Script: {fileID: 11500000, guid: f407829a2fdc0a535afd80d8b52b6a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dt: 0.1
+  dt: 0.0001
+  NUM_PARTICLES: 10
   spawner: {fileID: 195567441159503907, guid: 360d00bee6325bd3ab1d008c09393f80, type: 3}
 --- !u!1 &2101187914
 GameObject:
