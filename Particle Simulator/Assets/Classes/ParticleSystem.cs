@@ -13,6 +13,8 @@ public class ParticleSystem: MonoBehaviour
 
     public GameObject spawner;
 
+    public bool paused = false;
+
     // lists of particles, dynamic fields and static fields
     List<Particle> particles = new List<Particle>();
     List<DynamicField> dynamicFields = new List<DynamicField>();
@@ -24,9 +26,9 @@ public class ParticleSystem: MonoBehaviour
     void Start()
     { 
         for (int i = 0; i < NUM_PARTICLES; i++) {
-            float x = Random.Range(-8,8);
-            float z = Random.Range(-8,8);
-            float y = Random.Range(2,18);
+            float x = Random.Range(-80,80);
+            float z = Random.Range(-80,80);
+            float y = Random.Range(80,85);
 
             particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
         }
@@ -39,6 +41,7 @@ public class ParticleSystem: MonoBehaviour
     // Called once per frame
     void Update()
     {
+        if (paused) return;
         if(Input.GetMouseButtonUp(0)) {
             
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
@@ -57,6 +60,7 @@ public class ParticleSystem: MonoBehaviour
 
         }
 
+        
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
             foreach (Particle A in particles) {
@@ -76,5 +80,13 @@ public class ParticleSystem: MonoBehaviour
         foreach (Particle A in particles) {
             A.step(dt);
         }       
+    }
+
+    public void updateDT(float dT) {
+        dt = dT;
+    }
+
+    public void togglePause() {
+        paused = !paused;
     }
 }
