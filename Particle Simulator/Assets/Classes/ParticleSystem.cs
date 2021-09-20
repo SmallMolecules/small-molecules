@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParticleSystem: MonoBehaviour
 {
     // Fields
-    [SerializeField]
-    private float dt = 0.001F;
+    // [SerializeField]
+    public float dt = 0.05F;
 
     [SerializeField][Range(0,20)]
     private int NUM_PARTICLES = 10;
@@ -42,7 +43,7 @@ public class ParticleSystem: MonoBehaviour
     void Update()
     {
         if (paused) return;
-        if(Input.GetMouseButtonUp(0)) {
+        if(Input.GetMouseButtonUp(1)) {
             
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
                 if (particles.Count > 0) {
@@ -52,9 +53,9 @@ public class ParticleSystem: MonoBehaviour
                 }
             }
             else {
-                float x = Random.Range(-8,8);
-                float z = Random.Range(-8,8);
-                float y = Random.Range(2,18);
+                float x = Random.Range(-80,80);
+                float z = Random.Range(-80,80);
+                float y = Random.Range(80,85);
                 particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
             }
 

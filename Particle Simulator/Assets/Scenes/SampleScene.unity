@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 41616704}
   - component: {fileID: 41616705}
   m_Layer: 5
-  m_Name: dt
+  m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 0.1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0227
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -333,7 +333,7 @@ GameObject:
   - component: {fileID: 413386857}
   - component: {fileID: 413386856}
   m_Layer: 5
-  m_Name: speed
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2029,9 +2029,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f407829a2fdc0a535afd80d8b52b6a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dt: 0.0001
+  dt: 0.1
   NUM_PARTICLES: 10
-  spawner: {fileID: 195567441159503907, guid: 360d00bee6325bd3ab1d008c09393f80, type: 3}
+  spawner: {fileID: 0}
   paused: 0
 --- !u!1 &2094330329
 GameObject:
@@ -2149,6 +2149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PauseScreen: {fileID: 1515966206}
   PauseButton: {fileID: 1382635439}
+  slider: {fileID: 41616705}
 --- !u!1 &2101187914
 GameObject:
   m_ObjectHideFlags: 0
