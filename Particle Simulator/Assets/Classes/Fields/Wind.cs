@@ -6,11 +6,11 @@ public class Wind: StaticField
 {
     // Constants
     [SerializeField]
-    private float k = 5f;
+    private float k = 1f;
 
     // field dynamics
     public override Vector3 force(Particle A) {
-        return new Vector3(0.0f, 1.0f, 0.0f);
+        return k*(new Vector3(0.0f, 1.0f, 0.0f));
     }   
 
     
