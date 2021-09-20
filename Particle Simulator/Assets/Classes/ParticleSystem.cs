@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ParticleSystem: MonoBehaviour
 {
     // Fields
@@ -15,6 +16,7 @@ public class ParticleSystem: MonoBehaviour
     public GameObject spawner;
 
     public bool paused = false;
+
 
     // lists of particles, dynamic fields and static fields
     List<Particle> particles = new List<Particle>();
@@ -33,11 +35,15 @@ public class ParticleSystem: MonoBehaviour
             float y = Random.Range(-10, 10);
 
             if (i % 2 == 0) {
-                particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
+                AddNewParticle(new Vector3(x,y,z));
             } else {
-                float radius = Random.Range(0, 5);
-                float mass = Random.Range(0, 10);
-                particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity), radius, mass));
+                // float radius = Random.Range(10, 20);
+                float radius = 10;
+                // float mass = Random.Range(0, 10);
+                float mass = 1;
+                int charge = (int)Random.Range(0, 3)-1;
+                
+                AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
             }
         }
 
@@ -48,27 +54,8 @@ public class ParticleSystem: MonoBehaviour
 
     // Called once per frame
     void Update()
-    {
+    {     
         if (paused) return;
-        if(Input.GetMouseButtonUp(1)) {
-            
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
-                if (particles.Count > 0) {
-                int del = ran.Next(0, particles.Count-1);
-                Destroy(particles[del].getGameObject());
-                particles.RemoveAt(del);
-                }
-            }
-            else {
-                float x = Random.Range(-10, 10);
-                float z = Random.Range(-10, 10);
-                float y = Random.Range(-10, 10);
-                AddNewParticle(x,y,z);
-            }
-
-        }
-
-        
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
             foreach (Particle A in particles) {
@@ -100,9 +87,17 @@ public class ParticleSystem: MonoBehaviour
         paused = !paused;
     }
 
-    // adds new particle at given location
+    // adds new particle at given location with default parameters
     //  TODO: include mass, size, charge, colour, etc
-    public void AddNewParticle(float x, float y, float z) {
-        particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 10, int charge = 0) 
+    {
+        particles.Add(new Particle(Instantiate(spawner, pos, Quaternion.identity), mass, radius, charge));
+    }
+
+    public void AddNewParticleRandom() {
+        float x = Random.Range(-10, 10);
+        float z = Random.Range(-10, 10);
+        float y = Random.Range(-10, 10);
+        AddNewParticle(new Vector3(x,y,z));
     }
 }

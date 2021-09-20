@@ -9,54 +9,33 @@ public class Particle
     // attributes
     public float mass;
     public float radius;
-    public float charge;
+    public int charge;
 
     private Vector3 velocity;
 
-    // Default particle
-    public Particle(GameObject p) {
+    // Variable particle - default particle is handled by ParticleSystem
+    public Particle(GameObject p, float setMass, float setRad, int setCharge) {
         particle = p;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         var cubeRenderer = particle.GetComponent<Renderer>();
         
         // assign charge randomly and give colour
-        if (Random.Range(0f,1f) < 0.5f) {
-          charge = 1f;
+        if (setCharge < 0) {
           cubeRenderer.material.SetColor("_Color", Color.red);
         }
-        else {
-          charge = -1f;
+        else if (setCharge > 0){
           cubeRenderer.material.SetColor("_Color", Color.blue);
         }
-
-        mass = 100f;
-        radius = 10f;
-
-        particle.transform.localScale = new Vector3(radius/2, radius/2, radius/2);
-    }
-
-    // Variable particle
-    public Particle(GameObject p, float setRad, float setMass) {
-        particle = p;
-        velocity = new Vector3(0.0f, 0.0f, 0.0f);
-
-        var cubeRenderer = particle.GetComponent<Renderer>();
-        
-        // assign charge randomly and give colour
-        if (Random.Range(0f,1f) < 0.5f) {
-          charge = 1f;
-          cubeRenderer.material.SetColor("_Color", Color.red);
-        }
         else {
-          charge = -1f;
-          cubeRenderer.material.SetColor("_Color", Color.blue);
+            cubeRenderer.material.SetColor("_Color", Color.gray);
         }
 
         var myCollider = particle.GetComponent<SphereCollider>();
 
         myCollider.radius = setRad;
         mass = setMass;
+        charge = setCharge;
 
         particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
 

@@ -37,8 +37,14 @@ public class UISpawner : MonoBehaviour
         }
         // if no errors - create new particle
         if (!abort) {
-            system.AddNewParticle(val[0], val[1], val[2]);
+            Vector3 pos = new Vector3(val[0], val[1], val[2]);
+            system.AddNewParticle(pos);
         }
+    }
+
+    // creates randomly positioned paritcle
+    public void RandomCreate() {
+        system.AddNewParticleRandom();
     }
 
     //clears red error colour of fields
