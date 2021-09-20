@@ -27,15 +27,15 @@ public class ParticleSystem: MonoBehaviour
     void Start()
     { 
         for (int i = 0; i < NUM_PARTICLES; i++) {
-            float x = Random.Range(-80,80);
-            float z = Random.Range(-80,80);
-            float y = Random.Range(80,85);
+            float x = Random.Range(-10, 10);
+            float z = Random.Range(-10, 10);
+            float y = Random.Range(-10, 10);
 
             particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
         }
 
         dynamicFields.Add(new Coloumb());
-        staticFields.Add(new Wind());
+        // staticFields.Add(new Wind());
         
     }
 
@@ -53,10 +53,10 @@ public class ParticleSystem: MonoBehaviour
                 }
             }
             else {
-                float x = Random.Range(-80,80);
-                float z = Random.Range(-80,80);
-                float y = Random.Range(80,85);
-                particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
+                float x = Random.Range(-10, 10);
+                float z = Random.Range(-10, 10);
+                float y = Random.Range(-10, 10);
+                AddNewParticle(x,y,z);
             }
 
         }
@@ -89,5 +89,9 @@ public class ParticleSystem: MonoBehaviour
 
     public void togglePause() {
         paused = !paused;
+    }
+
+    public void AddNewParticle(float x, float y, float z) {
+        particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
     }
 }

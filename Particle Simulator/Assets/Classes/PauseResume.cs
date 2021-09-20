@@ -8,6 +8,7 @@ public class PauseResume : MonoBehaviour
  
     public GameObject PauseScreen;
     public GameObject PauseButton;
+    public GameObject AddParticle;
 
     private ParticleSystem system;
 
@@ -18,6 +19,9 @@ public class PauseResume : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PauseScreen.SetActive(false);
+        PauseButton.SetActive(true);
+        AddParticle.SetActive(false);
         system = GameObject.Find("System").GetComponent<ParticleSystem>();
         
         slider.value = system.dt;
@@ -35,6 +39,7 @@ public class PauseResume : MonoBehaviour
         system.togglePause();
         PauseScreen.SetActive(true);
         PauseButton.SetActive(false);
+        
     }
  
     public void ResumeGame()
@@ -42,6 +47,17 @@ public class PauseResume : MonoBehaviour
         system.togglePause();
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
+        AddParticle.SetActive(false);
+    }
+
+    public void AddNewParticle() {
+        if (AddParticle.activeSelf) {
+            AddParticle.SetActive(false);
+        }
+        else {
+            AddParticle.SetActive(true);
+        }
+
     }
 
     public void TimeScale(float dt) {
