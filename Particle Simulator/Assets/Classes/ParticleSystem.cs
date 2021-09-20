@@ -32,7 +32,13 @@ public class ParticleSystem: MonoBehaviour
             float z = Random.Range(-10, 10);
             float y = Random.Range(-10, 10);
 
-            particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
+            if (i % 2 == 0) {
+                particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
+            } else {
+                float radius = Random.Range(0, 5);
+                float mass = Random.Range(0, 10);
+                particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity), radius, mass));
+            }
         }
 
         dynamicFields.Add(new Coloumb());
