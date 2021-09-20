@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Particle 
 {
+    // attributes
     public float charge;
     public int mass;
 

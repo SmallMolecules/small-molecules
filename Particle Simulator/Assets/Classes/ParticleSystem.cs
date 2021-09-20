@@ -26,6 +26,7 @@ public class ParticleSystem: MonoBehaviour
     // Called once initially
     void Start()
     { 
+        //creates random particles
         for (int i = 0; i < NUM_PARTICLES; i++) {
             float x = Random.Range(-10, 10);
             float z = Random.Range(-10, 10);
@@ -83,14 +84,18 @@ public class ParticleSystem: MonoBehaviour
         }       
     }
 
+    // called by the slider to update dt
     public void updateDT(float dT) {
         dt = dT;
     }
 
+    // called by pause menu
     public void togglePause() {
         paused = !paused;
     }
 
+    // adds new particle at given location
+    //  TODO: include mass, size, charge, colour, etc
     public void AddNewParticle(float x, float y, float z) {
         particles.Add(new Particle(Instantiate(spawner, new Vector3(x,y,z), Quaternion.identity)));
     }
