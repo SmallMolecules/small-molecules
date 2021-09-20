@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System;
 
 public class PauseResume : MonoBehaviour
 {
@@ -14,7 +16,14 @@ public class PauseResume : MonoBehaviour
 
     public Text text;
 
+    public Text fps;
+
     public Slider slider;
+
+    // may need to include these in a separate class TODO
+    System.DateTime _lastTime; // marks the beginning the measurement began
+    int _framesRendered; // an increasing count
+    int _fps; // the FPS calculated from the last measurement
  
     // Start is called before the first frame update
     void Start()
@@ -28,13 +37,25 @@ public class PauseResume : MonoBehaviour
         
         // set value of slider to dt of system object
         slider.value = system.dt;
-        Debug.Log(slider.value);
+        // Debug.Log(slider.value);
     }
  
     // Update is called once per frame
     void Update()
     {
+        _framesRendered++;
+
         text.text = slider.value.ToString("0.000");
+
+        // calculate frames
+        if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
+        {
+            // one second has elapsed
+            _fps = _framesRendered;                     
+            _framesRendered = 0;            
+            _lastTime = System.DateTime.Now;
+        }
+        fps.text = String.Format("FPS:\t{0}", _fps);
     }
  
     public void PauseGame()
