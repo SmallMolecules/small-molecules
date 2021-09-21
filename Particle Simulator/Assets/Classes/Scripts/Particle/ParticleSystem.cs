@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 
 public class ParticleSystem: MonoBehaviour
@@ -16,6 +17,8 @@ public class ParticleSystem: MonoBehaviour
     public GameObject spawner;
 
     public bool paused = false;
+
+ 
 
 
     // lists of particles, dynamic fields and static fields
@@ -54,27 +57,39 @@ public class ParticleSystem: MonoBehaviour
 
     // Called once per frame
     void Update()
-    {     
+    {
         if (paused) return;
         // Static Field Contributions
+        List<Thread> threads = new List<Thread>();
+        foreach (Particle A in particles) {
+            Thread updatethread = new Thread(() => updateVelocity(A));
+            threads.Add(updatethread);
+            updatethread.Start();
+        }  
+        foreach (Thread t in threads) {
+            t.Join();
+        }
+        updatePositions();
+    }
+
+    private void updateVelocity(Particle A) {
         foreach (StaticField F in staticFields) {
-            foreach (Particle A in particles) {
-                A.addFoce(F.force(A));
-            }
+            A.addFoce(F.force(A));
         }
 
         // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
-            foreach (Particle A in particles) {
-                foreach (Particle B in particles) {
-                    A.addFoce(F.force(A, B));
-                }
+            foreach (Particle B in particles) {
+                A.addFoce(F.force(A, B));
             }
+
         }
-        // Update Positions
+    }
+
+    private void updatePositions() {
         foreach (Particle A in particles) {
             A.step(dt);
-        }       
+        }
     }
 
     // called by the slider to update dt

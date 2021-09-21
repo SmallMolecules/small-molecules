@@ -12,10 +12,12 @@ public class Particle
     public int charge;
 
     private Vector3 velocity;
+    private Vector3 position;
 
     // Variable particle - default particle is handled by ParticleSystem
     public Particle(GameObject p, float setMass, float setRad, int setCharge) {
         particle = p;
+        position = p.transform.position;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         var cubeRenderer = particle.GetComponent<Renderer>();
@@ -43,7 +45,7 @@ public class Particle
 
     // getter method to get position (and protect var particle)
     public Vector3 getPos() {
-        return particle.transform.position;
+        return position;
     }
 
     // add force contribution to vecolicty
@@ -53,6 +55,7 @@ public class Particle
 
     // update position of gameobject according to velocity
     public void step(float dt) {
+        position += velocity*dt;
         particle.transform.Translate(velocity*dt);
     }
 
