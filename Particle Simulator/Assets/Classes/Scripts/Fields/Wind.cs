@@ -9,7 +9,7 @@ public class Wind: StaticField
     private float k = 1f;
 
     // field dynamics
-    public override Vector3 force(Particle A) {
+    public override Vector3 force(Particle A, Scales s) {
         return k*(new Vector3(0.0f, 1.0f, 0.0f));
     }   
 

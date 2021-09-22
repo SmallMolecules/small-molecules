@@ -36,7 +36,7 @@ public class PauseResume : MonoBehaviour
         system = GameObject.Find("System").GetComponent<ParticleSystem>();
         
         // set value of slider to dt of system object
-        slider.value = system.dt;
+        slider.value = system.scales.getTime();
         // Debug.Log(slider.value);
     }
  
@@ -87,6 +87,6 @@ public class PauseResume : MonoBehaviour
 
     //updates the timescale as per the slider
     public void TimeScale(float dt) {
-        system.updateDT(dt);
+        system.scales.setTime(dt);
     }
 }

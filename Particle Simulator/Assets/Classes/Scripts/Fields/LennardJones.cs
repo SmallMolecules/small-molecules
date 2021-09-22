@@ -1,27 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class Coloumb: DynamicField
+public class LennardJones: DynamicField
 {
     // Constants
     [SerializeField]
-    private float k = 8.988E+9f;
+    private float e = 1f;
+    private float sig = 1f;
 
 
     // field dynamics
     public override Vector3 force(Particle A, Particle B, Scales s) {
 
-        float q1 = B.charge;
-        float q2 = A.charge;
-
         float r = Vector3.Distance(A.getPos(), B.getPos());
 
         if (r < 2f) {
-            r = 0.5f;
+            r = 1f;
         }
 
-        float con = k*s.getLength()*q1*q2/r;
+        float con = 4*e*(Mathf.Pow(sig/r, 12)- Mathf.Pow(sig/r, 6));
 
         return con*Vector3.Normalize(A.getPos() - B.getPos());
 

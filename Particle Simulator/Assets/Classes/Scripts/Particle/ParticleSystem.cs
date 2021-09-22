@@ -9,7 +9,7 @@ public class ParticleSystem: MonoBehaviour
 {
     // Fields
     // [SerializeField]
-    public float dt = 0.05F;
+    public Scales scales;
 
     [SerializeField][Range(0,20)]
     private int NUM_PARTICLES = 10;
@@ -18,32 +18,30 @@ public class ParticleSystem: MonoBehaviour
 
     public bool paused = false;
 
- 
-
-
     // lists of particles, dynamic fields and static fields
     List<Particle> particles = new List<Particle>();
     List<DynamicField> dynamicFields = new List<DynamicField>();
     List<StaticField> staticFields = new List<StaticField>();
 
-    public System.Random ran = new System.Random();
+    private System.Random rnd = new System.Random(9);
 
     // Called once initially
     void Start()
     { 
+        scales = new Scales(0.0001f, 10E-10f);
         //creates random particles
         for (int i = 0; i < NUM_PARTICLES; i++) {
-            float x = Random.Range(-10, 10);
-            float z = Random.Range(-10, 10);
-            float y = Random.Range(-10, 10);
+            float x = rnd.Next(-10, 10);
+            float z = rnd.Next(-10, 10);
+            float y = rnd.Next(-10, 10);
 
-            if (i % 2 == 0) {
+            if (rnd.Next() % 3==0) {
                 AddNewParticle(new Vector3(x,y,z));
             } else {
                 // float radius = Random.Range(10, 20);
-                float radius = 10;
+                float radius = 1f;
                 // float mass = Random.Range(0, 10);
-                float mass = 1;
+                float mass = 1f;
                 int charge = (int)Random.Range(0, 3)-1;
                 
                 AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
@@ -51,8 +49,9 @@ public class ParticleSystem: MonoBehaviour
         }
 
         dynamicFields.Add(new Coloumb());
-        // staticFields.Add(new Wind());
-        
+        // dynamicFields.Add(new LennardJones());
+
+        // staticFields.Add(new Wind());      
     }
 
     // Called once per frame
@@ -62,25 +61,27 @@ public class ParticleSystem: MonoBehaviour
         // Static Field Contributions
         List<Thread> threads = new List<Thread>();
         foreach (Particle A in particles) {
-            Thread updatethread = new Thread(() => updateVelocity(A));
-            threads.Add(updatethread);
-            updatethread.Start();
+            // Thread updatethread = new Thread(() => updateVelocity(A));
+            // threads.Add(updatethread);
+            // updatethread.Start();
+            updateVelocity(A);
         }  
-        foreach (Thread t in threads) {
-            t.Join();
-        }
+        // foreach (Thread t in threads) {
+        //     t.Join();
+        // }
+
         updatePositions();
     }
 
     private void updateVelocity(Particle A) {
         foreach (StaticField F in staticFields) {
-            A.addFoce(F.force(A));
+            // A.addFoce(F.force(A, scales));
         }
 
         // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
             foreach (Particle B in particles) {
-                A.addFoce(F.force(A, B));
+                A.addFoce(F.force(A, B, scales));
             }
 
         }
@@ -88,15 +89,10 @@ public class ParticleSystem: MonoBehaviour
 
     private void updatePositions() {
         foreach (Particle A in particles) {
-            A.step(dt);
+            A.step(scales.getTime());
         }
     }
-
-    // called by the slider to update dt
-    public void updateDT(float dT) {
-        dt = dT;
-    }
-
+    
     // called by pause menu
     public void togglePause() {
         paused = !paused;
@@ -104,15 +100,15 @@ public class ParticleSystem: MonoBehaviour
 
     // adds new particle at given location with default parameters
     //  TODO: include mass, size, charge, colour, etc
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 10, int charge = 0) 
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 1f, int charge = 0) 
     {
         particles.Add(new Particle(Instantiate(spawner, pos, Quaternion.identity), mass, radius, charge));
     }
 
     public void AddNewParticleRandom() {
-        float x = Random.Range(-10, 10);
-        float z = Random.Range(-10, 10);
-        float y = Random.Range(-10, 10);
+        float x = rnd.Next(-10, 10);
+        float z = rnd.Next(-10, 10);
+        float y = rnd.Next(-10, 10);
         AddNewParticle(new Vector3(x,y,z));
     }
 }
