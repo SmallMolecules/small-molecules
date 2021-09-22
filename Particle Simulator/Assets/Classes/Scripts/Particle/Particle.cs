@@ -48,6 +48,11 @@ public class Particle
         return position;
     }
 
+    // getter method to get velocity
+    public Vector3 getVel() {
+        return velocity;
+    }
+
     // add force contribution to vecolicty
     public void addFoce(Vector3 F) {
         velocity += F/mass; //NOTE: mass is currently 1

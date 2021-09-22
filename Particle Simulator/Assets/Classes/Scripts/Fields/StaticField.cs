@@ -13,7 +13,7 @@ public class StaticField
 
     // returns force contribution from ENVIRONMENT on A:
     // THIS IS WHERE THE LOGIC GOES FOR NEW FIELDS
-    public virtual Vector3 force(Particle A) {
+    public virtual Vector3 force(Particle A, Scales s) {
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
 

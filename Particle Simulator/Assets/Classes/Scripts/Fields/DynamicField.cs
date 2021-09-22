@@ -13,7 +13,7 @@ public class DynamicField
 
     // returns force contribution from B on A:
     // THIS IS WHERE THE LOGIC GOES FOR NEW FIELDS
-    public virtual Vector3 force(Particle A, Particle B) {
+    public virtual Vector3 force(Particle A, Particle B, Scales s) {
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
 
