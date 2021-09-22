@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System;
+using System.Globalization;
 
 public class PauseResume : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class PauseResume : MonoBehaviour
     public Text text;
 
     public Text fps;
+    public Text scales;
+    CultureInfo ci = new CultureInfo("en-us");//needed for string formatting for who knows why
 
     public Slider slider;
 
@@ -45,7 +48,9 @@ public class PauseResume : MonoBehaviour
     {
         _framesRendered++;
 
-        text.text = slider.value.ToString("0.000");
+        text.text = slider.value.ToString("0.00000");
+
+        updateScales();
 
         // calculate frames
         if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
@@ -58,7 +63,7 @@ public class PauseResume : MonoBehaviour
         fps.text = String.Format("FPS:\t{0}", _fps);
     }
  
-    public void PauseGame()
+    private void PauseGame()
     {
         system.togglePause();
         PauseScreen.SetActive(true);
@@ -66,7 +71,7 @@ public class PauseResume : MonoBehaviour
         
     }
  
-    public void ResumeGame()
+    private void ResumeGame()
     {
         system.togglePause();
         PauseScreen.SetActive(false);
@@ -75,7 +80,7 @@ public class PauseResume : MonoBehaviour
     }
 
     // called by the add particle button - shows new menu
-    public void AddNewParticle() {
+    private void AddNewParticle() {
         if (AddParticle.activeSelf) {
             AddParticle.SetActive(false);
         }
@@ -85,8 +90,16 @@ public class PauseResume : MonoBehaviour
 
     }
 
+    private void updateScales() {
+        scales.text =  String.Format("Time:\t{0} sec\n", 
+                                system.scales.getTime().ToString("e02", ci));
+        scales.text +=  String.Format("Length:\t{0} m",                        
+                                system.scales.getLength().ToString("e02", ci));
+        
+    }
+
     //updates the timescale as per the slider
-    public void TimeScale(float dt) {
+    private void TimeScale(float dt) {
         system.scales.setTime(dt);
     }
 }
