@@ -54,7 +54,7 @@ public class Particle
     }
 
     // add force contribution to vecolicty
-    public void addFoce(Vector3 F) {
+    public void addForce(Vector3 F) {
         velocity += F/mass; //NOTE: mass is currently 1
     }
 

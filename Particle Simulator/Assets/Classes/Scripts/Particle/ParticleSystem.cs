@@ -60,11 +60,12 @@ public class ParticleSystem: MonoBehaviour
         if (paused) return;
         // Static Field Contributions
         // List<Thread> threads = new List<Thread>();
-        foreach (Particle A in particles) {
+        // foreach (Particle A in particles) {
+        for (int a = 0; a < particles.Count-1; a++) {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
             // updatethread.Start();
-            updateVelocity(A);
+            updateVelocity(a);
         }  
         // foreach (Thread t in threads) {
         //     t.Join();
@@ -73,15 +74,15 @@ public class ParticleSystem: MonoBehaviour
         updatePositions();
     }
 
-    private void updateVelocity(Particle A) {
+    private void updateVelocity(int a) {
         foreach (StaticField F in staticFields) {
             // A.addFoce(F.force(A, scales));
         }
 
         // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
-            foreach (Particle B in particles) {
-                A.addFoce(F.force(A, B, scales));
+            for (int b = a+1; b < particles.Count; b++) {
+                F.applyForce(particles[a], particles[b], scales);
             }
 
         }

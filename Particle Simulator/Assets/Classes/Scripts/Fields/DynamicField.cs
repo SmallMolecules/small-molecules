@@ -18,8 +18,11 @@ public class DynamicField
     }
 
     // wrapper function for applying a force
-    public Vector3 applyForce(Particle A, Particle B, Scales s) {
-        return s.getLength()*fieldDynamics(A, B);
+    public void applyForce(Particle A, Particle B, Scales s) {
+        Vector3 F = s.getLength()*fieldDynamics(A, B);
+
+        A.addForce(F);
+        B.addForce(-F);
     }
 
 }
