@@ -13,8 +13,14 @@ public class StaticField
 
     // returns force contribution from ENVIRONMENT on A:
     // THIS IS WHERE THE LOGIC GOES FOR NEW FIELDS
-    public virtual Vector3 force(Particle A, Scales s) {
+    public virtual Vector3 fieldDynamics(Particle A) {
         return new Vector3(0.0f, 0.0f, 0.0f);
+    }
+
+    // wrapper function for applying a force
+    public void applyForce(Particle A, Scales s) {
+        Vector3 F = s.getLength()*fieldDynamics(A);
+        A.addForce(F);
     }
 
     
