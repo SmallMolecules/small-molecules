@@ -15,7 +15,7 @@ public class Scales
     private float MIN_LENGTH = 10E-20f;
 
     //constructors
-    public Scales(float t = 0.000001f, float l=10E-10f) {
+    public Scales(float t, float l) {
         setTime(t);
         setLength(l);
     }

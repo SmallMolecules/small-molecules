@@ -7,7 +7,7 @@ public class LennardJones: DynamicField
 {
     // Constants
     [SerializeField]
-    private float e = 1f;
+    private float e = 1.0E+10f;
     private float sig = 1f;
 
 
@@ -16,8 +16,9 @@ public class LennardJones: DynamicField
 
         float r = Vector3.Distance(A.getPos(), B.getPos());
 
-        if (r < 2f) {
-            r = 1f;
+        //TODO - autimatically calculate collision distance
+        if (r < 0.1f) {
+            r = 0.1f;
         }
 
         float con = 4*e*(Mathf.Pow(sig/r, 12)- Mathf.Pow(sig/r, 6));

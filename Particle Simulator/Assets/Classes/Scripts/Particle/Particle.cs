@@ -39,7 +39,7 @@ public class Particle
         mass = setMass;
         charge = setCharge;
 
-        particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
+        // particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
 
     }
 

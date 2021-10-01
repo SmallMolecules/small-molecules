@@ -35,21 +35,18 @@ public class ParticleSystem: MonoBehaviour
             float z = rnd.Next(-10, 10);
             float y = rnd.Next(-10, 10);
 
-            if (rnd.Next() % 3==0) {
-                AddNewParticle(new Vector3(x,y,z));
-            } else {
-                // float radius = Random.Range(10, 20);
-                float radius = 1f;
-                // float mass = Random.Range(0, 10);
-                float mass = 1f;
-                int charge = (int)Random.Range(0, 3)-1;
-                
-                AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
-            }
+            // float radius = Random.Range(10, 20);
+            float radius = 1f;
+            // float mass = Random.Range(0, 10);
+            float mass = 1f;
+            int charge = (int)Random.Range(0, 3)-1;
+            
+            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
+
         }
 
         dynamicFields.Add(new Coloumb());
-        // dynamicFields.Add(new LennardJones());
+        dynamicFields.Add(new LennardJones());
 
         // staticFields.Add(new Wind());      
     }
@@ -61,7 +58,7 @@ public class ParticleSystem: MonoBehaviour
         // Static Field Contributions
         // List<Thread> threads = new List<Thread>();
         // foreach (Particle A in particles) {
-        for (int a = 0; a < particles.Count-1; a++) {
+        for (int a = 0; a < particles.Count; a++) {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
             // updatethread.Start();
@@ -75,8 +72,9 @@ public class ParticleSystem: MonoBehaviour
     }
 
     private void updateVelocity(int a) {
+        // Static Field Contributions
         foreach (StaticField F in staticFields) {
-            // A.addFoce(F.force(A, scales));
+            F.applyForce(particles[a], scales);
         }
 
         // Dynamic Field Contributions
@@ -101,7 +99,7 @@ public class ParticleSystem: MonoBehaviour
 
     // adds new particle at given location with default parameters
     //  TODO: include mass, size, charge, colour, etc
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 1f, int charge = 0) 
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
         particles.Add(new Particle(Instantiate(spawner, pos, Quaternion.identity), mass, radius, charge));
     }
