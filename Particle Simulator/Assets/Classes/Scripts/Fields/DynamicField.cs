@@ -17,7 +17,4 @@ public class DynamicField
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
 
-    // PLEASE let me know if you think of a better way to wrap dynamic and static
-    // fields into one general "field" superclass - without it being unintuitive
-    // for a developer to implement in ParticleSystem.cs (Isaac)
 }
