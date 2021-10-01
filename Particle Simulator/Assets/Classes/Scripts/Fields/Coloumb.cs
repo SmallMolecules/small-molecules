@@ -10,7 +10,7 @@ public class Coloumb: DynamicField
 
 
     // field dynamics
-    public override Vector3 force(Particle A, Particle B, Scales s) {
+    public override Vector3 fieldDynamics(Particle A, Particle B) {
 
         float q1 = B.charge;
         float q2 = A.charge;
@@ -21,12 +21,8 @@ public class Coloumb: DynamicField
             r = 0.5f;
         }
 
-        float con = k*s.getLength()*q1*q2/r;
+        float con = k*q1*q2/r;
 
         return con*Vector3.Normalize(A.getPos() - B.getPos());
-
-
-    }
- 
-    
+    } 
 }

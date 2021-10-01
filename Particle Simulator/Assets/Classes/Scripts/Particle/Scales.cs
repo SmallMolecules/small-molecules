@@ -8,10 +8,21 @@ public class Scales
     private float time;
     private float length;
 
-    //constructor
+    private float DEFAULT_TIME = 0.0001f;
+    private float MAX_TIME = 2f;
+
+    private float DEFAULT_LENGTH = 10E-10f;
+    private float MIN_LENGTH = 10E-20f;
+
+    //constructors
     public Scales(float t = 0.000001f, float l=10E-10f) {
         setTime(t);
         setLength(l);
+    }
+
+    public Scales() {
+        setTime(DEFAULT_TIME);
+        setLength(DEFAULT_LENGTH);
     }
 
     public float getTime() {
@@ -23,10 +34,23 @@ public class Scales
     }
 
     public void setTime(float t) {
-        time = t;//TODO - checks
+        if (t < 0) {
+            time = 0;
+            return;
+        }
+        if (t > MAX_TIME) {
+            time = MAX_TIME;
+            return;
+        }
+
+        time = t;
     }
 
     public void setLength(float l) {
+        if (l < 0) {
+            length = MIN_LENGTH;
+        }
+
         length = l;
     }
 

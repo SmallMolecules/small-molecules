@@ -28,7 +28,7 @@ public class ParticleSystem: MonoBehaviour
     // Called once initially
     void Start()
     { 
-        scales = new Scales(0.0001f, 10E-10f);
+        scales = new Scales();
         //creates random particles
         for (int i = 0; i < NUM_PARTICLES; i++) {
             float x = rnd.Next(-10, 10);
@@ -59,7 +59,7 @@ public class ParticleSystem: MonoBehaviour
     {
         if (paused) return;
         // Static Field Contributions
-        List<Thread> threads = new List<Thread>();
+        // List<Thread> threads = new List<Thread>();
         foreach (Particle A in particles) {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);

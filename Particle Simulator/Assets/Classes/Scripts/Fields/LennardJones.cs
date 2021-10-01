@@ -12,7 +12,7 @@ public class LennardJones: DynamicField
 
 
     // field dynamics
-    public override Vector3 force(Particle A, Particle B, Scales s) {
+    public override Vector3 fieldDynamics(Particle A, Particle B) {
 
         float r = Vector3.Distance(A.getPos(), B.getPos());
 
