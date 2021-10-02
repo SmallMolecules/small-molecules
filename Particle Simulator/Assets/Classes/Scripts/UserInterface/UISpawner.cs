@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 // class for create particle UI
 // This class is broken and needs to be fixed : (
+// TODO - create new UISpawner for different systems
 public class UISpawner : MonoBehaviour
 {
     // input fields

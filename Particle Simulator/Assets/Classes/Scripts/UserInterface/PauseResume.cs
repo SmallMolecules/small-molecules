@@ -11,6 +11,8 @@ public class PauseResume : MonoBehaviour
     public GameObject PauseScreen;
     public GameObject PauseButton;
     public GameObject AddParticle;
+    public GameObject System1;
+    public GameObject simSettings;
 
     private SimulationManager manager;
 
@@ -34,6 +36,7 @@ public class PauseResume : MonoBehaviour
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
         AddParticle.SetActive(false);
+        System1.SetActive(false);
         // get system object
         // TODO - MAKE MORE GENERAL
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
@@ -69,7 +72,7 @@ public class PauseResume : MonoBehaviour
         manager.togglePause();
         PauseScreen.SetActive(true);
         PauseButton.SetActive(false);
-        
+        System1.SetActive(true);
     }
  
     private void ResumeGame()
@@ -78,6 +81,7 @@ public class PauseResume : MonoBehaviour
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
         AddParticle.SetActive(false);
+        System1.SetActive(false);
     }
 
     // called by the add particle button - shows new menu
@@ -89,6 +93,10 @@ public class PauseResume : MonoBehaviour
             AddParticle.SetActive(true);
         }
 
+    }
+
+    public void ShowSimSettings() {
+        simSettings.SetActive(!simSettings.activeInHierarchy);
     }
 
     private void updateScales() {
