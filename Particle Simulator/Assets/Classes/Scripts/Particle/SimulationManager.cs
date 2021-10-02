@@ -8,19 +8,28 @@ public class SimulationManager : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [SerializeField][Range(0,20)]
+    public int NUM_PARTICLES = 10;
+
     public GameObject particle;
 
     public GameObject simulator;
 
     public bool paused;
 
+    private int newestSim;
+
     List<GameObject> simulations = new List<GameObject>();
 
 
     void Start()
     {
+        newestSim = 1;
         // TODO - give position
+
         GameObject sim = Instantiate(simulator);
+        sim.name = String.Format("System {0}", newestSim);
+        newestSim++;
         sim.transform.parent = this.transform;
         simulations.Add(sim);
 
@@ -32,6 +41,19 @@ public class SimulationManager : MonoBehaviour
     {
         
     }
+
+    public void resetSystems() {
+        List<GameObject> newSimulations = new List<GameObject>();    
+        foreach (GameObject S in simulations) {
+            Destroy(S);
+            GameObject sim = Instantiate(simulator);
+            sim.transform.parent = this.transform;
+            newSimulations.Add(sim);
+        }
+        simulations = newSimulations;
+    
+    }
+    
 
     public Simulator firstSystem() {
         return simulations[0].GetComponent<Simulator>();

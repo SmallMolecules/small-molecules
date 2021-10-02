@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Globalization;
 
+// TODO - migrate objects to UISpawner
 public class PauseResume : MonoBehaviour
 {
     //components of the pause screen
@@ -12,17 +13,11 @@ public class PauseResume : MonoBehaviour
     public GameObject PauseButton;
     public GameObject AddParticle;
     public GameObject System1;
-    public GameObject simSettings;
 
     private SimulationManager manager;
 
-    public Text text;
-
     public Text fps;
-    public Text scales;
-    CultureInfo ci = new CultureInfo("en-us");//needed for string formatting for who knows why
 
-    public Slider slider;
 
     // may need to include these in a separate class TODO
     System.DateTime _lastTime; // marks the beginning the measurement began
@@ -41,10 +36,6 @@ public class PauseResume : MonoBehaviour
         // TODO - MAKE MORE GENERAL
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
-        // set value of slider to dt of system object
-        
-        slider.value = 0.0001f; //TEMPORARY
-        // Debug.Log(slider.value);
     }
  
     // Update is called once per frame
@@ -52,9 +43,6 @@ public class PauseResume : MonoBehaviour
     {
         _framesRendered++;
 
-        text.text = slider.value.ToString("0.00000");
-
-        updateScales();
 
         // calculate frames
         if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
@@ -65,6 +53,7 @@ public class PauseResume : MonoBehaviour
             _lastTime = System.DateTime.Now;
         }
         fps.text = String.Format("FPS:\t{0}", _fps);
+        
     }
  
     private void PauseGame()
@@ -96,20 +85,8 @@ public class PauseResume : MonoBehaviour
     }
 
     public void ShowSimSettings() {
-        simSettings.SetActive(!simSettings.activeInHierarchy);
+        AddParticle.SetActive(!AddParticle.activeInHierarchy);
     }
 
-    private void updateScales() {
-        scales.text = "System 1:\n";
-        scales.text +=  String.Format("Time:\t{0} sec\n", 
-                                manager.firstSystem().scales.getTime().ToString("e02", ci));
-        scales.text +=  String.Format("Length:\t{0} m",                        
-                                manager.firstSystem().scales.getLength().ToString("e02", ci));
-        
-    }
 
-    //updates the global timescale as per the slider
-    private void TimeScale(float dt) {
-        manager.setTime(dt);
-    }
 }

@@ -8,10 +8,6 @@ using System.Threading;
 public class Simulator  : MonoBehaviour
 {
 
-
-    [SerializeField][Range(0,20)]
-    private int NUM_PARTICLES = 10;
-
     public Scales scales;
 
     public bool paused;
@@ -31,7 +27,7 @@ public class Simulator  : MonoBehaviour
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         scales = new Scales();
         //creates random particles
-        for (int i = 0; i < NUM_PARTICLES; i++) {
+        for (int i = 0; i < manager.NUM_PARTICLES; i++) {
             float x = rnd.Next(-10, 10);
             float z = rnd.Next(-10, 10);
             float y = rnd.Next(-10, 10);
@@ -116,8 +112,5 @@ public class Simulator  : MonoBehaviour
         paused = !paused;
     }
 
-    [ContextMenu("Reset Scene")]
-    private void reset(Simulator s) {
-        // TODO - reset to another simulator state
-    }
+
 }

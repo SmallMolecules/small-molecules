@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Globalization;
 
 // class for create particle UI
 // This class is broken and needs to be fixed : (
@@ -11,18 +13,26 @@ public class UISpawner : MonoBehaviour
     // input fields
     public InputField[] inputs;
 
-    public SimulationManager system;
+    public Simulator simulator;
 
+    public Slider slider;
+    public Text sliderText;
+
+    public Text scales;
+
+    CultureInfo ci = new CultureInfo("en-us");//needed for string formatting for who knows why
 
     void Start()
     {
-        system = GameObject.Find("Manager").GetComponent<SimulationManager>();//VERY TEMPORARY FIX
+        simulator = GameObject.Find("System 1").GetComponent<Simulator>();//VERY TEMPORARY FIX
+        slider.value = 0.0001f;
+        updateScales(slider.value);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        sliderText.text = slider.value.ToString("0.00000");
         
     }
 
@@ -40,13 +50,13 @@ public class UISpawner : MonoBehaviour
         // if no errors - create new particle
         if (!abort) {
             Vector3 pos = new Vector3(val[0], val[1], val[2]);
-            system.firstSystem().AddNewParticle(pos);
+            simulator.AddNewParticle(pos);
         }
     }
 
     // creates randomly positioned paritcle
     public void RandomCreate() {
-        system.firstSystem().AddNewParticleRandom();
+        simulator.AddNewParticleRandom();
     }
 
     //clears red error colour of fields
@@ -55,6 +65,24 @@ public class UISpawner : MonoBehaviour
             inputs[i].image.color = Color.white;
             
         }
+    }
+
+    public void updateScales(float t) {
+
+        simulator.scales.setTime(t);
+
+        scales.text = "System 1:\n";
+        scales.text +=  String.Format("Time:\t{0} sec\n", 
+                                simulator.scales.getTime().ToString("e02", ci));
+        scales.text +=  String.Format("Length:\t{0} m",                        
+                                simulator.scales.getLength().ToString("e02", ci));
+        
+        
+    }
+
+    //updates the global timescale as per the slider
+    private void TimeScale(float dt) {
+        simulator.scales.setTime(dt);
     }
 
 
