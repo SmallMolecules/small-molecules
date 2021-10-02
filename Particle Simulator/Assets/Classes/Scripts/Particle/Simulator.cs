@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Threading;
 
 
-public class ParticleSystem: MonoBehaviour
+public class Simulator  : MonoBehaviour
 {
     // Fields
     // [SerializeField]
@@ -105,8 +105,8 @@ public class ParticleSystem: MonoBehaviour
     }
 
     public void AddNewParticleRandom() {
-        float x = rnd.Next(-10, 10);
         float z = rnd.Next(-10, 10);
+        float x = rnd.Next(-10, 10);
         float y = rnd.Next(-10, 10);
         AddNewParticle(new Vector3(x,y,z));
     }

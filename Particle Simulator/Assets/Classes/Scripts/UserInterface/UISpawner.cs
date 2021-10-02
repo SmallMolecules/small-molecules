@@ -9,12 +9,12 @@ public class UISpawner : MonoBehaviour
     // input fields
     public InputField[] inputs;
 
-    public ParticleSystem system;
+    public Simulator system;
 
 
     void Start()
     {
-        system = GameObject.Find("System").GetComponent<ParticleSystem>();
+        system = GameObject.Find("System").GetComponent<Simulator>();
     }
 
     // Update is called once per frame
