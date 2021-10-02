@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Particle 
 { 
-    private GameObject particle;
+    public GameObject particle;
     
     // attributes
     public float mass;
@@ -43,6 +43,8 @@ public class Particle
 
     }
 
+
+
     // getter method to get position (and protect var particle)
     public Vector3 getPos() {
         return position;
@@ -63,11 +65,4 @@ public class Particle
         position += velocity*dt;
         particle.transform.Translate(velocity*dt);
     }
-
-    public GameObject getGameObject() {
-        return particle;
-    }
-
-    
-
 }

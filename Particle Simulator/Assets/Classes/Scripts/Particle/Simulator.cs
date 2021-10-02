@@ -42,7 +42,6 @@ public class Simulator  : MonoBehaviour
             int charge = (int)Random.Range(0, 3)-1;
             
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
-
         }
 
         dynamicFields.Add(new Coloumb());
@@ -109,5 +108,15 @@ public class Simulator  : MonoBehaviour
         float x = rnd.Next(-10, 10);
         float y = rnd.Next(-10, 10);
         AddNewParticle(new Vector3(x,y,z));
+    }
+
+    private void RemoveParticle(Particle A) {
+        Destroy(A.particle);
+        particles.Remove(A);
+    }
+
+    [ContextMenu("Reset Scene")]
+    private void reset(Simulator s) {
+        // TODO - reset to another simulator state
     }
 }
