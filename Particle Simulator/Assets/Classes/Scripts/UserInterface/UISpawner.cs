@@ -4,17 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // class for create particle UI
+// This class is broken and needs to be fixed : (
 public class UISpawner : MonoBehaviour
 {
     // input fields
     public InputField[] inputs;
 
-    public Simulator system;
+    public SimulationManager system;
 
 
     void Start()
     {
-        system = GameObject.Find("System").GetComponent<Simulator>();
+        system = GameObject.Find("Manager").GetComponent<SimulationManager>();//VERY TEMPORARY FIX
     }
 
     // Update is called once per frame
@@ -38,13 +39,13 @@ public class UISpawner : MonoBehaviour
         // if no errors - create new particle
         if (!abort) {
             Vector3 pos = new Vector3(val[0], val[1], val[2]);
-            system.AddNewParticle(pos);
+            system.firstSystem().AddNewParticle(pos);
         }
     }
 
     // creates randomly positioned paritcle
     public void RandomCreate() {
-        system.AddNewParticleRandom();
+        system.firstSystem().AddNewParticleRandom();
     }
 
     //clears red error colour of fields

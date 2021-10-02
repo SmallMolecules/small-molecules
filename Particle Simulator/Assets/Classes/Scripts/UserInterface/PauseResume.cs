@@ -12,7 +12,7 @@ public class PauseResume : MonoBehaviour
     public GameObject PauseButton;
     public GameObject AddParticle;
 
-    private Simulator system;
+    private SimulationManager manager;
 
     public Text text;
 
@@ -35,10 +35,12 @@ public class PauseResume : MonoBehaviour
         PauseButton.SetActive(true);
         AddParticle.SetActive(false);
         // get system object
-        system = GameObject.Find("System").GetComponent<Simulator>();
+        // TODO - MAKE MORE GENERAL
+        manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
         // set value of slider to dt of system object
-        slider.value = system.scales.getTime();
+        
+        slider.value = 0.0001f; //TEMPORARY
         // Debug.Log(slider.value);
     }
  
@@ -64,7 +66,7 @@ public class PauseResume : MonoBehaviour
  
     private void PauseGame()
     {
-        system.togglePause();
+        manager.togglePause();
         PauseScreen.SetActive(true);
         PauseButton.SetActive(false);
         
@@ -72,7 +74,7 @@ public class PauseResume : MonoBehaviour
  
     private void ResumeGame()
     {
-        system.togglePause();
+        manager.togglePause();
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
         AddParticle.SetActive(false);
@@ -90,15 +92,16 @@ public class PauseResume : MonoBehaviour
     }
 
     private void updateScales() {
-        scales.text =  String.Format("Time:\t{0} sec\n", 
-                                system.scales.getTime().ToString("e02", ci));
+        scales.text = "System 1:\n";
+        scales.text +=  String.Format("Time:\t{0} sec\n", 
+                                manager.firstSystem().scales.getTime().ToString("e02", ci));
         scales.text +=  String.Format("Length:\t{0} m",                        
-                                system.scales.getLength().ToString("e02", ci));
+                                manager.firstSystem().scales.getLength().ToString("e02", ci));
         
     }
 
-    //updates the timescale as per the slider
+    //updates the global timescale as per the slider
     private void TimeScale(float dt) {
-        system.scales.setTime(dt);
+        manager.setTime(dt);
     }
 }

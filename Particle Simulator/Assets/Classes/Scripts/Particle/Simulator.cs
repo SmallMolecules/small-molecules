@@ -7,16 +7,16 @@ using System.Threading;
 
 public class Simulator  : MonoBehaviour
 {
-    // Fields
-    // [SerializeField]
-    public Scales scales;
+
 
     [SerializeField][Range(0,20)]
     private int NUM_PARTICLES = 10;
 
-    public GameObject spawner;
+    public Scales scales;
 
-    public bool paused = false;
+    public bool paused;
+
+    private SimulationManager manager;
 
     // lists of particles, dynamic fields and static fields
     List<Particle> particles = new List<Particle>();
@@ -28,6 +28,7 @@ public class Simulator  : MonoBehaviour
     // Called once initially
     void Start()
     { 
+        manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         scales = new Scales();
         //creates random particles
         for (int i = 0; i < NUM_PARTICLES; i++) {
@@ -53,7 +54,7 @@ public class Simulator  : MonoBehaviour
     // Called once per frame
     void Update()
     {
-        if (paused) return;
+        if (paused || manager.paused) return;
         // Static Field Contributions
         // List<Thread> threads = new List<Thread>();
         // foreach (Particle A in particles) {
@@ -81,7 +82,6 @@ public class Simulator  : MonoBehaviour
             for (int b = a+1; b < particles.Count; b++) {
                 F.applyForce(particles[a], particles[b], scales);
             }
-
         }
     }
 
@@ -91,16 +91,11 @@ public class Simulator  : MonoBehaviour
         }
     }
     
-    // called by pause menu
-    public void togglePause() {
-        paused = !paused;
-    }
-
     // adds new particle at given location with default parameters
     //  TODO: include mass, size, charge, colour, etc
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
-        GameObject sphere = Instantiate(spawner, pos, Quaternion.identity);
+        GameObject sphere = Instantiate(manager.particle, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
         particles.Add(new Particle(sphere, mass, radius, charge));
     }
@@ -115,6 +110,10 @@ public class Simulator  : MonoBehaviour
     private void RemoveParticle(Particle A) {
         Destroy(A.particle);
         particles.Remove(A);
+    }
+
+    public void togglePause() {
+        paused = !paused;
     }
 
     [ContextMenu("Reset Scene")]
