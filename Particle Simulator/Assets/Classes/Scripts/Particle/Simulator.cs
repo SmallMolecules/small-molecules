@@ -100,7 +100,9 @@ public class Simulator  : MonoBehaviour
     //  TODO: include mass, size, charge, colour, etc
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
-        particles.Add(new Particle(Instantiate(spawner, pos, Quaternion.identity), mass, radius, charge));
+        GameObject sphere = Instantiate(spawner, pos, Quaternion.identity);
+        sphere.transform.parent = this.transform;
+        particles.Add(new Particle(sphere, mass, radius, charge));
     }
 
     public void AddNewParticleRandom() {
