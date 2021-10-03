@@ -11,8 +11,10 @@ public class PauseResume : MonoBehaviour
     //components of the pause screen
     public GameObject PauseScreen;
     public GameObject PauseButton;
-    public GameObject AddParticle;
-    public GameObject System1;
+
+    public GameObject simulator_UI;
+
+    public Button system_button;
 
     private SimulationManager manager;
 
@@ -30,9 +32,6 @@ public class PauseResume : MonoBehaviour
         // show/hide menu items
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
-        AddParticle.SetActive(false);
-        System1.SetActive(false);
-        // get system object
         // TODO - MAKE MORE GENERAL
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
@@ -61,7 +60,6 @@ public class PauseResume : MonoBehaviour
         manager.togglePause();
         PauseScreen.SetActive(true);
         PauseButton.SetActive(false);
-        System1.SetActive(true);
     }
  
     private void ResumeGame()
@@ -69,23 +67,16 @@ public class PauseResume : MonoBehaviour
         manager.togglePause();
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
-        AddParticle.SetActive(false);
-        System1.SetActive(false);
     }
 
-    // called by the add particle button - shows new menu
-    private void AddNewParticle() {
-        if (AddParticle.activeSelf) {
-            AddParticle.SetActive(false);
-        }
-        else {
-            AddParticle.SetActive(true);
-        }
-
-    }
-
-    public void ShowSimSettings() {
-        AddParticle.SetActive(!AddParticle.activeInHierarchy);
+    public void newSimulator(GameObject sim) {
+        GameObject UIentry = Instantiate(simulator_UI);
+        UIentry.transform.SetParent(PauseScreen.transform, false); 
+        UISpawner script = UIentry.GetComponent<UISpawner>();
+        system_button.onClick.AddListener (script.show);
+        script.attachSimulator(sim);
+        
+        
     }
 
 

@@ -24,16 +24,16 @@ public class UISpawner : MonoBehaviour
 
     void Start()
     {
-        simulator = GameObject.Find("System 1").GetComponent<Simulator>();//VERY TEMPORARY FIX
-        slider.value = 0.0001f;
-        updateScales(slider.value);
+        //VERY TEMPORARY FIX
+
+        // updateScales(slider.value);
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        sliderText.text = slider.value.ToString("0.00000");
-        
+        sliderText.text = slider.value.ToString("0.00000");       
     }
 
     // attempt to parse the input fields
@@ -59,6 +59,13 @@ public class UISpawner : MonoBehaviour
         simulator.AddNewParticleRandom();
     }
 
+    public void attachSimulator(GameObject sim) {
+        simulator = sim.GetComponent<Simulator>();
+
+        slider.value = 0.0001f;
+        updateScales();
+    }
+
     //clears red error colour of fields
     public void ClearColour() {
         for (int i=0; i < 3; i++) {
@@ -67,9 +74,13 @@ public class UISpawner : MonoBehaviour
         }
     }
 
-    public void updateScales(float t) {
+    public void updateScales() {
 
-        simulator.scales.setTime(t);
+        Simulator s = simulator;
+
+        if (simulator.scales == null) {
+            Debug.Log("hit");
+        }
 
         scales.text = "System 1:\n";
         scales.text +=  String.Format("Time:\t{0} sec\n", 
@@ -85,5 +96,8 @@ public class UISpawner : MonoBehaviour
         simulator.scales.setTime(dt);
     }
 
+    public void show() {
+        gameObject.SetActive(!gameObject.activeInHierarchy);
+    }
 
 }

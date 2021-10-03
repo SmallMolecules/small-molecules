@@ -15,6 +15,8 @@ public class SimulationManager : MonoBehaviour
 
     public GameObject simulator;
 
+    public GameObject UI;
+
     public bool paused;
 
     private int newestSim;
@@ -27,12 +29,7 @@ public class SimulationManager : MonoBehaviour
         newestSim = 1;
         // TODO - give position
 
-        GameObject sim = Instantiate(simulator);
-        sim.name = String.Format("System {0}", newestSim);
-        newestSim++;
-        sim.transform.parent = this.transform;
-        simulations.Add(sim);
-
+        createSimulator();
         paused = false;
     }
 
@@ -41,6 +38,26 @@ public class SimulationManager : MonoBehaviour
     {
         
     }
+
+    private void createSimulator() {
+        GameObject sim = Instantiate(simulator);
+        sim.name = String.Format("System {0}", newestSim);
+
+        newestSim++;
+
+        sim.transform.parent = this.transform;
+        simulations.Add(sim);
+        
+        // GameObject UIentry = Instantiate(simulator_UI);
+        // UIentry.transform.SetParent(UI.Find("UI Screen").transform, false);
+
+        UI.GetComponent<PauseResume>().newSimulator(sim);
+
+        // UI.getComponent<UISpawner>().createButton(UI);
+
+
+    }
+
 
     public void resetSystems() {
         List<GameObject> newSimulations = new List<GameObject>();    

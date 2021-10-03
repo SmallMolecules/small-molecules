@@ -8,7 +8,7 @@ using System.Threading;
 public class Simulator  : MonoBehaviour
 {
 
-    public Scales scales;
+    public Scales scales = new Scales();
 
     public bool paused;
 
@@ -25,7 +25,7 @@ public class Simulator  : MonoBehaviour
     void Start()
     { 
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
-        scales = new Scales();
+       
         //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
             float x = rnd.Next(-10, 10);
@@ -111,6 +111,7 @@ public class Simulator  : MonoBehaviour
     public void togglePause() {
         paused = !paused;
     }
+    
 
 
 }
