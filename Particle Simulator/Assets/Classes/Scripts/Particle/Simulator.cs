@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Threading;
 
 
-public class ParticleSystem: MonoBehaviour
+public class Simulator  : MonoBehaviour
 {
     // Fields
     // [SerializeField]
@@ -28,28 +28,25 @@ public class ParticleSystem: MonoBehaviour
     // Called once initially
     void Start()
     { 
-        scales = new Scales(0.0001f, 10E-10f);
+        scales = new Scales();
         //creates random particles
         for (int i = 0; i < NUM_PARTICLES; i++) {
             float x = rnd.Next(-10, 10);
             float z = rnd.Next(-10, 10);
             float y = rnd.Next(-10, 10);
 
-            if (rnd.Next() % 3==0) {
-                AddNewParticle(new Vector3(x,y,z));
-            } else {
-                // float radius = Random.Range(10, 20);
-                float radius = 1f;
-                // float mass = Random.Range(0, 10);
-                float mass = 1f;
-                int charge = (int)Random.Range(0, 3)-1;
-                
-                AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
-            }
+            // float radius = Random.Range(10, 20);
+            float radius = 1f;
+            // float mass = Random.Range(0, 10);
+            float mass = 1f;
+            int charge = (int)Random.Range(0, 3)-1;
+            
+            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
+
         }
 
         dynamicFields.Add(new Coloumb());
-        // dynamicFields.Add(new LennardJones());
+        dynamicFields.Add(new LennardJones());
 
         // staticFields.Add(new Wind());      
     }
@@ -59,12 +56,13 @@ public class ParticleSystem: MonoBehaviour
     {
         if (paused) return;
         // Static Field Contributions
-        List<Thread> threads = new List<Thread>();
-        foreach (Particle A in particles) {
+        // List<Thread> threads = new List<Thread>();
+        // foreach (Particle A in particles) {
+        for (int a = 0; a < particles.Count; a++) {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
             // updatethread.Start();
-            updateVelocity(A);
+            updateVelocity(a);
         }  
         // foreach (Thread t in threads) {
         //     t.Join();
@@ -73,15 +71,16 @@ public class ParticleSystem: MonoBehaviour
         updatePositions();
     }
 
-    private void updateVelocity(Particle A) {
+    private void updateVelocity(int a) {
+        // Static Field Contributions
         foreach (StaticField F in staticFields) {
-            // A.addFoce(F.force(A, scales));
+            F.applyForce(particles[a], scales);
         }
 
         // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
-            foreach (Particle B in particles) {
-                A.addFoce(F.force(A, B, scales));
+            for (int b = a+1; b < particles.Count; b++) {
+                F.applyForce(particles[a], particles[b], scales);
             }
 
         }
@@ -100,14 +99,14 @@ public class ParticleSystem: MonoBehaviour
 
     // adds new particle at given location with default parameters
     //  TODO: include mass, size, charge, colour, etc
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 1f, int charge = 0) 
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
         particles.Add(new Particle(Instantiate(spawner, pos, Quaternion.identity), mass, radius, charge));
     }
 
     public void AddNewParticleRandom() {
-        float x = rnd.Next(-10, 10);
         float z = rnd.Next(-10, 10);
+        float x = rnd.Next(-10, 10);
         float y = rnd.Next(-10, 10);
         AddNewParticle(new Vector3(x,y,z));
     }

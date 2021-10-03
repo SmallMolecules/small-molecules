@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 using System;
 using System.Globalization;
 
@@ -13,7 +12,7 @@ public class PauseResume : MonoBehaviour
     public GameObject PauseButton;
     public GameObject AddParticle;
 
-    private ParticleSystem system;
+    private Simulator system;
 
     public Text text;
 
@@ -36,7 +35,7 @@ public class PauseResume : MonoBehaviour
         PauseButton.SetActive(true);
         AddParticle.SetActive(false);
         // get system object
-        system = GameObject.Find("System").GetComponent<ParticleSystem>();
+        system = GameObject.Find("System").GetComponent<Simulator>();
         
         // set value of slider to dt of system object
         slider.value = system.scales.getTime();

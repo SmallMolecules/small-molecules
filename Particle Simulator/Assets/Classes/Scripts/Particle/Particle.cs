@@ -39,7 +39,7 @@ public class Particle
         mass = setMass;
         charge = setCharge;
 
-        particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
+        // particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
 
     }
 
@@ -54,7 +54,7 @@ public class Particle
     }
 
     // add force contribution to vecolicty
-    public void addFoce(Vector3 F) {
+    public void addForce(Vector3 F) {
         velocity += F/mass; //NOTE: mass is currently 1
     }
 
