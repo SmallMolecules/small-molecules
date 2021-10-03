@@ -4,25 +4,26 @@ using UnityEngine;
 using System;
 using System.IO;
 
+// class to manage instances of simulators
 public class SimulationManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-
+{   
     [SerializeField][Range(0,20)]
     public int NUM_PARTICLES = 10;
 
-    public GameObject particle;
+    // reference to object to spawn
+    public GameObject simulator_spawner;
 
-    public GameObject simulator;
-
+    // reference to UI pause screen
     public GameObject UI;
 
-    public bool paused;
-
-    private int newestSim;
-
+    // list of all simulations 
     List<GameObject> simulations = new List<GameObject>();
 
+    // pauses all simulations
+    public bool paused;
+
+    // index of how many systems exist
+    private int newestSim;
 
     void Start()
     {
@@ -39,31 +40,29 @@ public class SimulationManager : MonoBehaviour
         
     }
 
+    // makes new random simulator
     private void createSimulator() {
-        GameObject sim = Instantiate(simulator);
+        GameObject sim = Instantiate(simulator_spawner);
         sim.name = String.Format("System {0}", newestSim);
 
         newestSim++;
 
+        // set parent
         sim.transform.parent = this.transform;
         simulations.Add(sim);
         
-        // GameObject UIentry = Instantiate(simulator_UI);
-        // UIentry.transform.SetParent(UI.Find("UI Screen").transform, false);
-
+        // add new simulator to UI menu
         UI.GetComponent<PauseResume>().newSimulator(sim);
-
-        // UI.getComponent<UISpawner>().createButton(UI);
-
-
     }
 
 
+    // TODO - implement this function
+    // resets system to some system state
     public void resetSystems() {
         List<GameObject> newSimulations = new List<GameObject>();    
         foreach (GameObject S in simulations) {
             Destroy(S);
-            GameObject sim = Instantiate(simulator);
+            GameObject sim = Instantiate(simulator_spawner);
             sim.transform.parent = this.transform;
             newSimulations.Add(sim);
         }
@@ -71,11 +70,7 @@ public class SimulationManager : MonoBehaviour
     
     }
     
-
-    public Simulator firstSystem() {
-        return simulations[0].GetComponent<Simulator>();
-    }
-
+    // pauses/unpauses
     public void togglePause() {
         paused = !paused;
         foreach (GameObject S in simulations) {
@@ -83,16 +78,4 @@ public class SimulationManager : MonoBehaviour
         }
     }
 
-    public void setTime(float t) {
-        foreach (GameObject S in simulations) {
-            // TODO - figure out why tf this is throwing an error
-            try {
-            S.GetComponent<Simulator>().scales.setTime(t);
-            }
-            catch (Exception e)
-        {
-            
-        }
-        }
-    }
 }

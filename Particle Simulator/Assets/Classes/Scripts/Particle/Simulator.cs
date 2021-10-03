@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 
-
+// class for a simulator 
 public class Simulator  : MonoBehaviour
 {
-
+    // class of local scales
     public Scales scales = new Scales();
 
     public bool paused;
 
+    // reference to parent
     private SimulationManager manager;
 
     // lists of particles, dynamic fields and static fields
@@ -19,12 +20,14 @@ public class Simulator  : MonoBehaviour
     List<DynamicField> dynamicFields = new List<DynamicField>();
     List<StaticField> staticFields = new List<StaticField>();
 
+    // seeded random number generator 
     private System.Random rnd = new System.Random(9);
 
     // Called once initially
     void Start()
     { 
-        manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
+        // set reference to parent script
+        manager = transform.parent.gameObject.GetComponent<SimulationManager>();
        
         //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
@@ -41,19 +44,22 @@ public class Simulator  : MonoBehaviour
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
         }
 
+        // add dynamic feilds
         dynamicFields.Add(new Coloumb());
         dynamicFields.Add(new LennardJones());
 
+        // add static fields
         // staticFields.Add(new Wind());      
     }
 
-    // Called once per frame
+    // Called once per frame - commented out is the multithreaded implementation
     void Update()
     {
-        if (paused || manager.paused) return;
-        // Static Field Contributions
+        if (paused || manager.paused) return;    
         // List<Thread> threads = new List<Thread>();
-        // foreach (Particle A in particles) {
+        // foreach (Particle A in particles) 
+
+        // for all particles
         for (int a = 0; a < particles.Count; a++) {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
@@ -67,6 +73,7 @@ public class Simulator  : MonoBehaviour
         updatePositions();
     }
 
+    // applies forces
     private void updateVelocity(int a) {
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
@@ -75,12 +82,15 @@ public class Simulator  : MonoBehaviour
 
         // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
+            // only apply to particles after index as F.applyForce applies
+            // force to both particles to save computation time
             for (int b = a+1; b < particles.Count; b++) {
                 F.applyForce(particles[a], particles[b], scales);
             }
         }
     }
 
+    // updates positions of particles by dt
     private void updatePositions() {
         foreach (Particle A in particles) {
             A.step(scales.getTime());
@@ -88,7 +98,6 @@ public class Simulator  : MonoBehaviour
     }
     
     // adds new particle at given location with default parameters
-    //  TODO: include mass, size, charge, colour, etc
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
         GameObject sphere = Instantiate(manager.particle, pos, Quaternion.identity);
@@ -108,6 +117,7 @@ public class Simulator  : MonoBehaviour
         particles.Remove(A);
     }
 
+    // pauses/unpauses the game
     public void togglePause() {
         paused = !paused;
     }

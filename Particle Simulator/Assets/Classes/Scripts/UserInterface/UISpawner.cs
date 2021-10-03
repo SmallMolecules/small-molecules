@@ -5,38 +5,35 @@ using UnityEngine.UI;
 using System;
 using System.Globalization;
 
-// class for create particle UI
-// This class is broken and needs to be fixed : (
-// TODO - create new UISpawner for different systems
+// class for create simulator UI
+// NOTE - debating the necessity of this class being MonoBehaviour
 public class UISpawner : MonoBehaviour
 {
-    // input fields
+    // UI features
     public InputField[] inputs;
-
-    public Simulator simulator;
-
     public Slider slider;
     public Text sliderText;
-
     public Text scales;
 
-    CultureInfo ci = new CultureInfo("en-us");//needed for string formatting for who knows why
+    // reference to simulator script
+    public Simulator simulator;
+
+    //needed for string formatting for who knows why
+    CultureInfo ci = new CultureInfo("en-us");
 
     void Start()
     {
-        //VERY TEMPORARY FIX
-
-        // updateScales(slider.value);
         gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        sliderText.text = slider.value.ToString("0.00000");       
+          
     }
 
     // attempt to parse the input fields
+    // [callback function]
     public void AttemptCreate() {
         bool abort = false;
         float[] val = new float[3];
@@ -55,14 +52,14 @@ public class UISpawner : MonoBehaviour
     }
 
     // creates randomly positioned paritcle
+    // [callback function]
     public void RandomCreate() {
         simulator.AddNewParticleRandom();
     }
 
+    // accepts simulator and adds to data-structure
     public void attachSimulator(GameObject sim) {
         simulator = sim.GetComponent<Simulator>();
-
-        slider.value = 0.0001f;
         updateScales();
     }
 
@@ -74,7 +71,8 @@ public class UISpawner : MonoBehaviour
         }
     }
 
-
+    // called to set scale class to value of slider
+    // and update the display
     public void updateScales() {
 
         simulator.scales.setTime(slider.value);
@@ -83,9 +81,7 @@ public class UISpawner : MonoBehaviour
         scales.text +=  String.Format("Time:\t{0} sec\n", 
                                 simulator.scales.getTime().ToString("e02", ci));
         scales.text +=  String.Format("Length:\t{0} m",                        
-                                simulator.scales.getLength().ToString("e02", ci));
-        
-        
+                                simulator.scales.getLength().ToString("e02", ci));   
     }
 
     //updates the global timescale as per the slider
@@ -93,6 +89,8 @@ public class UISpawner : MonoBehaviour
         simulator.scales.setTime(dt);
     }
 
+    // hides the UI component
+    // [callback function]
     public void show() {
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }

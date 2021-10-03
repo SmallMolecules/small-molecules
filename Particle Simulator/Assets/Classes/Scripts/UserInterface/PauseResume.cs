@@ -5,38 +5,40 @@ using UnityEngine.UI;
 using System;
 using System.Globalization;
 
-// TODO - migrate objects to UISpawner
+// Class to handle UI Pause Screen
 public class PauseResume : MonoBehaviour
 {
     //components of the pause screen
     public GameObject PauseScreen;
     public GameObject PauseButton;
-
-    public GameObject simulator_UI;
-
     public Button system_button;
-
-    private SimulationManager manager;
-
     public Text fps;
 
+
+    public GameObject simulatorUI_spawner;
+
+    // reference to Simulation Manager Script
+    private SimulationManager manager;
+
+
+    // Stored Colors
     private Color onnColor = new Color(0.4f, 1f, 0.8f);
     private Color offColor = new Color(1f, 1f, 1f);
 
 
-    // may need to include these in a separate class TODO
     System.DateTime _lastTime; // marks the beginning the measurement began
     int _framesRendered; // an increasing count
     int _fps; // the FPS calculated from the last measurement
  
-    // Start is called before the first frame update
+
     void Start()
     {
         // show/hide menu items
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
         system_button.GetComponent<Image>().color = offColor;
-        // TODO - MAKE MORE GENERAL
+
+        // find manager script
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
     }
@@ -44,8 +46,8 @@ public class PauseResume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // update FPS counter
         _framesRendered++;
-
 
         // calculate frames
         if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
@@ -55,6 +57,7 @@ public class PauseResume : MonoBehaviour
             _framesRendered = 0;            
             _lastTime = System.DateTime.Now;
         }
+        // display FPS counter
         fps.text = String.Format("FPS:\t{0}", _fps);
         
     }
@@ -73,16 +76,23 @@ public class PauseResume : MonoBehaviour
         PauseButton.SetActive(true);
     }
 
+    // called by Simulation Manager when a new simulation is added
     public void newSimulator(GameObject sim) {
-        GameObject UIentry = Instantiate(simulator_UI);
+        // create simulation UI object
+        GameObject UIentry = Instantiate(simulatorUI_spawner);
+        // set parent as pause screen
         UIentry.transform.SetParent(PauseScreen.transform, false); 
+        // find script
         UISpawner script = UIentry.GetComponent<UISpawner>();
+        // give functionality to "system n" button
         system_button.onClick.AddListener (script.show);
+        // pass simulation gameobject into UI spawner
         script.attachSimulator(sim);
         
         
     }
 
+    // swaps the color of the selected element
     public void toggleSelectedColour() {
         Color orig = system_button.GetComponent<Image>().color;
         if (orig.Equals(offColor)) {
