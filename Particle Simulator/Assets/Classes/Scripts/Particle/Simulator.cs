@@ -15,6 +15,9 @@ public class Simulator  : MonoBehaviour
     // reference to parent
     private SimulationManager manager;
 
+    // reference to object to spawn
+    public GameObject particle_spawner;
+
     // lists of particles, dynamic fields and static fields
     List<Particle> particles = new List<Particle>();
     List<DynamicField> dynamicFields = new List<DynamicField>();
@@ -57,7 +60,6 @@ public class Simulator  : MonoBehaviour
     {
         if (paused || manager.paused) return;    
         // List<Thread> threads = new List<Thread>();
-        // foreach (Particle A in particles) 
 
         // for all particles
         for (int a = 0; a < particles.Count; a++) {
@@ -100,7 +102,7 @@ public class Simulator  : MonoBehaviour
     // adds new particle at given location with default parameters
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
-        GameObject sphere = Instantiate(manager.particle, pos, Quaternion.identity);
+        GameObject sphere = Instantiate(particle_spawner, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
         particles.Add(new Particle(sphere, mass, radius, charge));
     }
