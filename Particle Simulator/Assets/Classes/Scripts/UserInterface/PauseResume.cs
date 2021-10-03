@@ -5,51 +5,49 @@ using UnityEngine.UI;
 using System;
 using System.Globalization;
 
+// Class to handle UI Pause Screen
 public class PauseResume : MonoBehaviour
 {
     //components of the pause screen
     public GameObject PauseScreen;
     public GameObject PauseButton;
-    public GameObject AddParticle;
-
-    private Simulator system;
-
-    public Text text;
-
+    public Button system_button;
     public Text fps;
-    public Text scales;
-    CultureInfo ci = new CultureInfo("en-us");//needed for string formatting for who knows why
 
-    public Slider slider;
 
-    // may need to include these in a separate class TODO
+    public GameObject simulatorUI_spawner;
+
+    // reference to Simulation Manager Script
+    private SimulationManager manager;
+
+
+    // Stored Colors
+    private Color onnColor = new Color(0.4f, 1f, 0.8f);
+    private Color offColor = new Color(1f, 1f, 1f);
+
+
     System.DateTime _lastTime; // marks the beginning the measurement began
     int _framesRendered; // an increasing count
     int _fps; // the FPS calculated from the last measurement
  
-    // Start is called before the first frame update
+
     void Start()
     {
         // show/hide menu items
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
-        AddParticle.SetActive(false);
-        // get system object
-        system = GameObject.Find("System").GetComponent<Simulator>();
+        system_button.GetComponent<Image>().color = offColor;
+
+        // find manager script
+        manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
-        // set value of slider to dt of system object
-        slider.value = system.scales.getTime();
-        // Debug.Log(slider.value);
     }
  
     // Update is called once per frame
     void Update()
     {
+        // update FPS counter
         _framesRendered++;
-
-        text.text = slider.value.ToString("0.00000");
-
-        updateScales();
 
         // calculate frames
         if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
@@ -59,46 +57,52 @@ public class PauseResume : MonoBehaviour
             _framesRendered = 0;            
             _lastTime = System.DateTime.Now;
         }
+        // display FPS counter
         fps.text = String.Format("FPS:\t{0}", _fps);
+        
     }
  
     private void PauseGame()
     {
-        system.togglePause();
+        manager.togglePause();
         PauseScreen.SetActive(true);
         PauseButton.SetActive(false);
-        
     }
  
     private void ResumeGame()
     {
-        system.togglePause();
+        manager.togglePause();
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
-        AddParticle.SetActive(false);
     }
 
-    // called by the add particle button - shows new menu
-    private void AddNewParticle() {
-        if (AddParticle.activeSelf) {
-            AddParticle.SetActive(false);
-        }
-        else {
-            AddParticle.SetActive(true);
-        }
-
-    }
-
-    private void updateScales() {
-        scales.text =  String.Format("Time:\t{0} sec\n", 
-                                system.scales.getTime().ToString("e02", ci));
-        scales.text +=  String.Format("Length:\t{0} m",                        
-                                system.scales.getLength().ToString("e02", ci));
+    // called by Simulation Manager when a new simulation is added
+    public void newSimulator(GameObject sim) {
+        // create simulation UI object
+        GameObject UIentry = Instantiate(simulatorUI_spawner);
+        // set parent as pause screen
+        UIentry.transform.SetParent(PauseScreen.transform, false); 
+        // find script
+        UISpawner script = UIentry.GetComponent<UISpawner>();
+        // give functionality to "system n" button
+        system_button.onClick.AddListener (script.show);
+        // pass simulation gameobject into UI spawner
+        script.attachSimulator(sim);
+        
         
     }
 
-    //updates the timescale as per the slider
-    private void TimeScale(float dt) {
-        system.scales.setTime(dt);
+    // swaps the color of the selected element
+    public void toggleSelectedColour() {
+        Color orig = system_button.GetComponent<Image>().color;
+        if (orig.Equals(offColor)) {
+            system_button.GetComponent<Image>().color = onnColor;
+        }
+        else {
+           system_button.GetComponent<Image>().color = offColor;
+        }
+        
     }
+
+
 }
