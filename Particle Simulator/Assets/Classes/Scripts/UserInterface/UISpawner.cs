@@ -74,13 +74,10 @@ public class UISpawner : MonoBehaviour
         }
     }
 
+
     public void updateScales() {
 
-        Simulator s = simulator;
-
-        if (simulator.scales == null) {
-            Debug.Log("hit");
-        }
+        simulator.scales.setTime(slider.value);
 
         scales.text = "System 1:\n";
         scales.text +=  String.Format("Time:\t{0} sec\n", 

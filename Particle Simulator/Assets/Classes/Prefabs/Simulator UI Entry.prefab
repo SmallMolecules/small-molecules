@@ -839,7 +839,7 @@ MonoBehaviour:
       - m_Target: {fileID: 3998221417545568893}
         m_TargetAssemblyTypeName: UISpawner, Assembly-CSharp
         m_MethodName: updateScales
-        m_Mode: 4
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1789,7 +1789,7 @@ GameObject:
   - component: {fileID: 3938517870129081985}
   - component: {fileID: 3998221417545568893}
   m_Layer: 5
-  m_Name: Add Particle(Clone)
+  m_Name: Simulator UI Entry
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

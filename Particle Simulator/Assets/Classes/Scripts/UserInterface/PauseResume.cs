@@ -20,6 +20,9 @@ public class PauseResume : MonoBehaviour
 
     public Text fps;
 
+    private Color onnColor = new Color(0.4f, 1f, 0.8f);
+    private Color offColor = new Color(1f, 1f, 1f);
+
 
     // may need to include these in a separate class TODO
     System.DateTime _lastTime; // marks the beginning the measurement began
@@ -32,6 +35,7 @@ public class PauseResume : MonoBehaviour
         // show/hide menu items
         PauseScreen.SetActive(false);
         PauseButton.SetActive(true);
+        system_button.GetComponent<Image>().color = offColor;
         // TODO - MAKE MORE GENERAL
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
@@ -76,6 +80,17 @@ public class PauseResume : MonoBehaviour
         system_button.onClick.AddListener (script.show);
         script.attachSimulator(sim);
         
+        
+    }
+
+    public void toggleSelectedColour() {
+        Color orig = system_button.GetComponent<Image>().color;
+        if (orig.Equals(offColor)) {
+            system_button.GetComponent<Image>().color = onnColor;
+        }
+        else {
+           system_button.GetComponent<Image>().color = offColor;
+        }
         
     }
 
