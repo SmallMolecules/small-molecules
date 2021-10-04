@@ -74,9 +74,10 @@ public class UISpawner : MonoBehaviour
     // called to set scale class to value of slider
     // and update the display
     public void updateScales() {
+        // Debug.Log(simulator);
 
-        simulator.scales.setTime(slider.value);
-
+        // simulator.scales.setTime(slider.value, -9);
+        
         scales.text = "System 1:\n";
         scales.text +=  String.Format("Time:\t{0} sec\n", 
                                 simulator.scales.getTime().ToString("e02", ci));
@@ -86,7 +87,7 @@ public class UISpawner : MonoBehaviour
 
     //updates the global timescale as per the slider
     private void TimeScale(float dt) {
-        simulator.scales.setTime(dt);
+        simulator.scales.setTime(dt, -9);
     }
 
     // hides the UI component
