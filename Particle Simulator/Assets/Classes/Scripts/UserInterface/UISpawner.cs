@@ -12,8 +12,9 @@ public class UISpawner : MonoBehaviour
     // UI features
     public InputField[] inputs;
     public Slider slider;
-    public Text sliderText;
     public Text scales;
+    public Text coefficient;
+    public InputField exponent;
 
     // reference to simulator script
     public Simulator simulator;
@@ -60,6 +61,7 @@ public class UISpawner : MonoBehaviour
     // accepts simulator and adds to data-structure
     public void attachSimulator(GameObject sim) {
         simulator = sim.GetComponent<Simulator>();
+        exponent.text = simulator.scales.time.EXP.ToString();
         updateScales();
     }
 
@@ -76,13 +78,19 @@ public class UISpawner : MonoBehaviour
     public void updateScales() {
         // Debug.Log(simulator);
 
-        // simulator.scales.setTime(slider.value, -9);
+        float coeff = (float) Convert.ToDouble(slider.value);
+        int exp;
+        Int32.TryParse(exponent.text, out exp);
+        simulator.scales.setTime(coeff, exp);
+
+        coefficient.text = slider.value.ToString("0.00")+ " x 10^";;
+        exponent.text = simulator.scales.time.EXP.ToString();
         
         scales.text = "System 1:\n";
         scales.text +=  String.Format("Time:\t{0} sec\n", 
-                                simulator.scales.getTime().ToString("e02", ci));
+                                simulator.scales.time.VAL.ToString("e02", ci));
         scales.text +=  String.Format("Length:\t{0} m",                        
-                                simulator.scales.getLength().ToString("e02", ci));   
+                                simulator.scales.length.VAL.ToString("e02", ci));   
     }
 
     //updates the global timescale as per the slider

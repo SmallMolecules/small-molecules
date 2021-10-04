@@ -95,7 +95,7 @@ public class Simulator  : MonoBehaviour
     // updates positions of particles by dt
     private void updatePositions() {
         foreach (Particle A in particles) {
-            A.step(scales.getTime());
+            A.step(scales.time.VAL);
         }
     }
     

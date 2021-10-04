@@ -14,7 +14,7 @@ public class Coloumb: DynamicField
 
         float q1 = B.charge;
         float q2 = A.charge;
-
+        
         float r = Vector3.Distance(A.getPos(), B.getPos());
 
         if (r < 2f) {
