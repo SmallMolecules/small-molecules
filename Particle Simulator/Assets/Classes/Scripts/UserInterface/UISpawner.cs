@@ -68,8 +68,7 @@ public class UISpawner : MonoBehaviour
     //clears red error colour of fields
     public void ClearColour() {
         for (int i=0; i < 3; i++) {
-            inputs[i].image.color = Color.white;
-            
+            inputs[i].image.color = Color.white;         
         }
     }
 

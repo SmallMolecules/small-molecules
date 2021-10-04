@@ -21,8 +21,9 @@ public class Coloumb: DynamicField
             r = 0.5f;
         }
 
-        float con = A.scales.scaleFactor(k, -1, -3, 2, 2)*q1*q2/r;
-        // Debug.Log(A.scales.scaleFactor(k, -1, -3, 2, 2).ToString());
+        // TODO - make referecne to scales object from field class
+        float con = A.scales.scaleFactor(k, 1, 3, -2, -2)*q1*q2/r;
+
         return con*Vector3.Normalize(A.getPos() - B.getPos());
     } 
 }
