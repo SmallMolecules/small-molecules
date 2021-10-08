@@ -8,6 +8,7 @@ using UnityEngine;
     a field that calculates a force on one particle.
     @author Isaac Bergl
     @date November 2021
+    \see DynamicField Coloumb StaticField
     */
 public class StaticField
 { 
@@ -21,13 +22,17 @@ public class StaticField
     /**
     Virtual function that provides the dynamics of the field. Should be overwritten 
     by a custom function to provide the force on A by B.
+    @param Particle A (Particle)
     @returns zero vector (Vector3)
     */
     public virtual Vector3 fieldDynamics(Particle A) {
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
 
-    // wrapper function for applying a force
+    /**
+    Applies a force to the input particles. 
+    @param Particle A (Particle)
+    */
     public void applyForce(Particle A, Scales s) {
         Vector3 F = fieldDynamics(A);
         A.addForce(F);
