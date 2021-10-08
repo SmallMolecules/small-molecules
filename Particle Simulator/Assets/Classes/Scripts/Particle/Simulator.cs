@@ -49,7 +49,7 @@ public class Simulator  : MonoBehaviour
 
         // add dynamic feilds
         dynamicFields.Add(new Coloumb());
-        dynamicFields.Add(new LennardJones());
+        // dynamicFields.Add(new LennardJones());
 
         // add static fields
         // staticFields.Add(new Wind());      
@@ -95,7 +95,7 @@ public class Simulator  : MonoBehaviour
     // updates positions of particles by dt
     private void updatePositions() {
         foreach (Particle A in particles) {
-            A.step(scales.getTime());
+            A.step(scales.time.VAL);
         }
     }
     
@@ -104,7 +104,7 @@ public class Simulator  : MonoBehaviour
     {
         GameObject sphere = Instantiate(particle_spawner, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
-        particles.Add(new Particle(sphere, mass, radius, charge));
+        particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
     public void AddNewParticleRandom() {

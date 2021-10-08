@@ -14,12 +14,16 @@ public class Particle
     private Vector3 velocity;
     private Vector3 position;
 
+    public Scales scales;
+
     // Variable particle - default particle is handled by ParticleSystem
-    public Particle(GameObject p, float setMass, float setRad, int setCharge) {
+    public Particle(GameObject p, Scales S, float setMass, float setRad, int setCharge) {
         particle = p;
         position = p.transform.position;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
+        scales = S;
+        
         var cubeRenderer = particle.GetComponent<Renderer>();
         
         // assign charge randomly and give colour
@@ -57,12 +61,15 @@ public class Particle
 
     // add force contribution to vecolicty
     public void addForce(Vector3 F) {
+                
         velocity += F/mass; //NOTE: mass is currently 1
     }
 
     // update position of gameobject according to velocity
     public void step(float dt) {
+
         position += velocity*dt;
+
         particle.transform.Translate(velocity*dt);
     }
 }
