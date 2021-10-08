@@ -4,7 +4,7 @@ using UnityEngine;
 
 /** @brief A DynamicField implementation of the Couloumb potential
 
-    This class extends the DynamicField class and overwrites the fieldDynamics 
+    This class extends the DynamicField class and overrides the fieldDynamics 
     method to give a realistic implementation of the coloumb potential.
     @author Isaac Bergl
     @date November 2021

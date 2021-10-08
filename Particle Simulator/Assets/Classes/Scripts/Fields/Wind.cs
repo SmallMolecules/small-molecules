@@ -4,7 +4,7 @@ using UnityEngine;
 
 /** @brief A StaticField implementation of a wind vector field
 
-    This class extends the DynamicField class and overwrites the fieldDynamics 
+    This class extends the DynamicField class and overrides the fieldDynamics 
     method to give an implementation of a wind vector field.
     @author Isaac Bergl
     @date November 2021

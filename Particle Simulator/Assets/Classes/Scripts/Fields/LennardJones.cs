@@ -5,7 +5,7 @@ using System;
 
 /** @brief A DynamicField implementation of the Lennard-Jones Potential
 
-    This class extends the DynamicField class and overwrites the fieldDynamics 
+    This class extends the DynamicField class and overrides the fieldDynamics 
     method to give a realistic implementation of the Lennard-Jones Potential.
     @author Isaac Bergl
     @date November 2021
