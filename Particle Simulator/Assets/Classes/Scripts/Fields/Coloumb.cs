@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** @brief A DynamicField implementation of the Couloumb potential
+
+    This class extends the DynamicField class 
+    @author Isaac Bergl
+    @date November 2021
+    @extends DynamicField
+    */
 public class Coloumb: DynamicField
 {
     // Constants
