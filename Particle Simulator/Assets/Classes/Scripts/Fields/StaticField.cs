@@ -19,7 +19,7 @@ public class StaticField
 
     // wrapper function for applying a force
     public void applyForce(Particle A, Scales s) {
-        Vector3 F = s.getLength()*fieldDynamics(A);
+        Vector3 F = fieldDynamics(A);
         A.addForce(F);
     }
 

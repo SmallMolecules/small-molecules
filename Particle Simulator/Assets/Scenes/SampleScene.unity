@@ -533,7 +533,7 @@ GameObject:
   - component: {fileID: 1007390767}
   - component: {fileID: 1007390766}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Settings Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 1382635441}
   - component: {fileID: 1382635440}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Pause Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1585,4 +1585,4 @@ MonoBehaviour:
   PauseButton: {fileID: 1382635439}
   system_button: {fileID: 1199068077}
   fps: {fileID: 1261891213}
-  simulatorUI_spawner: {fileID: 7844328776660318545, guid: 4cac837042a6fb95e8660e1a48605be0, type: 3}
+  simulatorUI_spawner: {fileID: 5473545152470227865, guid: 899d58f9f7dc197ababa29357f8e693a, type: 3}

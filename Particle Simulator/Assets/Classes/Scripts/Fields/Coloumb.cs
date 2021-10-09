@@ -14,14 +14,15 @@ public class Coloumb: DynamicField
 
         float q1 = B.charge;
         float q2 = A.charge;
-
+        
         float r = Vector3.Distance(A.getPos(), B.getPos());
 
         if (r < 2f) {
             r = 0.5f;
         }
 
-        float con = k*q1*q2/r;
+        // TODO - make referecne to scales object from field class
+        float con = A.scales.scaleFactor(k, 1, 3, -2, -2)*q1*q2/r;
 
         return con*Vector3.Normalize(A.getPos() - B.getPos());
     } 
