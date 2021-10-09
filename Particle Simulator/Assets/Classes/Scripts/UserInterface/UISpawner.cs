@@ -89,6 +89,7 @@ public class UISpawner : MonoBehaviour
         simulator.scales.setTime(dt);
     }
 
+    // Resets the global timescale to its default value
     public void ResetTime() {
         slider.value = 0.0001f;
         simulator.scales.setTime(slider.value);
