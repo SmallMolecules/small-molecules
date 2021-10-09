@@ -89,6 +89,11 @@ public class UISpawner : MonoBehaviour
         simulator.scales.setTime(dt);
     }
 
+    public void ResetTime() {
+        slider.value = 0.0001f;
+        simulator.scales.setTime(slider.value);
+    }
+
     // hides the UI component
     // [callback function]
     public void show() {
