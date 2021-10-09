@@ -72,11 +72,14 @@ $(function() {
 <div class="title">UISpawner Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class for managing UI interactions with simulator sub-menu.  
+ <a href="classUISpawner.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa67832aad93a74a5cbb30bb55bc68a02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#aa67832aad93a74a5cbb30bb55bc68a02">AttemptCreate</a> ()</td></tr>
-<tr class="separator:aa67832aad93a74a5cbb30bb55bc68a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a723f8f4e71285e2e02ba62b94822f282"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a723f8f4e71285e2e02ba62b94822f282">AttemptCreateParticle</a> ()</td></tr>
+<tr class="separator:a723f8f4e71285e2e02ba62b94822f282"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafb4fa8b574e9401acd354da0fbd4411"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#aafb4fa8b574e9401acd354da0fbd4411">RandomCreate</a> ()</td></tr>
 <tr class="separator:aafb4fa8b574e9401acd354da0fbd4411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fb4a0bb93874229fa371c6fb6c819af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a2fb4a0bb93874229fa371c6fb6c819af">attachSimulator</a> (GameObject sim)</td></tr>
@@ -92,8 +95,8 @@ Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a37c2b7345e8f947873489ad94ca919b8"><td class="memItemLeft" align="right" valign="top">InputField[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a37c2b7345e8f947873489ad94ca919b8">inputs</a></td></tr>
 <tr class="separator:a37c2b7345e8f947873489ad94ca919b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af706dd685897370a4e0281827a857c09"><td class="memItemLeft" align="right" valign="top">Slider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#af706dd685897370a4e0281827a857c09">slider</a></td></tr>
-<tr class="separator:af706dd685897370a4e0281827a857c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fb9cdce5a6a6fa7a660176214f725f0"><td class="memItemLeft" align="right" valign="top">Slider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a0fb9cdce5a6a6fa7a660176214f725f0">timescale</a></td></tr>
+<tr class="separator:a0fb9cdce5a6a6fa7a660176214f725f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacf163bff01422b341a05df6f727e674"><td class="memItemLeft" align="right" valign="top">Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#aacf163bff01422b341a05df6f727e674">scales</a></td></tr>
 <tr class="separator:aacf163bff01422b341a05df6f727e674"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ae71f1905e652776856d77be6a01cb0"><td class="memItemLeft" align="right" valign="top">Text&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a6ae71f1905e652776856d77be6a01cb0">coefficient</a></td></tr>
@@ -117,7 +120,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a2739c743a0b301f59057b200f379ac29"><td class="memItemLeft" align="right" valign="top">CultureInfo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a2739c743a0b301f59057b200f379ac29">ci</a> = new CultureInfo(&quot;en-us&quot;)</td></tr>
 <tr class="separator:a2739c743a0b301f59057b200f379ac29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for managing UI interactions with simulator sub-menu. </p>
+<p>This class extends Unity's MonoBehaviour class. It is attached to a canvas object and is responsible for managinging the interactions between the simulator UI sub-menu and its corresponding simulator object. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>November 2021 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUISpawner.html" title="Class for managing UI interactions with simulator sub-menu.">UISpawner</a> <a class="el" href="classSimulator.html">Simulator</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2fb4a0bb93874229fa371c6fb6c819af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2fb4a0bb93874229fa371c6fb6c819af">&#9670;&nbsp;</a></span>attachSimulator()</h2>
 
@@ -141,11 +149,17 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Binds the "simulator" property of this object to the input GameObject </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="classSimulator.html">Simulator</a></td><td>to attach (GameObject) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="aa67832aad93a74a5cbb30bb55bc68a02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa67832aad93a74a5cbb30bb55bc68a02">&#9670;&nbsp;</a></span>AttemptCreate()</h2>
+<a id="a723f8f4e71285e2e02ba62b94822f282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a723f8f4e71285e2e02ba62b94822f282">&#9670;&nbsp;</a></span>AttemptCreateParticle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -154,7 +168,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void UISpawner.AttemptCreate </td>
+          <td class="memname">void UISpawner.AttemptCreateParticle </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -166,6 +180,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Callback function used to create (or fail to create) a particle object according to the input fields </p>
 
 </div>
 </div>
@@ -191,6 +206,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Callback function used to clear the background colours of the input fields </p>
 
 </div>
 </div>
@@ -216,6 +232,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Callback function to spawn a particle at random location </p>
 
 </div>
 </div>
@@ -241,6 +258,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Callback function used to hide and unhide the simulator UI submenu </p>
 
 </div>
 </div>
@@ -266,6 +284,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
 
 </div>
 </div>
@@ -292,6 +311,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Sets the timescale of the simulator </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td>- the value to change the simulator to (float) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -317,6 +342,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html</a></dd></dl>
 
 </div>
 </div>
@@ -342,6 +368,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Updates the simulator's scale properites and the on-screen text representation of the scales according to the values of the input fields. </p>
 
 </div>
 </div>
@@ -379,6 +406,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the text representation of the coefficient of the time scale (eg for a timescale of 1.2e-9 the coefficient would be 1.2) </p>
 
 </div>
 </div>
@@ -393,6 +421,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the text representation of the exponent of the time scale (eg for a timescale of 1.2e-9 the exponent would be -9) </p>
 
 </div>
 </div>
@@ -407,6 +436,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the (x,y,z) spawn location InputFeilds </p>
 
 </div>
 </div>
@@ -421,6 +451,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the text representation of the unit scales </p>
 
 </div>
 </div>
@@ -435,20 +466,22 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the corresponding simulator object </p>
 
 </div>
 </div>
-<a id="af706dd685897370a4e0281827a857c09"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af706dd685897370a4e0281827a857c09">&#9670;&nbsp;</a></span>slider</h2>
+<a id="a0fb9cdce5a6a6fa7a660176214f725f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fb9cdce5a6a6fa7a660176214f725f0">&#9670;&nbsp;</a></span>timescale</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Slider UISpawner.slider</td>
+          <td class="memname">Slider UISpawner.timescale</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the timescale slider </p>
 
 </div>
 </div>

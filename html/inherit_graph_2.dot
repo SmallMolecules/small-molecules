@@ -8,11 +8,11 @@ digraph "Graphical Class Hierarchy"
   Node6 -> Node0 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node0 [label="ParticleBehaviour",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classParticleBehaviour.html",tooltip=" "];
   Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node8 [label="PauseResume",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPauseResume.html",tooltip=" "];
+  Node8 [label="PauseResume",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPauseResume.html",tooltip="Class for mananging UI interactions."];
   Node6 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node9 [label="SimulationManager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSimulationManager.html",tooltip=" "];
   Node6 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node10 [label="Simulator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classSimulator.html",tooltip=" "];
   Node6 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="UISpawner",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classUISpawner.html",tooltip=" "];
+  Node11 [label="UISpawner",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classUISpawner.html",tooltip="Class for managing UI interactions with simulator sub-menu."];
 }

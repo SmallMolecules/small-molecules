@@ -70,6 +70,9 @@ $(function() {
 <div class="title">Scale Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Struct for holding scale data.  
+ <a href="structScale.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -87,7 +90,10 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:af4b6d5ac75aa966631ee74b6d1c03d84"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structScale.html#af4b6d5ac75aa966631ee74b6d1c03d84">VAL</a></td></tr>
 <tr class="separator:af4b6d5ac75aa966631ee74b6d1c03d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Struct for holding scale data. </p>
+<p>This Struct is used effectively as a datatype, where the scale value (VAL) is stored separately as an coefficient (COEFF) and an exponent (EXP). For example 0.0001223 is represented in a <a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a> as COEFF = 1.223, EXP = -4 and VAL = 0.0001223 </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae8165fec81efbd8188632122b2e2a557"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae8165fec81efbd8188632122b2e2a557">&#9670;&nbsp;</a></span>Scale()</h2>
 
@@ -121,6 +127,13 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Default constructor for a struct </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff</td><td>(float) </td></tr>
+    <tr><td class="paramname">exp</td><td>(int) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -147,6 +160,7 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Overrides default "ToString" method </p>
 
 </div>
 </div>
