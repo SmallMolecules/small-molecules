@@ -5,37 +5,57 @@ using UnityEngine.UI;
 using System;
 using System.Globalization;
 
-// class for create simulator UI
-// NOTE - debating the necessity of this class being MonoBehaviour
+/** @brief Class for managing UI interactions with simulator sub-menu
+
+    This class extends Unity's MonoBehaviour class. It is attached to
+    a canvas object and is responsible for managinging the interactions 
+    between the simulator UI sub-menu and its corresponding simulator object.
+    @author Isaac Bergl
+    @date November 2021
+    \see UISpawner Simulator
+*/
 public class UISpawner : MonoBehaviour
 {
-    // UI features
+    /**Reference to the (x,y,z) spawn location InputFeilds*/
     public InputField[] inputs;
-    public Slider slider;
+    /**Reference to the timescale slider*/
+    public Slider timescale;
+    /**Reference to the text representation of the unit scales*/
     public Text scales;
+    /**Reference to the text representation of the coefficient of the time scale
+    (eg for a timescale of 1.2e-9 the coefficient would be 1.2)*/
     public Text coefficient;
+    /**Reference to the text representation of the exponent of the time scale
+    (eg for a timescale of 1.2e-9 the exponent would be -9)*/
     public InputField exponent;
 
-    // reference to simulator script
+    /**Reference to the corresponding simulator object*/
     public Simulator simulator;
 
     //needed for string formatting for who knows why
     CultureInfo ci = new CultureInfo("en-us");
-
+    
+    /**
+    \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
+    */
     void Start()
     {
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
+    /**
+    \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html
+    */
     void Update()
     {
           
     }
 
-    // attempt to parse the input fields
-    // [callback function]
-    public void AttemptCreate() {
+    /**
+    Callback function used to create (or fail to create) a particle object according
+    to the input fields
+    */
+    public void AttemptCreateParticle() {
         bool abort = false;
         float[] val = new float[3];
         for (int i=0; i < 3; i++) {
@@ -52,37 +72,45 @@ public class UISpawner : MonoBehaviour
         }
     }
 
-    // creates randomly positioned paritcle
-    // [callback function]
+    /**
+    Callback function to spawn a particle at random location
+    */
     public void RandomCreate() {
         simulator.AddNewParticleRandom();
     }
 
-    // accepts simulator and adds to data-structure
+    /**
+    Binds the "simulator" property of this object to 
+    the input GameObject
+    @param Simulator to attach (GameObject)
+    */
     public void attachSimulator(GameObject sim) {
         simulator = sim.GetComponent<Simulator>();
         exponent.text = simulator.scales.time.EXP.ToString();
         updateScales();
     }
 
-    //clears red error colour of fields
+    /**
+    Callback function used to clear the background colours of the input fields
+    */
     public void ClearColour() {
         for (int i=0; i < 3; i++) {
             inputs[i].image.color = Color.white;         
         }
     }
 
-    // called to set scale class to value of slider
-    // and update the display
+    /**
+    Updates the simulator's scale properites and the on-screen text
+    representation of the scales according to the values of the 
+    input fields.
+    */
     public void updateScales() {
-        // Debug.Log(simulator);
-
-        float coeff = (float) Convert.ToDouble(slider.value);
+        float coeff = (float) Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
         simulator.scales.setTime(coeff, exp);
 
-        coefficient.text = slider.value.ToString("0.00")+ " x 10^";;
+        coefficient.text = timescale.value.ToString("0.00")+ " x 10^";;
         exponent.text = simulator.scales.time.EXP.ToString();
         
         scales.text = "System 1:\n";
@@ -92,13 +120,17 @@ public class UISpawner : MonoBehaviour
                                 simulator.scales.length.VAL.ToString("e02", ci));   
     }
 
-    //updates the global timescale as per the slider
+    /**
+    Sets the timescale of the simulator
+    @param dt - the value to change the simulator to (float) 
+    */
     private void TimeScale(float dt) {
-        simulator.scales.setTime(dt, -9);
+        simulator.scales.setTime(dt, -9);//TODO this shouldn't be here?
     }
 
-    // hides the UI component
-    // [callback function]
+    /**
+    Callback function used to hide and unhide the simulator UI submenu 
+    */
     public void show() {
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }

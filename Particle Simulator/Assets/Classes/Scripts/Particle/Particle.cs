@@ -2,22 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** @brief Class for managing the properites of particle objects
+
+    This class manages particle properties such as position, velocity, radius, mass,
+    charge and GameObject is is binds to.
+    @author Isaac Bergl
+    @date September 2021
+    \see Simulator Scales
+    */
 public class Particle 
 { 
+    /**The GameObject that this object is dictating*/
     public GameObject particle;
     
-    // attributes
+    /**Mass of the particle. Min value of 1.0*/
     public float mass;
+    /**Radius of the particle. Min value of 1.0*/
     public float radius;
+    /**Charge of the particle. Min value of 1*/
     public int charge;
 
+    /**Vector velocity of the particle. Dictates the position.*/
     private Vector3 velocity;
+    /**Vector position of the particle. Dictates the GameObject position */
     private Vector3 position;
 
+    /**Reference to the Scales of the parent Simulator*/
     public Scales scales;
 
-    // Variable particle - default particle is handled by ParticleSystem
-    public Particle(GameObject p, Scales S, float setMass, float setRad, int setCharge) {
+    /**
+    Constructor for a particle. Sets the GameObject to be the one given in as a parameter, 
+    as well as passing a reference to the Scales, s, and the physical properties.
+    @param p (GameObject)
+    @param S (Scales)
+    @param setMass (float)
+    @param setRadius (float)
+    @param setCharge (int)
+    */
+    public Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge) {
         particle = p;
         position = p.transform.position;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
@@ -39,33 +61,43 @@ public class Particle
 
         var myCollider = particle.GetComponent<SphereCollider>();
 
-        myCollider.radius = setRad;
+        myCollider.radius = setRadius;
         mass = setMass;
         charge = setCharge;
 
-        // particle.transform.localScale = new Vector3(setRad/2, setRad/2, setRad/2);
-
+        // particle.transform.localScale = new Vector3 setRadius/2, setRadius/2, setRadius/2);
     }
 
-
-
-    // getter method to get position (and protect var particle)
+    /**
+    Gets the position of the particle
+    @returns position (Vector3)
+    */
     public Vector3 getPos() {
         return position;
     }
 
-    // getter method to get velocity
+    /**
+    Gets the velocity of the particle
+    @returns velocity (Vector3)
+    */
     public Vector3 getVel() {
         return velocity;
     }
 
-    // add force contribution to vecolicty
+    /**
+    Adds a force to the particle 
+    @rparam Unity unit scaled force F (Vector3)
+    */
     public void addForce(Vector3 F) {
                 
         velocity += F/mass; //NOTE: mass is currently 1
     }
 
-    // update position of gameobject according to velocity
+    /**
+    Steps the particle position and moves the GameObject accordin to
+    its velocity.
+    @param timestep  (float)
+    */
     public void step(float dt) {
 
         position += velocity*dt;
