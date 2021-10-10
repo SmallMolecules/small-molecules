@@ -1836,7 +1836,7 @@ GameObject:
   - component: {fileID: 3938517870129081985}
   - component: {fileID: 3998221417545568893}
   m_Layer: 5
-  m_Name: Simulator UI Entry 1
+  m_Name: Simulator UI Entry
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
