@@ -40,21 +40,23 @@ public class Simulator  : MonoBehaviour
 
     /**System.Random object for random number generation. Each time program starts, a
     random seed is generated and used to construct this object*/
-    private System.Random rand;
+    // private System.Random rand;
     /**The seed used to generate this simulator's random object*/
     public int seed;
 
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
+
+    private System.Random rand = new System.Random(9);
     void Start()
     { 
         // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
 
-        tempRand = new System.Random();
-        seed = tempRand.Next();
-        rand = tempRand(seed);
+        // System.Random tempRand = new System.Random();
+        // seed = tempRand.Next();
+        // rand = tempRand(seed);
        
         //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
@@ -113,7 +115,8 @@ public class Simulator  : MonoBehaviour
             // only apply to particles after index as F.applyForce applies
             // force to both particles to save computation time
             for (int b = a+1; b < particles.Count; b++) {
-                F.applyForce(particles[a], particles[b], scales);
+                // F.applyForce(particles[a], particles[b], scales);
+                F.applyForce(particles[a], particles[b]);
             }
         }
     }
