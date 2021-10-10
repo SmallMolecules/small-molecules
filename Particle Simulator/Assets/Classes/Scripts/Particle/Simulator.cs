@@ -4,42 +4,68 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 
-// class for a simulator 
+/** @brief Class for managing the properites of a simulator instance
+
+    This class manages an overall simulation - the internal workings of what
+    is considered a "box". This class holds the particles, the fields and the scales.
+    @author Isaac Bergl
+    @date September 2021
+    \see Simulator Scales
+    */
 public class Simulator  : MonoBehaviour
 {
-    // class of local scales
+    /**Set of scales used by the simulator. This object is referenced by other 
+    objects such as particles and fields.
+    /see Scales Scale*/
     public Scales scales = new Scales();
 
+    /**Dictates if the simulation is paused. True if this simulation is paused, false otherwise*/
     public bool paused;
 
-    // reference to parent
+    /**Reference to the simulation manager
+    /see SimulationManager*/
     private SimulationManager manager;
 
-    // reference to object to spawn
+    /**The GameObject to spawn (Particle Object)*/
     public GameObject particle_spawner;
 
-    // lists of particles, dynamic fields and static fields
+    /**List of the particles*/
     List<Particle> particles = new List<Particle>();
+    /**List of the dynamic fields
+    /see DynamicField*/
     List<DynamicField> dynamicFields = new List<DynamicField>();
+    /**List of the static fields
+    /see StaticField*/
     List<StaticField> staticFields = new List<StaticField>();
 
-    // seeded random number generator 
-    private System.Random rnd = new System.Random(9);
+    /**System.Random object for random number generation. Each time program starts, a
+    random seed is generated and used to construct this object*/
+    // private System.Random rand;
+    /**The seed used to generate this simulator's random object*/
+    public int seed;
 
-    // Called once initially
+    /**
+    \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
+    */
+
+    private System.Random rand = new System.Random(9);
     void Start()
     { 
         // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
+
+        // System.Random tempRand = new System.Random();
+        // seed = tempRand.Next();
+        // rand = tempRand(seed);
        
         //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
-            float x = rnd.Next(-10, 10);
-            float z = rnd.Next(-10, 10);
-            float y = rnd.Next(-10, 10);
+            float x = rand.Next(-10, 10);
+            float z = rand.Next(-10, 10);
+            float y = rand.Next(-10, 10);
 
-            // float radius = Random.Range(10, 20);
-            float radius = 1f;
+            float radius = Random.Range(1, 2);
+            // float radius = 1f;
             // float mass = Random.Range(0, 10);
             float mass = 1f;
             int charge = (int)Random.Range(0, 3)-1;
@@ -55,7 +81,9 @@ public class Simulator  : MonoBehaviour
         // staticFields.Add(new Wind());      
     }
 
-    // Called once per frame - commented out is the multithreaded implementation
+    /**
+    \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html
+    */
     void Update()
     {
         if (paused || manager.paused) return;    
@@ -74,8 +102,8 @@ public class Simulator  : MonoBehaviour
 
         updatePositions();
     }
-
-    // applies forces
+    /**Updates the velocity of the particle with an index of "a" in the list
+    @param a - the index of the particle to update (int)*/
     private void updateVelocity(int a) {
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
@@ -87,19 +115,25 @@ public class Simulator  : MonoBehaviour
             // only apply to particles after index as F.applyForce applies
             // force to both particles to save computation time
             for (int b = a+1; b < particles.Count; b++) {
-                F.applyForce(particles[a], particles[b], scales);
+                // F.applyForce(particles[a], particles[b], scales);
+                F.applyForce(particles[a], particles[b]);
             }
         }
     }
 
-    // updates positions of particles by dt
+    /**Updates the positions of all the particles in the list according to thier velocity*/
     private void updatePositions() {
         foreach (Particle A in particles) {
             A.step(scales.time.VAL);
+            A.checkBoxCollision();
         }
     }
     
-    // adds new particle at given location with default parameters
+    /**Adds a new particle at a given position with the specified parameters
+    @param pos (Vector3)
+    @param mass (float)
+    @param radius (float)
+    @param charge (int)*/
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
         GameObject sphere = Instantiate(particle_spawner, pos, Quaternion.identity);
@@ -107,19 +141,24 @@ public class Simulator  : MonoBehaviour
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
+    /**Adds a particle at a random position with default physical properties
+    /see AddNewParticle
+    */
     public void AddNewParticleRandom() {
-        float z = rnd.Next(-10, 10);
-        float x = rnd.Next(-10, 10);
-        float y = rnd.Next(-10, 10);
+        float z = rand.Next(-10, 10);
+        float x = rand.Next(-10, 10);
+        float y = rand.Next(-10, 10);
         AddNewParticle(new Vector3(x,y,z));
     }
-
+    
+    /**Removes a particle, A, from the simulation
+    @param A - the particle to remove (Particle)*/
     private void RemoveParticle(Particle A) {
         Destroy(A.particle);
         particles.Remove(A);
     }
 
-    // pauses/unpauses the game
+    /**Toggles the pause state of the simulation*/
     public void togglePause() {
         paused = !paused;
     }

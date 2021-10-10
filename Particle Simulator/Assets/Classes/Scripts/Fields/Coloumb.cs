@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** @brief A DynamicField implementation of the Couloumb potential
+
+    This class extends the DynamicField class and overrides the fieldDynamics 
+    method to give a realistic implementation of the coloumb potential.
+    @author Isaac Bergl
+    @date November 2021
+    \see Lennard-Jones DynamicField StaticField
+    */
 public class Coloumb: DynamicField
 {
-    // Constants
-    [SerializeField]
+    /**the coloumb constant in SI units*/
     private float k = 8.988E+9f;
 
-
-    // field dynamics
+    /**
+    Overriding function. Provides the dynamics of the coloumb potential.
+    @param Particle A (Particle)
+    @param Particle B (Particle)
+    @returns force on A by B (Vector3)
+    */
     public override Vector3 fieldDynamics(Particle A, Particle B) {
 
         float q1 = B.charge;
