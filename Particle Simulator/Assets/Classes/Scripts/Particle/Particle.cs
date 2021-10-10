@@ -104,4 +104,8 @@ public class Particle
 
         particle.transform.Translate(velocity*dt);
     }
+
+    void OnCollisionEnter(Collision collision) {
+        Debug.Log("collision");
+    }
 }
