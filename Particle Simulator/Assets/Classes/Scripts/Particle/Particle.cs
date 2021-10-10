@@ -64,14 +64,16 @@ public class Particle
         myCollider.radius = setRadius;
         mass = setMass;
         charge = setCharge;
+        radius = setRadius;
 
-        // particle.transform.localScale = new Vector3 setRadius/2, setRadius/2, setRadius/2);
+        particle.transform.localScale = new Vector3(setRadius*2, setRadius*2, setRadius*2);
     }
 
     /**
     Gets the position of the particle
     @returns position (Vector3)
     */
+
     public Vector3 getPos() {
         return position;
     }
@@ -105,7 +107,28 @@ public class Particle
         particle.transform.Translate(velocity*dt);
     }
 
-    void OnCollisionEnter(Collision collision) {
-        Debug.Log("collision");
+    public void checkBoxCollision() {
+        bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius*2);
+        bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius*2);
+        bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius*2);
+        bool collideDown = Physics.Raycast(particle.transform.position, Vector3.down, radius*2);
+        bool collideForward = Physics.Raycast(particle.transform.position, Vector3.forward, radius*2);
+        bool collideBack = Physics.Raycast(particle.transform.position, Vector3.back, radius*2);
+
+        float vx = velocity.x;
+        float vy = velocity.y;
+        float vz = velocity.z;
+
+        if (collideRight || collideLeft) {
+            velocity.x = -vx;
+
+        } else if (collideUp || collideDown) {
+            velocity.y = -vy;
+
+        } else if (collideForward || collideBack) {
+            velocity.z = -vz;
+        }
     }
+
+
 }
