@@ -129,6 +129,14 @@ public class UISpawner : MonoBehaviour
     }
 
     /**
+    TODO - add documenation comment
+    */
+    public void ResetTime() {
+        timescale.value = 0.0001f;
+        simulator.scales.setTime(timescale.value.ToString());
+    }
+
+    /**
     Callback function used to hide and unhide the simulator UI submenu 
     */
     public void show() {
