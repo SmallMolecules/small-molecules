@@ -64,8 +64,8 @@ public class Simulator  : MonoBehaviour
             float z = rand.Next(-10, 10);
             float y = rand.Next(-10, 10);
 
-            // float radius = Random.Range(10, 20);
-            float radius = 1f;
+            float radius = Random.Range(1, 2);
+            // float radius = 1f;
             // float mass = Random.Range(0, 10);
             float mass = 1f;
             int charge = (int)Random.Range(0, 3)-1;
@@ -125,6 +125,7 @@ public class Simulator  : MonoBehaviour
     private void updatePositions() {
         foreach (Particle A in particles) {
             A.step(scales.time.VAL);
+            A.checkBoxCollision();
         }
     }
     
