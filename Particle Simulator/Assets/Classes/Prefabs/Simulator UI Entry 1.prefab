@@ -1735,15 +1735,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-<<<<<<< HEAD:Particle Simulator/Assets/Classes/Prefabs/Simulator UI Entry 1.prefab
       - m_Target: {fileID: 3998221417545568893}
         m_TargetAssemblyTypeName: UISpawner, Assembly-CSharp
         m_MethodName: ResetTime
-=======
       - m_Target: {fileID: 2416633098821423409}
         m_TargetAssemblyTypeName: UISpawner, Assembly-CSharp
         m_MethodName: AttemptCreate
->>>>>>> master:Particle Simulator/Assets/Classes/Prefabs/Simulator UI Entry.prefab
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
