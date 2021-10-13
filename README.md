@@ -10,9 +10,7 @@ independent set of [Particles](file:classParticle.html), [Scales](file:classScal
 
 ## Installing Unity
 
-To install this framework, first you need to install unity on your system. To do that, download version 2020.3.16 from Unity's [Downloads Page](https://unity3d.com/get-unity/download/archive). Alternatively if you already have a working install of Unity, you can download and install version 2020.3.16 from Unity Hub.
-
-Downloaded should be the *Unity Hub* desktop app. It is from here where we can manage our Unity installs and projects.
+To install this framework, first you need to install unity on your system. To do that, navigate to Unity's [Downloads Page](https://unity.com/download) and install Unity Hub. After downloading and intsallting, create a Unity account or sign in with an existing one. From the unity hub you can download version 2020.3.16 or locate an existing install. It's from here that you can manage your installs of Unity and your projects.
 
 ## Installing the Framework
 
@@ -25,4 +23,8 @@ and run the following git command where you want the project folder to spawn. If
 > git clone github.c[]()om/SmallMolecules
 
 This will create a directory called *Small Molecules* which contains all the unity project files. You have now installed the framework.
+
+## Running the Simulator
+
+To run the simulator, simply add the folder *small-molecules/Particle Simulator* as a project, ensuring you have the correct version of Unity installed.
 
