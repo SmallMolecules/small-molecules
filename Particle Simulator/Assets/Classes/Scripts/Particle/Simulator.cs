@@ -98,14 +98,18 @@ public class Simulator  : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     int layerMask = 1 << 6;
                     hits = Physics.RaycastAll(ray.origin, ray.direction, Mathf.Infinity, layerMask);
+                    bool deleted = false;
                     for (int a = 0; a < particles.Count; a++)
                     {
                         for (int h = 0; h < hits.Length; h++)
                         {
-                            print(hits[h].transform.name);
                             if (hits[h].transform.position == particles[a].particle.transform.position)
                             {
-                                RemoveParticle(particles[a]);
+                                if (!deleted)
+                                {
+                                    RemoveParticle(particles[a]);
+                                    deleted = true;
+                                }
                             }
                         }
                     }
