@@ -22,6 +22,9 @@ public class Simulator  : MonoBehaviour
     /**Dictates if the simulation is paused. True if this simulation is paused, false otherwise*/
     public bool paused;
 
+    /**Specifies if destroy mode has been activated*/
+    public bool destroy = false;
+
     /**Reference to the simulation manager
     /see SimulationManager*/
     private SimulationManager manager;
@@ -86,7 +89,30 @@ public class Simulator  : MonoBehaviour
     */
     void Update()
     {
-        if (paused || manager.paused) return;    
+        if (paused || manager.paused)
+        {
+            if (destroy)
+            {
+                if (Input.GetMouseButtonDown(0)) {
+                    RaycastHit[] hits;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    int layerMask = 1 << 6;
+                    hits = Physics.RaycastAll(ray.origin, ray.direction, Mathf.Infinity, layerMask);
+                    for (int a = 0; a < particles.Count; a++)
+                    {
+                        for (int h = 0; h < hits.Length; h++)
+                        {
+                            print(hits[h].transform.name);
+                            if (hits[h].transform.position == particles[a].particle.transform.position)
+                            {
+                                RemoveParticle(particles[a]);
+                            }
+                        }
+                    }
+                }
+            }
+            return;
+        }
         // List<Thread> threads = new List<Thread>();
 
         // for all particles
@@ -162,7 +188,12 @@ public class Simulator  : MonoBehaviour
     public void togglePause() {
         paused = !paused;
     }
-    
+
+    /**Toggles the destroy particle option of the simulation*/
+    public void toggleDestroy(bool set)
+    {
+        destroy = set;
+    }
 
 
 }

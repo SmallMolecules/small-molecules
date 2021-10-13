@@ -104,20 +104,21 @@ public class UISpawner : MonoBehaviour
     representation of the scales according to the values of the 
     input fields.
     */
-    public void updateScales() {
-        float coeff = (float) Convert.ToDouble(timescale.value);
+    public void updateScales()
+    {
+        float coeff = (float)Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
         simulator.scales.setTime(coeff, exp);
 
-        coefficient.text = timescale.value.ToString("0.00")+ " x 10^";;
+        coefficient.text = timescale.value.ToString("0.00") + " x 10^"; ;
         exponent.text = simulator.scales.time.EXP.ToString();
-        
+
         scales.text = "System 1:\n";
-        scales.text +=  String.Format("Time:\t{0} sec\n", 
+        scales.text += String.Format("Time:\t{0} sec\n",
                                 simulator.scales.time.VAL.ToString("e02", ci));
-        scales.text +=  String.Format("Length:\t{0} m",                        
-                                simulator.scales.length.VAL.ToString("e02", ci));   
+        scales.text += String.Format("Length:\t{0} m",
+                                simulator.scales.length.VAL.ToString("e02", ci));
     }
 
     /**
@@ -143,4 +144,16 @@ public class UISpawner : MonoBehaviour
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 
+    /**
+    Callback function used to toggle the destroy mode
+    */
+    public void ToggleDestroyT()
+    {
+        simulator.toggleDestroy(true);
+    }
+
+    public void ToggleDestroyF()
+    {
+        simulator.toggleDestroy(false);
+    }
 }

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5426878358802269824}
   - component: {fileID: 8931841318825062878}
   - component: {fileID: 868012588054234590}
-  - component: {fileID: 5338189882461233271}
   - component: {fileID: 3925442522115951501}
-  m_Layer: 0
+  - component: {fileID: 965152650596447136}
+  m_Layer: 6
   m_Name: Particle_Object
   m_TagString: particle
   m_Icon: {fileID: 0}
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &5338189882461233271
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195567441159503907}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3925442522115951501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,3 +95,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb66f7adece3aeb4c81c07f93431c46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &965152650596447136
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195567441159503907}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3722022466204481628}
   - component: {fileID: 3722022466204481629}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paused: 0
+  destroy: 0
   particle_spawner: {fileID: 195567441159503907, guid: 360d00bee6325bd3ab1d008c09393f80, type: 3}
+  seed: 0
