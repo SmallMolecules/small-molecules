@@ -84,6 +84,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5ae18ecdaa319c2b2dd8d51e4986cf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af20b2bb3a3a9c1c0d2f8872d1e574c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#af20b2bb3a3a9c1c0d2f8872d1e574c00">togglePause</a> ()</td></tr>
 <tr class="separator:af20b2bb3a3a9c1c0d2f8872d1e574c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7902fe017cb44761967255b99a6bbf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ac7902fe017cb44761967255b99a6bbf3">updateTime</a> (float coeff, int exp)</td></tr>
+<tr class="separator:ac7902fe017cb44761967255b99a6bbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eb7cd2e4db2d5d5c332b6296332c758"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a3eb7cd2e4db2d5d5c332b6296332c758">updateLength</a> (float coeff, int index)</td></tr>
+<tr class="separator:a3eb7cd2e4db2d5d5c332b6296332c758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -93,8 +97,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a4ddc13e6ea54f5d753aab33cf7c2cf04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a75615d48b328cf7dcbb003b8222866fd"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a75615d48b328cf7dcbb003b8222866fd">particle_spawner</a></td></tr>
 <tr class="separator:a75615d48b328cf7dcbb003b8222866fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed78a23783d285b6d1dc6f8142e1c0c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aed78a23783d285b6d1dc6f8142e1c0c6">seed</a></td></tr>
-<tr class="separator:aed78a23783d285b6d1dc6f8142e1c0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -119,7 +121,7 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a9405d09a1b12e9f4678e9d43e18e49cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24ca64ad9c7fa083e7be6bdc486dc37"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classStaticField.html">StaticField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aa24ca64ad9c7fa083e7be6bdc486dc37">staticFields</a> = new List&lt;<a class="el" href="classStaticField.html">StaticField</a>&gt;()</td></tr>
 <tr class="separator:aa24ca64ad9c7fa083e7be6bdc486dc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a326d241ffc7498ad655e21ee743b576e"><td class="memItemLeft" align="right" valign="top">System.Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a326d241ffc7498ad655e21ee743b576e">rand</a> = new System.Random(9)</td></tr>
+<tr class="memitem:a326d241ffc7498ad655e21ee743b576e"><td class="memItemLeft" align="right" valign="top">System.Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a326d241ffc7498ad655e21ee743b576e">rand</a> = new System.Random()</td></tr>
 <tr class="separator:a326d241ffc7498ad655e21ee743b576e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -265,6 +267,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
 
 </div>
 </div>
@@ -320,6 +323,49 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a3eb7cd2e4db2d5d5c332b6296332c758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eb7cd2e4db2d5d5c332b6296332c758">&#9670;&nbsp;</a></span>updateLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simulator.updateLength </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called by the UI elements to change the length scale </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff</td><td>- the coefficient of the length scale (float) </td></tr>
+    <tr><td class="paramname">exp-</td><td>the exponent of the length scale (int) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a7b7a9378ad032521d2010f91b70c1ab3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b7a9378ad032521d2010f91b70c1ab3">&#9670;&nbsp;</a></span>updatePositions()</h2>
 
@@ -343,6 +389,49 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Updates the positions of all the particles in the list according to thier velocity </p>
+
+</div>
+</div>
+<a id="ac7902fe017cb44761967255b99a6bbf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7902fe017cb44761967255b99a6bbf3">&#9670;&nbsp;</a></span>updateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simulator.updateTime </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>exp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called by the UI elements to change the time scale </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff</td><td>- the coefficient of the time scale (float) </td></tr>
+    <tr><td class="paramname">exp-</td><td>the exponent of the time scale (int) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -488,7 +577,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">System.Random Simulator.rand = new System.Random(9)</td>
+          <td class="memname">System.Random Simulator.rand = new System.Random()</td>
         </tr>
       </table>
   </td>
@@ -497,7 +586,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
+<p>System.Random object for random number generation. Each time program starts, a random seed is generated and used to construct this object </p>
 
 </div>
 </div>
@@ -513,21 +602,6 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Set of scales used by the simulator. This object is referenced by other objects such as particles and fields. /see <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> <a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a> </p>
-
-</div>
-</div>
-<a id="aed78a23783d285b6d1dc6f8142e1c0c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed78a23783d285b6d1dc6f8142e1c0c6">&#9670;&nbsp;</a></span>seed</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Simulator.seed</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>System.Random object for random number generation. Each time program starts, a random seed is generated and used to construct this object The seed used to generate this simulator's random object </p>
 
 </div>
 </div>
@@ -555,7 +629,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Particle/<a class="el" href="Simulator_8cs.html">Simulator.cs</a></li>
+<li>Particle Simulator/Assets/Classes/Scripts/Particle/<a class="el" href="Simulator_8cs.html">Simulator.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

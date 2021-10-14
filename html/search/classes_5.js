@@ -1,4 +1,30 @@
 var searchData=
 [
-  ['uispawner_118',['UISpawner',['../classUISpawner.html',1,'']]]
+  ['faceinfo_5flegacy_10927',['FaceInfo_Legacy',['../classTMPro_1_1FaceInfo__Legacy.html',1,'TMPro']]],
+  ['factoryswaptoeditor_10928',['FactorySwapToEditor',['../classUnityEditor_1_1UI_1_1MenuOptions_1_1FactorySwapToEditor.html',1,'UnityEditor::UI::MenuOptions']]],
+  ['fakebaseinput_10929',['FakeBaseInput',['../classFakeBaseInput.html',1,'']]],
+  ['fakeinputmodule_10930',['FakeInputModule',['../classInputfieldTests_1_1FakeInputModule.html',1,'InputfieldTests']]],
+  ['fallbackmaterial_10931',['FallbackMaterial',['../classTMPro_1_1TMP__MaterialManager_1_1FallbackMaterial.html',1,'TMPro::TMP_MaterialManager']]],
+  ['fastaction_10932',['FastAction',['../classTMPro_1_1FastAction.html',1,'TMPro.FastAction'],['../classTMPro_1_1FastAction.html',1,'TMPro.FastAction&lt; A &gt;'],['../classTMPro_1_1FastAction.html',1,'TMPro.FastAction&lt; A, B &gt;'],['../classTMPro_1_1FastAction.html',1,'TMPro.FastAction&lt; A, B, C &gt;']]],
+  ['fileioprovider_10933',['FileIOProvider',['../classPackages_1_1Rider_1_1Editor_1_1ProjectGeneration_1_1FileIOProvider.html',1,'Packages.Rider.Editor.ProjectGeneration.FileIOProvider'],['../classMicrosoft_1_1Unity_1_1VisualStudio_1_1Editor_1_1FileIOProvider.html',1,'Microsoft.Unity.VisualStudio.Editor.FileIOProvider'],['../classVSCodeEditor_1_1FileIOProvider.html',1,'VSCodeEditor.FileIOProvider']]],
+  ['filllockcandidates_10934',['FillLockCandidates',['../classUnity_1_1PlasticSCM_1_1Editor_1_1AssetsOverlays_1_1Cache_1_1LockStatusCache_1_1FillLockCandidates.html',1,'Unity::PlasticSCM::Editor::AssetsOverlays::Cache::LockStatusCache']]],
+  ['filter_10935',['Filter',['../classUnityEditor_1_1TestTools_1_1TestRunner_1_1Api_1_1Filter.html',1,'UnityEditor::TestTools::TestRunner::Api']]],
+  ['find_5fdata_10936',['FIND_DATA',['../structNiceIO_1_1Sysroot_1_1Win32Native_1_1FIND__DATA.html',1,'NiceIO::Sysroot::Win32Native']]],
+  ['findchangeinfo_10937',['FindChangeInfo',['../classUnity_1_1PlasticSCM_1_1Tests_1_1Editor_1_1Views_1_1IncomingChanges_1_1Developer_1_1UnityInc0115e301fe03cdf50cc3bbe29bdb0d99.html',1,'Unity.PlasticSCM.Tests.Editor.Views.IncomingChanges.Developer.UnityIncomingChangesTreeTests.FindChangeInfo'],['../classUnity_1_1PlasticSCM_1_1Tests_1_1Editor_1_1Views_1_1IncomingChanges_1_1Gluon_1_1UnityIncomin38936b220f01eda014134766746df76a.html',1,'Unity.PlasticSCM.Tests.Editor.Views.IncomingChanges.Gluon.UnityIncomingChangesTreeTests.FindChangeInfo']]],
+  ['findclientdiffinfo_10938',['FindClientDiffInfo',['../classUnity_1_1PlasticSCM_1_1Tests_1_1Editor_1_1Views_1_1Diff_1_1UnityDiffTreeTests_1_1FindClientDiffInfo.html',1,'Unity::PlasticSCM::Tests::Editor::Views::Diff::UnityDiffTreeTests']]],
+  ['findsourceasset_10939',['FindSourceAsset',['../classUnityEditor_1_1Timeline_1_1FindSourceAsset.html',1,'UnityEditor::Timeline']]],
+  ['floatequalitycomparer_10940',['FloatEqualityComparer',['../classUnityEngine_1_1TestTools_1_1Utils_1_1FloatEqualityComparer.html',1,'UnityEngine::TestTools::Utils']]],
+  ['floattweencallback_10941',['FloatTweenCallback',['../classUnityEngine_1_1UI_1_1CoroutineTween_1_1FloatTween_1_1FloatTweenCallback.html',1,'UnityEngine.UI.CoroutineTween.FloatTween.FloatTweenCallback'],['../classTMPro_1_1FloatTween_1_1FloatTweenCallback.html',1,'TMPro.FloatTween.FloatTweenCallback']]],
+  ['foldout_10942',['Foldout',['../structTMPro_1_1EditorUtilities_1_1TMP__BaseEditorPanel_1_1Foldout.html',1,'TMPro::EditorUtilities::TMP_BaseEditorPanel']]],
+  ['fontassetcreationsettings_10943',['FontAssetCreationSettings',['../structTMPro_1_1FontAssetCreationSettings.html',1,'TMPro']]],
+  ['fontassetcreationsettingscontainer_10944',['FontAssetCreationSettingsContainer',['../classTMPro_1_1EditorUtilities_1_1TMPro__FontAssetCreatorWindow_1_1FontAssetCreationSettingsContainer.html',1,'TMPro::EditorUtilities::TMPro_FontAssetCreatorWindow']]],
+  ['fontcreatedbyscript_10945',['FontCreatedByScript',['../classFontCreatedByScript.html',1,'']]],
+  ['fontdata_10946',['FontData',['../classUnityEngine_1_1UI_1_1FontData.html',1,'UnityEngine::UI']]],
+  ['fontdatadrawer_10947',['FontDataDrawer',['../classUnityEditor_1_1UI_1_1FontDataDrawer.html',1,'UnityEditor::UI']]],
+  ['fontupdatetracker_10948',['FontUpdateTracker',['../classUnityEngine_1_1UI_1_1FontUpdateTracker.html',1,'UnityEngine::UI']]],
+  ['fontweightdrawer_10949',['FontWeightDrawer',['../classTMPro_1_1EditorUtilities_1_1FontWeightDrawer.html',1,'TMPro::EditorUtilities']]],
+  ['frame_10950',['Frame',['../structTMPro_1_1SpriteAssetUtilities_1_1TexturePacker__JsonArray_1_1Frame.html',1,'TMPro::SpriteAssetUtilities::TexturePacker_JsonArray']]],
+  ['frameallaction_10951',['FrameAllAction',['../classUnityEditor_1_1Timeline_1_1FrameAllAction.html',1,'UnityEditor::Timeline']]],
+  ['frameformatcurveeditorstate_10952',['FrameFormatCurveEditorState',['../classUnityEditor_1_1ClipCurveEditor_1_1FrameFormatCurveEditorState.html',1,'UnityEditor::ClipCurveEditor']]],
+  ['frameselectedaction_10953',['FrameSelectedAction',['../classUnityEditor_1_1Timeline_1_1FrameSelectedAction.html',1,'UnityEditor::Timeline']]]
 ];

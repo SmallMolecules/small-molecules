@@ -12,9 +12,9 @@ using UnityEngine;
     */
 public class Coloumb : DynamicField
 {
-    /**the coloumb constant in SI units*/
-    private float k = 8.988E+9f;
-
+    /**Contructor method - calls base constructor. This is where
+    the constant SI units should be registered.
+    @param sim - the parent Simulator (Simulator)*/
     public Coloumb(Simulator sim) : base(sim)
     {
         int[] units = { 1, 3, -2, -2 };
@@ -39,7 +39,8 @@ public class Coloumb : DynamicField
         {
             r = 0.5f;
         }
-
-        return constants["con"] * Vector3.Normalize(A.getPos() - B.getPos());
+        // Debug.Log(constants["con"]);
+        float coeff = constants["con"] * q1 * q2 / r;
+        return coeff * Vector3.Normalize(A.getPos() - B.getPos());
     }
 }

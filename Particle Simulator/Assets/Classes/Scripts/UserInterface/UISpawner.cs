@@ -117,7 +117,7 @@ public class UISpawner : MonoBehaviour
         float coeff = (float)Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
-        simulator.scales.setTime(coeff, exp);
+        simulator.updateTime(coeff, exp);
 
         coefficient.text = timescale.value.ToString("0.00") + " x 10^"; ;
         exponent.text = simulator.scales.time.EXP.ToString();
@@ -127,15 +127,6 @@ public class UISpawner : MonoBehaviour
                                 simulator.scales.time.VAL.ToString("e02", ci));
         scales.text += String.Format("Length:\t{0} m",
                                 simulator.scales.length.VAL.ToString("e02", ci));
-    }
-
-    /**
-    Sets the timescale of the simulator
-    @param dt - the value to change the simulator to (float) 
-    */
-    private void TimeScale(float dt)
-    {
-        simulator.scales.setTime(dt, -9);//TODO this shouldn't be here?
     }
 
     /**

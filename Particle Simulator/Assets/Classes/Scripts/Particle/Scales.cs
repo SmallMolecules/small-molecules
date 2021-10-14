@@ -15,7 +15,7 @@ using System;
     @date October 2021
     \see Scale Simulator
     */
-public class Scales 
+public class Scales
 {
     /**The time-scale in seconds (s)*/
     public Scale time;
@@ -36,11 +36,12 @@ public class Scales
     /**
     Default constructor for the scales class. Sets all scales to the default values.
     */
-    public Scales() {
+    public Scales()
+    {
         setTime(DEFAULT_TIME_COEFF, DEFAULT_TIME_EXP);
         setLength(DEFAULT_LENGTH_COEFF, DEFAULT_LENGTH_EXP);
         // TODO add checks for charge and mass
-        charge = new Scale (1.6f, -19);
+        charge = new Scale(1.6f, -19);
         mass = new Scale(1.6f, -27);
     }
 
@@ -50,28 +51,32 @@ public class Scales
     exponent seperately
     @param S, the input string (string)
     */
-    public void setTime(string S) {
+    public void setTime(string S)
+    {
         string[] str = S.Split('e');
 
         string str_coeff = str[0];
         string str_exp = str[1];
-        
+
         int mult = 1;
-        if (str_coeff[0] == '-') {
+        if (str_coeff[0] == '-')
+        {
             mult *= -1;
         }
 
         int counter = -1;
-        foreach (char c in str_coeff) {
+        foreach (char c in str_coeff)
+        {
             counter++;
-            if (c != '0' && c != '+' && c != '-') {
+            if (c != '0' && c != '+' && c != '-')
+            {
                 break;
             }
         }
 
-        float coeff = (float) Convert.ToDouble(str_coeff);
+        float coeff = (float)Convert.ToDouble(str_coeff);
         int exp = Int32.Parse(str_exp.Substring(counter));
-        
+
         time = new Scale(coeff, exp);
     }
 
@@ -80,7 +85,8 @@ public class Scales
     @param coefficient (float)
     @param exponent (int)
     */
-    public void setTime(float coefficent, int exponent) {
+    public void setTime(float coefficent, int exponent)
+    {
         time = new Scale(coefficent, exponent);
         return;
     }
@@ -90,7 +96,8 @@ public class Scales
     @param coefficient (float)
     @param exponent (int)
     */
-    public void setLength(float c, int e) {
+    public void setLength(float c, int e)
+    {
 
         length = new Scale(c, e);
     }
@@ -114,13 +121,14 @@ public class Scales
     @param q - the order of the charge dimension (int)
     @returns the scaled value (flaot)
     */
-    public float scaleFactor(float v, int kg, int m, int s, int q) {
+    public float scaleFactor(float v, int kg, int m, int s, int q)
+    {
         Scale MASS = pow(mass, -kg);
         Scale LENGTH = pow(length, -m);
         Scale TIME = pow(time, -s);
         Scale CHARGE = pow(charge, -q);
-
-        return v*multiply(multiply(MASS, LENGTH), multiply(TIME, CHARGE)).VAL;
+        // Debug.Log(time);
+        return v * multiply(multiply(MASS, LENGTH), multiply(TIME, CHARGE)).VAL;
     }
 
     /**
@@ -129,7 +137,8 @@ public class Scales
     @param b (Scale)
     @returns new scale (Scale)
     */
-    public static Scale multiply(Scale a, Scale b) {
+    public static Scale multiply(Scale a, Scale b)
+    {
         float coeff = a.COEFF * b.COEFF;
         int EXP = a.EXP + b.EXP;
         return new Scale(coeff, EXP);
@@ -140,7 +149,8 @@ public class Scales
     @param scale (Scale)
     @param pow (int)
     */
-    public static Scale pow(Scale scale, int pow) {
+    public static Scale pow(Scale scale, int pow)
+    {
         return new Scale(Mathf.Pow(scale.COEFF, pow), scale.EXP * pow);
     }
 
@@ -153,7 +163,7 @@ public class Scales
     is represented in a Scale as COEFF = 1.223, EXP = -4 and VAL = 0.0001223
     */
 public struct Scale
-{   
+{
     public float COEFF;
     public int EXP;
     public float VAL;
@@ -166,11 +176,12 @@ public struct Scale
     {
         COEFF = coeff;
         EXP = exp;
-        VAL = (float)(COEFF*Mathf.Pow(10, EXP));
+        VAL = (float)(COEFF * Mathf.Pow(10, EXP));
     }
 
     /**Overrides default "ToString" method*/
-    public override string ToString() {
+    public override string ToString()
+    {
         return VAL.ToString("0.00");
-    } 
+    }
 }

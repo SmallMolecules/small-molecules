@@ -13,13 +13,16 @@ using System;
     */
 public class LennardJones : DynamicField
 {
-    /**sigma - the "effective size" of the particle in SI units*/
-    private float sigma = 1E-9f;
-    /**epsilon - the dispersion energy in SI units*/
-    private float epsilon = 1E-9f;
-
+    /**Contructor method - calls base constructor. This is where
+    the constant SI units should be registered.
+    @param sim - the parent Simulator (Simulator)*/
     public LennardJones(Simulator sim) : base(sim)
     {
+        int[] unitsSigma = { 0, 1, 0, 0 };
+        registerConstant("sigma", 1E-9f, unitsSigma);
+        int[] unitsEpsilon = { 1, 1, -2, 0 };
+        registerConstant("epsilson", 1E-9f, unitsEpsilon);
+
     }
 
     /**
@@ -33,8 +36,8 @@ public class LennardJones : DynamicField
 
         float r = Vector3.Distance(A.getPos(), B.getPos());
 
-        float SIGMA = A.scales.scaleFactor(sigma, 0, 1, 0, 0);
-        float EPSILON = A.scales.scaleFactor(epsilon, 1, 1, -2, 0);
+        float SIGMA = constants["sigma"];
+        float EPSILON = constants["epsilon"];
 
         //TODO - autimatically calculate collision distance
         if (r < 1.7f)

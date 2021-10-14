@@ -165,6 +165,36 @@ public class Simulator : MonoBehaviour
         paused = !paused;
     }
 
+    /**Called by the UI elements to change the time scale
+    @param coeff - the coefficient of the time scale (float)
+    @param exp- the exponent of the time scale (int)*/
+    public void updateTime(float coeff, int exp)
+    {
+        Debug.Log("Called");
 
-
+        scales.setTime(coeff, exp);
+        foreach (DynamicField d in dynamicFields)
+        {
+            d.updateConstants();
+        }
+        foreach (StaticField s in staticFields)
+        {
+            s.updateConstants();
+        }
+    }
+    /**Called by the UI elements to change the length scale
+    @param coeff - the coefficient of the length scale (float)
+    @param exp- the exponent of the length scale (int)*/
+    public void updateLength(float coeff, int index)
+    {
+        scales.setLength(coeff, index);
+        foreach (DynamicField d in dynamicFields)
+        {
+            d.updateConstants();
+        }
+        foreach (StaticField s in staticFields)
+        {
+            s.updateConstants();
+        }
+    }
 }

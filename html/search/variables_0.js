@@ -1,6 +1,21 @@
 var searchData=
 [
-  ['_5ffps_174',['_fps',['../classPauseResume.html#a3249d3f6654c4821ced3f1c793d6497e',1,'PauseResume']]],
-  ['_5fframesrendered_175',['_framesRendered',['../classPauseResume.html#a250b08b3ff36ce4e52c577e64021ade4',1,'PauseResume']]],
-  ['_5flasttime_176',['_lastTime',['../classPauseResume.html#a6385777accd53ea7363b346a29cd13d7',1,'PauseResume']]]
+  ['_5factivecallbacks_16939',['_activeCallbacks',['../classNiceIO_1_1Sysroot_1_1NPath_1_1NPathTLSCallback.html#adc337de0caf68d3f73a18775a3ef5c7a',1,'NiceIO::Sysroot::NPath::NPathTLSCallback']]],
+  ['_5fbuilder_16940',['_builder',['../classUnityEngine_1_1TestTools_1_1UnityTestAttribute.html#a244f8d8b79a310207a7b6fb14cc7ff63',1,'UnityEngine::TestTools::UnityTestAttribute']]],
+  ['_5fcallback_16941',['_callback',['../classNiceIO_1_1Sysroot_1_1NPath_1_1NPathTLSCallback.html#a99bfdf75a436e6450a8d27180b0ce1f2',1,'NiceIO::Sysroot::NPath::NPathTLSCallback']]],
+  ['_5fdiscoverinstallations_16942',['_discoverInstallations',['../classMicrosoft_1_1Unity_1_1VisualStudio_1_1Editor_1_1VisualStudioEditor.html#aa1379b72061b9c9ae4ac4fd28bac0015',1,'Microsoft::Unity::VisualStudio::Editor::VisualStudioEditor']]],
+  ['_5ffps_16943',['_fps',['../classPauseResume.html#a3249d3f6654c4821ced3f1c793d6497e',1,'PauseResume']]],
+  ['_5fframesrendered_16944',['_framesRendered',['../classPauseResume.html#a250b08b3ff36ce4e52c577e64021ade4',1,'PauseResume']]],
+  ['_5fgenerator_16945',['_generator',['../classMicrosoft_1_1Unity_1_1VisualStudio_1_1Editor_1_1VisualStudioEditor.html#a04bc2a3aec59c04cea6e5eb9accbc5be',1,'Microsoft::Unity::VisualStudio::Editor::VisualStudioEditor']]],
+  ['_5finitstatus_16946',['_initStatus',['../classUnityEditor_1_1Il2Cpp_1_1SysrootPackage.html#af0dac7354a3cd690f6758896c5c11fd7',1,'UnityEditor::Il2Cpp::SysrootPackage']]],
+  ['_5finstance_16947',['_instance',['../classUnityEditor_1_1TestTools_1_1TestRunner_1_1Api_1_1CallbacksHolder_1_1Suppressor.html#a727f2224758ba0c1439df824f3379741',1,'UnityEditor::TestTools::TestRunner::Api::CallbacksHolder::Suppressor']]],
+  ['_5flasttime_16948',['_lastTime',['../classPauseResume.html#a6385777accd53ea7363b346a29cd13d7',1,'PauseResume']]],
+  ['_5fpackagename_16949',['_packageName',['../classUnityEditor_1_1Il2Cpp_1_1SysrootLinuxX86__64.html#ab1640de9dea09a28706da6718c8048df',1,'UnityEditor.Il2Cpp.SysrootLinuxX86_64._packageName()'],['../classUnityEditor_1_1Il2Cpp_1_1ToolchainLinuxX86__64.html#a9cfa44ebece2e376137dc2239e876467',1,'UnityEditor.Il2Cpp.ToolchainLinuxX86_64._packageName()']]],
+  ['_5fpadding_5f_16950',['_padding_',['../structNiceIO_1_1Sysroot_1_1PosixNative_1_1Stat.html#ad8093a645f751ebfb3ab64b37f6af6fa',1,'NiceIO::Sysroot::PosixNative::Stat']]],
+  ['_5fpayloaddir_16951',['_payloadDir',['../classUnityEditor_1_1Il2Cpp_1_1SysrootLinuxX86__64.html#a7e6bdf8d9a53a58aed00b119c0c31ed6',1,'UnityEditor.Il2Cpp.SysrootLinuxX86_64._payloadDir()'],['../classUnityEditor_1_1Il2Cpp_1_1ToolchainLinuxX86__64.html#aa9794ff1ad09f0ca2a32e60786fe23a0',1,'UnityEditor.Il2Cpp.ToolchainLinuxX86_64._payloadDir()']]],
+  ['_5fpayloads_16952',['_payloads',['../classUnityEditor_1_1Il2Cpp_1_1SysrootPackage.html#a1955f12a864adf2629a53f3a5584e973',1,'UnityEditor::Il2Cpp::SysrootPackage']]],
+  ['_5fpayloadversion_16953',['_payloadVersion',['../classUnityEditor_1_1Il2Cpp_1_1SysrootLinuxX86__64.html#a3e54ee6d69db06e69c20108f1ca3ccd0',1,'UnityEditor.Il2Cpp.SysrootLinuxX86_64._payloadVersion()'],['../classUnityEditor_1_1Il2Cpp_1_1ToolchainLinuxX86__64.html#a1267adb686a166d81e4f4733456f591f',1,'UnityEditor.Il2Cpp.ToolchainLinuxX86_64._payloadVersion()']]],
+  ['_5fsuppressed_16954',['_suppressed',['../classUnityEditor_1_1TestTools_1_1TestRunner_1_1Api_1_1CallbacksHolder_1_1Suppressor.html#a2cc1931af2164b2ca8890a8b9781cd0d',1,'UnityEditor::TestTools::TestRunner::Api::CallbacksHolder::Suppressor']]],
+  ['_5fsysrootinstalldir_16955',['_sysrootInstallDir',['../classUnityEditor_1_1Il2Cpp_1_1SysrootLinuxX86__64.html#acfb9a97cf74147af65bd40f471df1675',1,'UnityEditor::Il2Cpp::SysrootLinuxX86_64']]],
+  ['_5ftimelinesceneinfo_16956',['_timelineSceneInfo',['../classUnityEditor_1_1Timeline_1_1Analytics_1_1TimelineAnalytics.html#a321a0ed1a586b736a4f0ff213723a344',1,'UnityEditor::Timeline::Analytics::TimelineAnalytics']]]
 ];

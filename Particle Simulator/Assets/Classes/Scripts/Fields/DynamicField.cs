@@ -14,17 +14,21 @@ using UnityEngine;
     */
 public class DynamicField
 {
-    /**
-    Reference to parent simulator's scales
-    */
+    /**Reference to the scales object of the parent simulator*/
     private Scales scales;
 
+    /**A dictionary of constants. The key value is the string name
+    and the value is the float value of the constant*/
     protected Dictionary<string, float> constants;
 
+    /**A Dictionary of the units of the constants for internal use. The key
+    value is the string name and the value is an int array of the unit exponents
+    in the form {kg, m, s, C}.*/
     private Dictionary<string, int[]> units;
 
     /**
-    Empty default constructor
+    The constructor method
+    @param sim - the parent simulator (Simulator)
     */
     protected DynamicField(Simulator sim)
     {
@@ -33,13 +37,21 @@ public class DynamicField
         units = new Dictionary<string, int[]>();
     }
 
+    /**Called by an extension class to regester an SI constant to be
+    updated with the scales of the simulator.
+    @param name - name of the constant (string)
+    @param val - float value of the constant in SI units (float)
+    @param unit - int array of the multiplicities of the SI unit (int[4])
+    */
     protected void registerConstant(string name, float val, int[] unit)
     {
         constants.Add(name, val);
         units.Add(name, unit);
         updateConstants();
     }
-
+    /**
+    Called by the simulator to update each unit when a Scale update event occurs
+    */
     public void updateConstants()
     {
         foreach (string con in units.Keys)
@@ -47,9 +59,7 @@ public class DynamicField
             int[] unit = units[con];
             float val = constants[con];
             constants[con] = scales.scaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
-            Debug.Log(constants["con"]);
         }
-
     }
 
     /**
