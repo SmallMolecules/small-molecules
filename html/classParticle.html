@@ -87,6 +87,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6f717a736cd28af3d29c431f5785a8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f9d8aca10e4641db0b85d959760b656"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a0f9d8aca10e4641db0b85d959760b656">step</a> (float dt)</td></tr>
 <tr class="separator:a0f9d8aca10e4641db0b85d959760b656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf6305fd29f1ce39530e69247d72f79b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#abf6305fd29f1ce39530e69247d72f79b">checkBoxCollision</a> ()</td></tr>
+<tr class="separator:abf6305fd29f1ce39530e69247d72f79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -112,7 +114,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Class for managing the properites of particle objects. </p>
 <p>This class manages particle properties such as position, velocity, radius, mass, charge and GameObject is is binds to. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>September 2021 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classSimulator.html">Simulator</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aadf1b522b4dc16ad1285a2870b8c3f5a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aadf1b522b4dc16ad1285a2870b8c3f5a">&#9670;&nbsp;</a></span>Particle()</h2>
@@ -203,6 +205,31 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Adds a force to the particle @rparam Unity unit scaled force F (Vector3) </p>
+
+</div>
+</div>
+<a id="abf6305fd29f1ce39530e69247d72f79b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf6305fd29f1ce39530e69247d72f79b">&#9670;&nbsp;</a></span>checkBoxCollision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Particle.checkBoxCollision </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -385,7 +412,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Reference to the <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> of the parent <a class="el" href="classSimulator.html">Simulator</a> </p>
+<p>Reference to the <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> of the parent <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> </p>
 
 </div>
 </div>
