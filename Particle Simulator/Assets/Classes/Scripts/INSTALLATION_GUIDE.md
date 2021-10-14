@@ -51,4 +51,3 @@ The dynamic and static fields classes are super classes that should be extended 
 Importantly, if you wish to use any constants expressed in SI units, you must use the method ``scaleConstant(float v, int kg, int m, int s, int q)`` provided by Scales. This will return the scaled value of the constant in Unity Units. See Scales for the use of this method. 
 
 Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone.
-

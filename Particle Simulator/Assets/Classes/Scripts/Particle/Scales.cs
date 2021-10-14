@@ -28,7 +28,7 @@ public class Scales
 
 
     private float DEFAULT_TIME_COEFF = 1.0f;
-    private int DEFAULT_TIME_EXP = -10;
+    private int DEFAULT_TIME_EXP = -9;
 
     private float DEFAULT_LENGTH_COEFF = 1.0f;
     private int DEFAULT_LENGTH_EXP = -9;
