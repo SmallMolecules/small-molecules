@@ -12,7 +12,7 @@ using System.Threading;
     @date September 2021
     \see Simulator Scales
     */
-public class Simulator  : MonoBehaviour
+public class Simulator : MonoBehaviour
 {
     /**Set of scales used by the simulator. This object is referenced by other 
     objects such as particles and fields.
@@ -21,9 +21,6 @@ public class Simulator  : MonoBehaviour
 
     /**Dictates if the simulation is paused. True if this simulation is paused, false otherwise*/
     public bool paused;
-
-    /**Specifies if destroy mode has been activated*/
-    public bool destroy = false;
 
     /**Reference to the simulation manager
     /see SimulationManager*/
@@ -43,26 +40,18 @@ public class Simulator  : MonoBehaviour
 
     /**System.Random object for random number generation. Each time program starts, a
     random seed is generated and used to construct this object*/
-    // private System.Random rand;
-    /**The seed used to generate this simulator's random object*/
-    public int seed;
-
+    private System.Random rand = new System.Random();
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
-
-    private System.Random rand = new System.Random(9);
     void Start()
-    { 
+    {
         // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
 
-        // System.Random tempRand = new System.Random();
-        // seed = tempRand.Next();
-        // rand = tempRand(seed);
-       
         //creates random particles
-        for (int i = 0; i < manager.NUM_PARTICLES; i++) {
+        for (int i = 0; i < manager.NUM_PARTICLES; i++)
+        {
             float x = rand.Next(-10, 10);
             float z = rand.Next(-10, 10);
             float y = rand.Next(-10, 10);
@@ -71,13 +60,13 @@ public class Simulator  : MonoBehaviour
             // float radius = 1f;
             // float mass = Random.Range(0, 10);
             float mass = 1f;
-            int charge = (int)Random.Range(0, 3)-1;
-            
-            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
+            int charge = (int)Random.Range(0, 3) - 1;
+
+            AddNewParticle(new Vector3(x, y, z), mass, radius, charge);
         }
 
         // add dynamic feilds
-        dynamicFields.Add(new Coloumb());
+        dynamicFields.Add(new Coloumb(this));
         // dynamicFields.Add(new LennardJones());
 
         // add static fields
@@ -89,43 +78,17 @@ public class Simulator  : MonoBehaviour
     */
     void Update()
     {
-        if (paused || manager.paused)
-        {
-            if (destroy)
-            {
-                if (Input.GetMouseButtonDown(0)) {
-                    RaycastHit[] hits;
-                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                    int layerMask = 1 << 6;
-                    hits = Physics.RaycastAll(ray.origin, ray.direction, Mathf.Infinity, layerMask);
-                    bool deleted = false;
-                    for (int a = 0; a < particles.Count; a++)
-                    {
-                        for (int h = 0; h < hits.Length; h++)
-                        {
-                            if (hits[h].transform.position == particles[a].particle.transform.position)
-                            {
-                                if (!deleted)
-                                {
-                                    RemoveParticle(particles[a]);
-                                    deleted = true;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return;
-        }
+        if (paused || manager.paused) return;
         // List<Thread> threads = new List<Thread>();
 
         // for all particles
-        for (int a = 0; a < particles.Count; a++) {
+        for (int a = 0; a < particles.Count; a++)
+        {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
             // updatethread.Start();
             updateVelocity(a);
-        }  
+        }
         // foreach (Thread t in threads) {
         //     t.Join();
         // }
@@ -134,17 +97,21 @@ public class Simulator  : MonoBehaviour
     }
     /**Updates the velocity of the particle with an index of "a" in the list
     @param a - the index of the particle to update (int)*/
-    private void updateVelocity(int a) {
+    private void updateVelocity(int a)
+    {
         // Static Field Contributions
-        foreach (StaticField F in staticFields) {
+        foreach (StaticField F in staticFields)
+        {
             F.applyForce(particles[a], scales);
         }
 
         // Dynamic Field Contributions
-        foreach (DynamicField F in dynamicFields) {
+        foreach (DynamicField F in dynamicFields)
+        {
             // only apply to particles after index as F.applyForce applies
             // force to both particles to save computation time
-            for (int b = a+1; b < particles.Count; b++) {
+            for (int b = a + 1; b < particles.Count; b++)
+            {
                 // F.applyForce(particles[a], particles[b], scales);
                 F.applyForce(particles[a], particles[b]);
             }
@@ -152,19 +119,21 @@ public class Simulator  : MonoBehaviour
     }
 
     /**Updates the positions of all the particles in the list according to thier velocity*/
-    private void updatePositions() {
-        foreach (Particle A in particles) {
+    private void updatePositions()
+    {
+        foreach (Particle A in particles)
+        {
             A.step(scales.time.VAL);
             A.checkBoxCollision();
         }
     }
-    
+
     /**Adds a new particle at a given position with the specified parameters
     @param pos (Vector3)
     @param mass (float)
     @param radius (float)
     @param charge (int)*/
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
     {
         GameObject sphere = Instantiate(particle_spawner, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
@@ -174,30 +143,58 @@ public class Simulator  : MonoBehaviour
     /**Adds a particle at a random position with default physical properties
     /see AddNewParticle
     */
-    public void AddNewParticleRandom() {
+    public void AddNewParticleRandom()
+    {
         float z = rand.Next(-10, 10);
         float x = rand.Next(-10, 10);
         float y = rand.Next(-10, 10);
-        AddNewParticle(new Vector3(x,y,z));
+        AddNewParticle(new Vector3(x, y, z));
     }
-    
+
     /**Removes a particle, A, from the simulation
     @param A - the particle to remove (Particle)*/
-    private void RemoveParticle(Particle A) {
+    private void RemoveParticle(Particle A)
+    {
         Destroy(A.particle);
         particles.Remove(A);
     }
 
     /**Toggles the pause state of the simulation*/
-    public void togglePause() {
+    public void togglePause()
+    {
         paused = !paused;
     }
 
-    /**Toggles the destroy particle option of the simulation*/
-    public void toggleDestroy(bool set)
+    /**Called by the UI elements to change the time scale
+    @param coeff - the coefficient of the time scale (float)
+    @param exp- the exponent of the time scale (int)*/
+    public void updateTime(float coeff, int exp)
     {
-        destroy = set;
+        Debug.Log("Called");
+
+        scales.setTime(coeff, exp);
+        foreach (DynamicField d in dynamicFields)
+        {
+            d.updateConstants();
+        }
+        foreach (StaticField s in staticFields)
+        {
+            s.updateConstants();
+        }
     }
-
-
+    /**Called by the UI elements to change the length scale
+    @param coeff - the coefficient of the length scale (float)
+    @param exp- the exponent of the length scale (int)*/
+    public void updateLength(float coeff, int index)
+    {
+        scales.setLength(coeff, index);
+        foreach (DynamicField d in dynamicFields)
+        {
+            d.updateConstants();
+        }
+        foreach (StaticField s in staticFields)
+        {
+            s.updateConstants();
+        }
+    }
 }

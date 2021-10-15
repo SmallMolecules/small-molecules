@@ -34,7 +34,7 @@ public class UISpawner : MonoBehaviour
 
     //needed for string formatting for who knows why
     CultureInfo ci = new CultureInfo("en-us");
-    
+
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
@@ -48,25 +48,29 @@ public class UISpawner : MonoBehaviour
     */
     void Update()
     {
-          
+
     }
 
     /**
     Callback function used to create (or fail to create) a particle object according
     to the input fields
     */
-    public void AttemptCreateParticle() {
+    public void AttemptCreateParticle()
+    {
         bool abort = false;
         float[] val = new float[3];
-        for (int i=0; i < 3; i++) {
-            
-            if(!float.TryParse(inputs[i].text, out val[i])) {
+        for (int i = 0; i < 3; i++)
+        {
+
+            if (!float.TryParse(inputs[i].text, out val[i]))
+            {
                 inputs[i].image.color = Color.red;
                 abort = true;
             }
         }
         // if no errors - create new particle
-        if (!abort) {
+        if (!abort)
+        {
             Vector3 pos = new Vector3(val[0], val[1], val[2]);
             simulator.AddNewParticle(pos);
         }
@@ -75,7 +79,8 @@ public class UISpawner : MonoBehaviour
     /**
     Callback function to spawn a particle at random location
     */
-    public void RandomCreate() {
+    public void RandomCreate()
+    {
         simulator.AddNewParticleRandom();
     }
 
@@ -84,7 +89,8 @@ public class UISpawner : MonoBehaviour
     the input GameObject
     @param Simulator to attach (GameObject)
     */
-    public void attachSimulator(GameObject sim) {
+    public void attachSimulator(GameObject sim)
+    {
         simulator = sim.GetComponent<Simulator>();
         exponent.text = simulator.scales.time.EXP.ToString();
         updateScales();
@@ -93,9 +99,11 @@ public class UISpawner : MonoBehaviour
     /**
     Callback function used to clear the background colours of the input fields
     */
-    public void ClearColour() {
-        for (int i=0; i < 3; i++) {
-            inputs[i].image.color = Color.white;         
+    public void ClearColour()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            inputs[i].image.color = Color.white;
         }
     }
 
@@ -109,7 +117,7 @@ public class UISpawner : MonoBehaviour
         float coeff = (float)Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
-        simulator.scales.setTime(coeff, exp);
+        simulator.updateTime(coeff, exp);
 
         coefficient.text = timescale.value.ToString("0.00") + " x 10^"; ;
         exponent.text = simulator.scales.time.EXP.ToString();
@@ -122,17 +130,10 @@ public class UISpawner : MonoBehaviour
     }
 
     /**
-    Sets the timescale of the simulator
-    @param dt - the value to change the simulator to (float) 
-    */
-    private void TimeScale(float dt) {
-        simulator.scales.setTime(dt, -9);//TODO this shouldn't be here?
-    }
-
-    /**
     TODO - add documenation comment
     */
-    public void ResetTime() {
+    public void ResetTime()
+    {
         timescale.value = 0.0001f;
         simulator.scales.setTime(timescale.value.ToString());
     }
@@ -140,20 +141,9 @@ public class UISpawner : MonoBehaviour
     /**
     Callback function used to hide and unhide the simulator UI submenu 
     */
-    public void show() {
+    public void show()
+    {
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 
-    /**
-    Callback function used to toggle the destroy mode
-    */
-    public void ToggleDestroyT()
-    {
-        simulator.toggleDestroy(true);
-    }
-
-    public void ToggleDestroyF()
-    {
-        simulator.toggleDestroy(false);
-    }
 }

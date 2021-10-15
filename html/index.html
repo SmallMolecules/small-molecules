@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Particle Simulator: Main Page</title>
+<title>Particle Simulator: Guide for Developers</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,11 +61,46 @@ $(function() {
 </iframe>
 </div>
 
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Particle Simulator Documentation</div>  </div>
+<div class="title">Guide for Developers </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p>This page documents each component of our particle simulator framework. See below:</p>
+<ul>
+<li><a href="file:annotated.html">Class List</a></li>
+<li><a href="file:files.html">Files</a></li>
+<li><a href="https://github.com/SmallMolecules/small-molecules">Github and Installation Guide</a></li>
+</ul>
+<p>The overall structure of this framework is to manage multiple simulators, which each hold their own set of particles, fields and scales. All simulators are managed by a Simulation Manager which controlls global properties such as the pause state, the max number of particles and the creation and deletion of the simulators. The fields classes (<a class="el" href="classStaticField.html" title="A base class for static field implementations.">StaticField</a> and <a class="el" href="classDynamicField.html" title="A base class for dynamic field implementations.">DynamicField</a>) are superclasses that can be extended to produce custom fields.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Simulator</h1>
+<p>The [simulator]() class is a MonoBehaviour class that is attached to an empty GameObject. It contains an two array of fields, one for the static fields and one for the dynamic fields. If you wish to add your own custom field, navigate to <code>start()</code> function of the <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> class and add</p>
+<div class="fragment"><div class="line">DynmaicFields.add(<span class="keyword">new</span> YourDynamicField(scales)); <span class="comment">//For Dynamic Fields</span></div>
+<div class="line"><span class="comment">// or</span></div>
+<div class="line">StaticFields.add(<span class="keyword">new</span> YourStaticField(scales)); <span class="comment">//For Static Fields</span></div>
+</div><!-- fragment --><p>Each frame the <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> will iterate through each field and add the force contribution of that field to all the particles. Each time a force is added to a particle, it changes its velocity based on its previous velocity and mass. Once all particles' velocities have been completed updated, the particles' positions are stepped forward by their velocity multiplied by some timestep (see <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> and <a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a>).</p>
+<p>The scales object of the <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> is referenced by the particles and the fields in their calculations.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Simulator Manager</h1>
+<p>The [simulator manager]() class is a MonoBehaviour class that is attached to an empty GameObject. it is responsible for managing global properties outside of each simulator.</p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+Particle</h1>
+<p>The <a class="el" href="classParticle.html" title="Class for managing the properites of particle objects.">Particle</a> class manages the properties of a particle. Each particle class contains a particle GameObject, but is not itself attached to it (see <a class="el" href="classParticleBehaviour.html">ParticleBehaviour</a>). It contains staitc fields for the mass, charge and radius and well as fields for the position and velocity.</p>
+<p>The static fields are expressed in scaled units that we refer to as "Unity Units" as the calculations in the fields are done on these units. See <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> for the conversions used.</p>
+<p>The position and velocity fields are similarly expressed in "Unity Units". A user that wishes to measure the "real-world" representation of the position or velocity will recieve a conversion from the Unity Units to the real-world unit based on the <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> object of the partent simulator.</p>
+<p>The particle's velocity is initialised to some value and updated by a fields's <code>AddForce()</code> method. The position of the particle is updated by its parent simulator's <code>updatePosition()</code> method.</p>
+<h1><a class="anchor" id="autotoc_md4"></a>
+Scales and the Scale Struct</h1>
+<p>Each simulator contains an <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> object - an object that contains multiple scale structs each representing the conversion between some Unity unit and the corresponding real-world representation. The <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> can be updated through the callback methods used in by UI elements or by calling the inbuilt functions.</p>
+<p>There is a scale field for the length and time scale (which can change), and static values for the mass and charge values.</p>
+<p>The scale struct is necessary over a floating point representation of the value as the presicion required in calcualtions of unit conversions exceed the range of allowable float values. It contains the coefficient, exponent and float value of some conversion factor. The <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> class can multiply the coefficient and exponent of each scale seperately in order to maintain the precision.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Dynamic and Static Field Classes</h1>
+<p>The dynamic and static fields classes are super classes that should be extended to provide functionality for the <code>AddForce()</code> method (see <a class="el" href="classColoumb.html" title="A DynamicField implementation of the Couloumb potential.">Coloumb</a> and <a class="el" href="classWind.html" title="A StaticField implementation of a wind vector field.">Wind</a> for two examples of an implementation).</p>
+<p>Importantly, if you wish to use any constants expressed in SI units, you must use the method <code>scaleConstant(float v, int kg, int m, int s, int q)</code> provided by <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a>. This will return the scaled value of the constant in Unity Units. See <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> for the use of this method.</p>
+<p>Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone. </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

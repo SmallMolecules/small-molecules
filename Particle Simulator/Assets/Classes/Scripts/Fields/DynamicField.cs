@@ -13,12 +13,53 @@ using UnityEngine;
     \see StaticField Lennard-Jones Coloumb
     */
 public class DynamicField
-{ 
+{
+    /**Reference to the scales object of the parent simulator*/
+    private Scales scales;
+
+    /**A dictionary of constants. The key value is the string name
+    and the value is the float value of the constant*/
+    protected Dictionary<string, float> constants;
+
+    /**A Dictionary of the units of the constants for internal use. The key
+    value is the string name and the value is an int array of the unit exponents
+    in the form {kg, m, s, C}.*/
+    private Dictionary<string, int[]> units;
+
     /**
-    Empty default constructor
+    The constructor method
+    @param sim - the parent simulator (Simulator)
     */
-    public DynamicField(){
-        
+    protected DynamicField(Simulator sim)
+    {
+        scales = sim.scales;
+        constants = new Dictionary<string, float>();
+        units = new Dictionary<string, int[]>();
+    }
+
+    /**Called by an extension class to regester an SI constant to be
+    updated with the scales of the simulator.
+    @param name - name of the constant (string)
+    @param val - float value of the constant in SI units (float)
+    @param unit - int array of the multiplicities of the SI unit (int[4])
+    */
+    protected void registerConstant(string name, float val, int[] unit)
+    {
+        constants.Add(name, val);
+        units.Add(name, unit);
+        updateConstants();
+    }
+    /**
+    Called by the simulator to update each unit when a Scale update event occurs
+    */
+    public void updateConstants()
+    {
+        foreach (string con in units.Keys)
+        {
+            int[] unit = units[con];
+            float val = constants[con];
+            constants[con] = scales.scaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
+        }
     }
 
     /**
@@ -28,7 +69,8 @@ public class DynamicField
     @param particle B (Particle)
     @returns zero vector (Vector3)
     */
-    public virtual Vector3 fieldDynamics(Particle A, Particle B) {
+    public virtual Vector3 fieldDynamics(Particle A, Particle B)
+    {
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
 
@@ -37,7 +79,8 @@ public class DynamicField
     @param particle A (Particle)
     @param particle B (Particle)
     */
-    public void applyForce(Particle A, Particle B) {
+    public void applyForce(Particle A, Particle B)
+    {
         Vector3 F = fieldDynamics(A, B);
 
         A.addForce(F);

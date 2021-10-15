@@ -1,17 +1,11 @@
 var searchData=
 [
-  ['particle_45',['Particle',['../classParticle.html',1,'Particle'],['../classParticle.html#ae4eb482eef59cd6adaac1214e83d526c',1,'Particle.particle()'],['../classParticle.html#aadf1b522b4dc16ad1285a2870b8c3f5a',1,'Particle.Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge)']]],
-  ['particle_2ecs_46',['Particle.cs',['../Particle_8cs.html',1,'']]],
-  ['particle_5fspawner_47',['particle_spawner',['../classSimulator.html#a75615d48b328cf7dcbb003b8222866fd',1,'Simulator']]],
-  ['particlebehaviour_48',['ParticleBehaviour',['../classParticleBehaviour.html',1,'']]],
-  ['particlebehaviour_2ecs_49',['ParticleBehaviour.cs',['../ParticleBehaviour_8cs.html',1,'']]],
-  ['particles_50',['particles',['../classSimulator.html#a94686df81bc5a3f0e2423ee25e6ba7b1',1,'Simulator']]],
-  ['pausebutton_51',['PauseButton',['../classPauseResume.html#aa6aedd143943fe0c7d66b7d2b3511d61',1,'PauseResume']]],
-  ['paused_52',['paused',['../classSimulationManager.html#a83b27c77166584a7ba708cebf0e16b5a',1,'SimulationManager.paused()'],['../classSimulator.html#a4ddc13e6ea54f5d753aab33cf7c2cf04',1,'Simulator.paused()']]],
-  ['pausegame_53',['PauseGame',['../classPauseResume.html#aeb1a03c30abb4dee73461fb04e1182b9',1,'PauseResume']]],
-  ['pauseresume_54',['PauseResume',['../classPauseResume.html',1,'']]],
-  ['pauseresume_2ecs_55',['PauseResume.cs',['../PauseResume_8cs.html',1,'']]],
-  ['pausescreen_56',['PauseScreen',['../classPauseResume.html#a614c2dce7b05294585b2b76f426258c5',1,'PauseResume']]],
-  ['position_57',['position',['../classParticle.html#aecc183c393aa62ab48761bbd972c0cb7',1,'Particle']]],
-  ['pow_58',['pow',['../classScales.html#af77d83be6135d5d309921a3710c74847',1,'Scales']]]
+  ['radius_61',['radius',['../classParticle.html#aabbf9755b7fe10c641406d29849a12dc',1,'Particle']]],
+  ['rand_62',['rand',['../classSimulator.html#a326d241ffc7498ad655e21ee743b576e',1,'Simulator']]],
+  ['randomcreate_63',['RandomCreate',['../classUISpawner.html#aafb4fa8b574e9401acd354da0fbd4411',1,'UISpawner']]],
+  ['registerconstant_64',['registerConstant',['../classDynamicField.html#ac9721b38aaa497eb085cc188366111b2',1,'DynamicField.registerConstant()'],['../classStaticField.html#a208a82510d8c5d7627d3e1954aa1b3e5',1,'StaticField.registerConstant()']]],
+  ['removeparticle_65',['RemoveParticle',['../classSimulator.html#a82b2b58d1d274014fe40ee7ce95f4e92',1,'Simulator']]],
+  ['resetsystems_66',['resetSystems',['../classSimulationManager.html#a9a5ee29921b3df137070afe2d5e347d1',1,'SimulationManager']]],
+  ['resettime_67',['ResetTime',['../classUISpawner.html#a597a69d4ac9aba8a9d98771cb199459e',1,'UISpawner']]],
+  ['resumegame_68',['ResumeGame',['../classPauseResume.html#a15f62e5b9d91cdf93ce6b4b028a7df45',1,'PauseResume']]]
 ];
