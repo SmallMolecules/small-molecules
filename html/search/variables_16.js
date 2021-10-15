@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['x_20471',['X',['../classUnity_1_1Cloud_1_1Collaborate_1_1Utilities_1_1MenuUtilities.html#ac542c67ff2704318ab81c51ff10f03b0',1,'Unity.Cloud.Collaborate.Utilities.MenuUtilities.X()'],['../structTMPro_1_1SpriteAssetUtilities_1_1TexturePacker__JsonArray_1_1SpriteFrame.html#a07d30b77674dca9525b827dca76b11cb',1,'TMPro.SpriteAssetUtilities.TexturePacker_JsonArray.SpriteFrame.x()'],['../classTMPro_1_1TMP__TextElement__Legacy.html#a4b96e1773a8f6240d312ea67c5c23724',1,'TMPro.TMP_TextElement_Legacy.x()']]],
-  ['xadvance_20472',['xAdvance',['../structTMPro_1_1TMP__CharacterInfo.html#a4ba39cef6ade72a09842f713363c1bea',1,'TMPro.TMP_CharacterInfo.xAdvance()'],['../structTMPro_1_1GlyphValueRecord__Legacy.html#a5ded26201e8fd6ce7a7030c7d342b8d3',1,'TMPro.GlyphValueRecord_Legacy.xAdvance()'],['../classTMPro_1_1TMP__TextElement__Legacy.html#a09b35711f9a319a4fb0bc3e0020c19d5',1,'TMPro.TMP_TextElement_Legacy.xAdvance()'],['../structTMPro_1_1WordWrapState.html#ab252611e74da892ea573740107a20ed3',1,'TMPro.WordWrapState.xAdvance()']]],
-  ['xoffset_20473',['xOffset',['../classTMPro_1_1KerningPair.html#ab6e227878e0f55e26103c94914384617',1,'TMPro.KerningPair.xOffset()'],['../classTMPro_1_1TMP__TextElement__Legacy.html#a4066f69305c1b24dd6256bb2329946cf',1,'TMPro.TMP_TextElement_Legacy.xOffset()']]],
-  ['xplacement_20474',['xPlacement',['../structTMPro_1_1GlyphValueRecord__Legacy.html#aff27ce322a2403d8f750a2adab7662b2',1,'TMPro::GlyphValueRecord_Legacy']]],
-  ['xtitle_20475',['XTitle',['../classUnityEditor_1_1Timeline_1_1AnimationTrackInspector_1_1Styles.html#aa3637576c509f2d2392b1007c699cc15',1,'UnityEditor::Timeline::AnimationTrackInspector::Styles']]]
-];
