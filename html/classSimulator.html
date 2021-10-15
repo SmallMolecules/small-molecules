@@ -72,6 +72,9 @@ $(function() {
 <div class="title">Simulator Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class for managing the properites of a simulator instance.  
+ <a href="classSimulator.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -81,6 +84,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5ae18ecdaa319c2b2dd8d51e4986cf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af20b2bb3a3a9c1c0d2f8872d1e574c00"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#af20b2bb3a3a9c1c0d2f8872d1e574c00">togglePause</a> ()</td></tr>
 <tr class="separator:af20b2bb3a3a9c1c0d2f8872d1e574c00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7902fe017cb44761967255b99a6bbf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ac7902fe017cb44761967255b99a6bbf3">updateTime</a> (float coeff, int exp)</td></tr>
+<tr class="separator:ac7902fe017cb44761967255b99a6bbf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3eb7cd2e4db2d5d5c332b6296332c758"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a3eb7cd2e4db2d5d5c332b6296332c758">updateLength</a> (float coeff, int index)</td></tr>
+<tr class="separator:a3eb7cd2e4db2d5d5c332b6296332c758"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -114,10 +121,15 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a9405d09a1b12e9f4678e9d43e18e49cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24ca64ad9c7fa083e7be6bdc486dc37"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classStaticField.html">StaticField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aa24ca64ad9c7fa083e7be6bdc486dc37">staticFields</a> = new List&lt;<a class="el" href="classStaticField.html">StaticField</a>&gt;()</td></tr>
 <tr class="separator:aa24ca64ad9c7fa083e7be6bdc486dc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc87dafda33c772d63f34a04d515e44f"><td class="memItemLeft" align="right" valign="top">System.Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#adc87dafda33c772d63f34a04d515e44f">rnd</a> = new System.Random(9)</td></tr>
-<tr class="separator:adc87dafda33c772d63f34a04d515e44f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a326d241ffc7498ad655e21ee743b576e"><td class="memItemLeft" align="right" valign="top">System.Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a326d241ffc7498ad655e21ee743b576e">rand</a> = new System.Random()</td></tr>
+<tr class="separator:a326d241ffc7498ad655e21ee743b576e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for managing the properites of a simulator instance. </p>
+<p>This class manages an overall simulation - the internal workings of what is considered a "box". This class holds the particles, the fields and the scales. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>September 2021 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ad4f6be36c1e523092741646edc4cd61a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4f6be36c1e523092741646edc4cd61a">&#9670;&nbsp;</a></span>AddNewParticle()</h2>
 
@@ -163,6 +175,15 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Adds a new particle at a given position with the specified parameters </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>(Vector3) </td></tr>
+    <tr><td class="paramname">mass</td><td>(float) </td></tr>
+    <tr><td class="paramname">radius</td><td>(float) </td></tr>
+    <tr><td class="paramname">charge</td><td>(int) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -188,6 +209,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Adds a particle at a random position with default physical properties /see AddNewParticle </p>
 
 </div>
 </div>
@@ -214,6 +236,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Removes a particle, A, from the simulation </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>- the particle to remove (<a class="el" href="classParticle.html" title="Class for managing the properites of particle objects.">Particle</a>) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -239,6 +267,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
 
 </div>
 </div>
@@ -264,6 +293,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Toggles the pause state of the simulation </p>
 
 </div>
 </div>
@@ -289,6 +319,50 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html</a></dd></dl>
+
+</div>
+</div>
+<a id="a3eb7cd2e4db2d5d5c332b6296332c758"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3eb7cd2e4db2d5d5c332b6296332c758">&#9670;&nbsp;</a></span>updateLength()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simulator.updateLength </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called by the UI elements to change the length scale </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff</td><td>- the coefficient of the length scale (float) </td></tr>
+    <tr><td class="paramname">exp-</td><td>the exponent of the length scale (int) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -314,6 +388,50 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Updates the positions of all the particles in the list according to thier velocity </p>
+
+</div>
+</div>
+<a id="ac7902fe017cb44761967255b99a6bbf3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7902fe017cb44761967255b99a6bbf3">&#9670;&nbsp;</a></span>updateTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simulator.updateTime </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>coeff</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>exp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called by the UI elements to change the time scale </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff</td><td>- the coefficient of the time scale (float) </td></tr>
+    <tr><td class="paramname">exp-</td><td>the exponent of the time scale (int) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -340,6 +458,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Updates the velocity of the particle with an index of "a" in the list </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>- the index of the particle to update (int) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -363,6 +487,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>List of the dynamic fields /see <a class="el" href="classDynamicField.html" title="A base class for dynamic field implementations.">DynamicField</a> </p>
 
 </div>
 </div>
@@ -385,6 +510,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Reference to the simulation manager /see <a class="el" href="classSimulationManager.html" title="Class for managing the properites of all simulator instances.">SimulationManager</a> </p>
 
 </div>
 </div>
@@ -399,6 +525,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The GameObject to spawn (<a class="el" href="classParticle.html" title="Class for managing the properites of particle objects.">Particle</a> Object) </p>
 
 </div>
 </div>
@@ -421,6 +548,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>List of the particles </p>
 
 </div>
 </div>
@@ -435,11 +563,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Dictates if the simulation is paused. True if this simulation is paused, false otherwise </p>
 
 </div>
 </div>
-<a id="adc87dafda33c772d63f34a04d515e44f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc87dafda33c772d63f34a04d515e44f">&#9670;&nbsp;</a></span>rnd</h2>
+<a id="a326d241ffc7498ad655e21ee743b576e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a326d241ffc7498ad655e21ee743b576e">&#9670;&nbsp;</a></span>rand</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -448,7 +577,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">System.Random Simulator.rnd = new System.Random(9)</td>
+          <td class="memname">System.Random Simulator.rand = new System.Random()</td>
         </tr>
       </table>
   </td>
@@ -457,6 +586,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>System.Random object for random number generation. Each time program starts, a random seed is generated and used to construct this object </p>
 
 </div>
 </div>
@@ -471,6 +601,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Set of scales used by the simulator. This object is referenced by other objects such as particles and fields. /see <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> <a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a> </p>
 
 </div>
 </div>
@@ -493,11 +624,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>List of the static fields /see <a class="el" href="classStaticField.html" title="A base class for static field implementations.">StaticField</a> </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Particle/<a class="el" href="Simulator_8cs.html">Simulator.cs</a></li>
+<li>Particle Simulator/Assets/Classes/Scripts/Particle/<a class="el" href="Simulator_8cs.html">Simulator.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

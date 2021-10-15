@@ -88,6 +88,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a594086b5bd1430dcfa705fc751d4da3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2687eab6184b9df0b7982e1a84d4f74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#ae2687eab6184b9df0b7982e1a84d4f74">updateScales</a> ()</td></tr>
 <tr class="separator:ae2687eab6184b9df0b7982e1a84d4f74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a597a69d4ac9aba8a9d98771cb199459e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a597a69d4ac9aba8a9d98771cb199459e">ResetTime</a> ()</td></tr>
+<tr class="separator:a597a69d4ac9aba8a9d98771cb199459e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96ed51f79c9a3a7e0b750dca96b8d278"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a96ed51f79c9a3a7e0b750dca96b8d278">show</a> ()</td></tr>
 <tr class="separator:a96ed51f79c9a3a7e0b750dca96b8d278"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -112,8 +114,6 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a1111bc71f832e5146bcbf676ca9cd32e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9628d7e1f9bf018082e9782d69d0b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#ae9628d7e1f9bf018082e9782d69d0b62">Update</a> ()</td></tr>
 <tr class="separator:ae9628d7e1f9bf018082e9782d69d0b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1636676c9cee60acdda7c68f0334bbbd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a1636676c9cee60acdda7c68f0334bbbd">TimeScale</a> (float dt)</td></tr>
-<tr class="separator:a1636676c9cee60acdda7c68f0334bbbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -124,7 +124,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>Class for managing UI interactions with simulator sub-menu. </p>
 <p>This class extends Unity's MonoBehaviour class. It is attached to a canvas object and is responsible for managinging the interactions between the simulator UI sub-menu and its corresponding simulator object. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>November 2021 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUISpawner.html" title="Class for managing UI interactions with simulator sub-menu.">UISpawner</a> <a class="el" href="classSimulator.html">Simulator</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUISpawner.html" title="Class for managing UI interactions with simulator sub-menu.">UISpawner</a> <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a2fb4a0bb93874229fa371c6fb6c819af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2fb4a0bb93874229fa371c6fb6c819af">&#9670;&nbsp;</a></span>attachSimulator()</h2>
@@ -151,7 +151,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Binds the "simulator" property of this object to the input GameObject </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="classSimulator.html">Simulator</a></td><td>to attach (GameObject) </td></tr>
+    <tr><td class="paramname"><a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a></td><td>to attach (GameObject) </td></tr>
   </table>
   </dd>
 </dl>
@@ -236,6 +236,32 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a597a69d4ac9aba8a9d98771cb199459e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a597a69d4ac9aba8a9d98771cb199459e">&#9670;&nbsp;</a></span>ResetTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UISpawner.ResetTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>TODO - add documenation comment </p>
+
+</div>
+</div>
 <a id="a96ed51f79c9a3a7e0b750dca96b8d278"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a96ed51f79c9a3a7e0b750dca96b8d278">&#9670;&nbsp;</a></span>show()</h2>
 
@@ -285,38 +311,6 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
-
-</div>
-</div>
-<a id="a1636676c9cee60acdda7c68f0334bbbd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1636676c9cee60acdda7c68f0334bbbd">&#9670;&nbsp;</a></span>TimeScale()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UISpawner.TimeScale </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>dt</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Sets the timescale of the simulator </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dt</td><td>- the value to change the simulator to (float) </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -486,7 +480,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>UserInterface/<a class="el" href="UISpawner_8cs.html">UISpawner.cs</a></li>
+<li>Particle Simulator/Assets/Classes/Scripts/UserInterface/<a class="el" href="UISpawner_8cs.html">UISpawner.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

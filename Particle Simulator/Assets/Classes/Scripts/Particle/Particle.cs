@@ -73,7 +73,6 @@ public class Particle
     Gets the position of the particle
     @returns position (Vector3)
     */
-
     public Vector3 getPos() {
         return position;
     }

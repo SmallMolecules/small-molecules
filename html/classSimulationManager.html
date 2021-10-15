@@ -72,6 +72,9 @@ $(function() {
 <div class="title">SimulationManager Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class for managing the properites of all simulator instances.  
+ <a href="classSimulationManager.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -107,7 +110,12 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:ae861cd70a866ceb192a2d563df85e724"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulationManager.html#ae861cd70a866ceb192a2d563df85e724">newestSim</a></td></tr>
 <tr class="separator:ae861cd70a866ceb192a2d563df85e724"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for managing the properites of all simulator instances. </p>
+<p>This class manages all simulations in the environment. It specifies values such as the pause state of all the simulations, the max number of particles. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>October 2021 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> </dd></dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="addaacda9118b72bb83c4e707cb526166"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#addaacda9118b72bb83c4e707cb526166">&#9670;&nbsp;</a></span>createSimulator()</h2>
 
@@ -130,6 +138,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Makes a new simulator and adds it to the list of simulators. Also names the system as "System X". </p>
 
 </div>
 </div>
@@ -155,6 +164,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Resets a simulator </p>
 
 </div>
 </div>
@@ -180,6 +190,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
 
 </div>
 </div>
@@ -205,6 +216,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Toggles the pause state of the simulation </p>
 
 </div>
 </div>
@@ -230,6 +242,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html</a></dd></dl>
 
 </div>
 </div>
@@ -253,6 +266,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Integer that specifies how many Simulators currently exist for naming purposes </p>
 
 </div>
 </div>
@@ -267,6 +281,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>The maximum number of particles allowed for each simulator </p>
 
 </div>
 </div>
@@ -281,6 +296,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Pause-state of all simulators. Dicates the pause-state of all simulators - if True then all simulators can be unpaused, if False then all simulators are paused </p>
 
 </div>
 </div>
@@ -303,6 +319,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>List of all simulation GameObjects </p>
 
 </div>
 </div>
@@ -317,6 +334,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the GameObject this class is attached to </p>
 
 </div>
 </div>
@@ -331,11 +349,12 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Reference to the UI pause screen that interacts with the simulatorManager </p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Particle/<a class="el" href="SimulationManager_8cs.html">SimulationManager.cs</a></li>
+<li>Particle Simulator/Assets/Classes/Scripts/Particle/<a class="el" href="SimulationManager_8cs.html">SimulationManager.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
