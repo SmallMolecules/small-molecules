@@ -72,6 +72,7 @@ public class Simulator  : MonoBehaviour
             // float mass = Random.Range(0, 10);
             float mass = 1f;
             int charge = (int)Random.Range(0, 3)-1;
+            while (charge == 0) charge = (int)Random.Range(0, 3)-1;
             
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
         }
@@ -156,6 +157,7 @@ public class Simulator  : MonoBehaviour
         foreach (Particle A in particles) {
             A.step(scales.time.VAL);
             A.checkBoxCollision();
+            // A.boundaryCheck();
         }
     }
     

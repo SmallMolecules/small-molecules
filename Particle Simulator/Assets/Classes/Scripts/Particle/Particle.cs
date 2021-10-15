@@ -108,12 +108,12 @@ public class Particle
     }
 
     public void checkBoxCollision() {
-        bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius*2);
-        bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius*2);
-        bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius*2);
-        bool collideDown = Physics.Raycast(particle.transform.position, Vector3.down, radius*2);
-        bool collideForward = Physics.Raycast(particle.transform.position, Vector3.forward, radius*2);
-        bool collideBack = Physics.Raycast(particle.transform.position, Vector3.back, radius*2);
+        bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius);
+        bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius);
+        bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius);
+        bool collideDown = Physics.Raycast(particle.transform.position, Vector3.down, radius);
+        bool collideForward = Physics.Raycast(particle.transform.position, Vector3.forward, radius);
+        bool collideBack = Physics.Raycast(particle.transform.position, Vector3.back, radius);
 
         float vx = velocity.x;
         float vy = velocity.y;
