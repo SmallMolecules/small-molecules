@@ -9,6 +9,7 @@ using System.Threading;
     This class manages an overall simulation - the internal workings of what
     is considered a "box". This class holds the particles, the fields and the scales.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date September 2021
     \see Simulator Scales
     */
@@ -29,6 +30,9 @@ public class Simulator : MonoBehaviour
     /**The GameObject to spawn (Particle Object)*/
     public GameObject particle_spawner;
 
+    /**The GameObject Environment to spawn (Box)*/
+    public GameObject box_environment;
+
     /**List of the particles*/
     List<Particle> particles = new List<Particle>();
     /**List of the dynamic fields
@@ -48,6 +52,9 @@ public class Simulator : MonoBehaviour
     {
         // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
+        GameObject box = Instantiate(box_environment, new Vector3(0, 0, 0), Quaternion.identity);
+        box.transform.parent = this.transform;
+
 
         //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++)
