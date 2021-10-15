@@ -7,6 +7,7 @@ using UnityEngine;
     This class manages particle properties such as position, velocity, radius, mass,
     charge and GameObject is is binds to.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date September 2021
     \see Simulator Scales
     */
@@ -87,7 +88,7 @@ public class Particle
 
     /**
     Adds a force to the particle 
-    @rparam Unity unit scaled force F (Vector3)
+    @param Unity unit scaled force F (Vector3)
     */
     public void addForce(Vector3 F) {
                 
@@ -106,13 +107,17 @@ public class Particle
         particle.transform.Translate(velocity*dt);
     }
 
+    /**
+    Checks if there was a collision with any wall of the environment box
+    and reflects the velocity for the correct axis
+    */
     public void checkBoxCollision() {
-        bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius*2);
-        bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius*2);
-        bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius*2);
-        bool collideDown = Physics.Raycast(particle.transform.position, Vector3.down, radius*2);
-        bool collideForward = Physics.Raycast(particle.transform.position, Vector3.forward, radius*2);
-        bool collideBack = Physics.Raycast(particle.transform.position, Vector3.back, radius*2);
+        bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius);
+        bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius);
+        bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius);
+        bool collideDown = Physics.Raycast(particle.transform.position, Vector3.down, radius);
+        bool collideForward = Physics.Raycast(particle.transform.position, Vector3.forward, radius);
+        bool collideBack = Physics.Raycast(particle.transform.position, Vector3.back, radius);
 
         float vx = velocity.x;
         float vy = velocity.y;

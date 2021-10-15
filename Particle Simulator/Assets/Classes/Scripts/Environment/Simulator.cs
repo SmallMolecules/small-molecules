@@ -9,10 +9,11 @@ using System.Threading;
     This class manages an overall simulation - the internal workings of what
     is considered a "box". This class holds the particles, the fields and the scales.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date September 2021
     \see Simulator Scales
     */
-public class Simulator : MonoBehaviour
+public class Simulator  : MonoBehaviour
 {
     /**Set of scales used by the simulator. This object is referenced by other 
     objects such as particles and fields.
@@ -22,12 +23,21 @@ public class Simulator : MonoBehaviour
     /**Dictates if the simulation is paused. True if this simulation is paused, false otherwise*/
     public bool paused;
 
+    /**Specifies if destroy mode has been activated*/
+    public bool destroy = false;
+
+    /**The actual box environment object for the current simulation*/
+    private GameObject box;
+
     /**Reference to the simulation manager
     /see SimulationManager*/
     private SimulationManager manager;
 
     /**The GameObject to spawn (Particle Object)*/
     public GameObject particle_spawner;
+
+    /**The GameObject Environment to spawn (Box)*/
+    public GameObject box_environment;
 
     /**List of the particles*/
     List<Particle> particles = new List<Particle>();
@@ -40,18 +50,28 @@ public class Simulator : MonoBehaviour
 
     /**System.Random object for random number generation. Each time program starts, a
     random seed is generated and used to construct this object*/
-    private System.Random rand = new System.Random();
+    // private System.Random rand;
+    /**The seed used to generate this simulator's random object*/
+    public int seed;
+
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
+
+    private System.Random rand = new System.Random(9);
     void Start()
-    {
+    { 
         // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
+        box = Instantiate(box_environment, new Vector3(0, 0, 0), Quaternion.identity);
+        box.transform.parent = this.transform;
 
+        // System.Random tempRand = new System.Random();
+        // seed = tempRand.Next();
+        // rand = tempRand(seed);
+       
         //creates random particles
-        for (int i = 0; i < manager.NUM_PARTICLES; i++)
-        {
+        for (int i = 0; i < manager.NUM_PARTICLES; i++) {
             float x = rand.Next(-10, 10);
             float z = rand.Next(-10, 10);
             float y = rand.Next(-10, 10);
@@ -60,9 +80,9 @@ public class Simulator : MonoBehaviour
             // float radius = 1f;
             // float mass = Random.Range(0, 10);
             float mass = 1f;
-            int charge = (int)Random.Range(0, 3) - 1;
-
-            AddNewParticle(new Vector3(x, y, z), mass, radius, charge);
+            int charge = (int)Random.Range(0, 3)-1;
+            
+            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
         }
 
         // add dynamic feilds
@@ -78,17 +98,20 @@ public class Simulator : MonoBehaviour
     */
     void Update()
     {
-        if (paused || manager.paused) return;
+        if (paused || manager.paused)
+        {
+            if (destroy) DestroyParticle();
+            return;
+        }
         // List<Thread> threads = new List<Thread>();
 
         // for all particles
-        for (int a = 0; a < particles.Count; a++)
-        {
+        for (int a = 0; a < particles.Count; a++) {
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
             // updatethread.Start();
             updateVelocity(a);
-        }
+        }  
         // foreach (Thread t in threads) {
         //     t.Join();
         // }
@@ -97,21 +120,17 @@ public class Simulator : MonoBehaviour
     }
     /**Updates the velocity of the particle with an index of "a" in the list
     @param a - the index of the particle to update (int)*/
-    private void updateVelocity(int a)
-    {
+    private void updateVelocity(int a) {
         // Static Field Contributions
-        foreach (StaticField F in staticFields)
-        {
+        foreach (StaticField F in staticFields) {
             F.applyForce(particles[a], scales);
         }
 
         // Dynamic Field Contributions
-        foreach (DynamicField F in dynamicFields)
-        {
+        foreach (DynamicField F in dynamicFields) {
             // only apply to particles after index as F.applyForce applies
             // force to both particles to save computation time
-            for (int b = a + 1; b < particles.Count; b++)
-            {
+            for (int b = a+1; b < particles.Count; b++) {
                 // F.applyForce(particles[a], particles[b], scales);
                 F.applyForce(particles[a], particles[b]);
             }
@@ -119,21 +138,19 @@ public class Simulator : MonoBehaviour
     }
 
     /**Updates the positions of all the particles in the list according to thier velocity*/
-    private void updatePositions()
-    {
-        foreach (Particle A in particles)
-        {
+    private void updatePositions() {
+        foreach (Particle A in particles) {
             A.step(scales.time.VAL);
             A.checkBoxCollision();
         }
     }
-
+    
     /**Adds a new particle at a given position with the specified parameters
     @param pos (Vector3)
     @param mass (float)
     @param radius (float)
     @param charge (int)*/
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
         GameObject sphere = Instantiate(particle_spawner, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
@@ -143,26 +160,11 @@ public class Simulator : MonoBehaviour
     /**Adds a particle at a random position with default physical properties
     /see AddNewParticle
     */
-    public void AddNewParticleRandom()
-    {
+    public void AddNewParticleRandom() {
         float z = rand.Next(-10, 10);
         float x = rand.Next(-10, 10);
         float y = rand.Next(-10, 10);
-        AddNewParticle(new Vector3(x, y, z));
-    }
-
-    /**Removes a particle, A, from the simulation
-    @param A - the particle to remove (Particle)*/
-    private void RemoveParticle(Particle A)
-    {
-        Destroy(A.particle);
-        particles.Remove(A);
-    }
-
-    /**Toggles the pause state of the simulation*/
-    public void togglePause()
-    {
-        paused = !paused;
+        AddNewParticle(new Vector3(x,y,z));
     }
 
     /**Called by the UI elements to change the time scale
@@ -197,4 +199,59 @@ public class Simulator : MonoBehaviour
             s.updateConstants();
         }
     }
+    
+    /**Removes a particle, A, from the simulation
+    @param A - the particle to remove (Particle)*/
+    private void RemoveParticle(Particle A) {
+        Destroy(A.particle);
+        particles.Remove(A);
+    }
+
+    /**Toggles the pause state of the simulation*/
+    public void togglePause() {
+        paused = !paused;
+    }
+
+    private void DestroyParticle() 
+    {
+        if (Input.GetMouseButtonDown(0)) {
+            RaycastHit[] hits;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layerMask = 1 << 6;
+            hits = Physics.RaycastAll(ray.origin, ray.direction, Mathf.Infinity, layerMask);
+            bool deleted = false;
+            for (int a = 0; a < particles.Count; a++)
+            {
+                for (int h = 0; h < hits.Length; h++)
+                {
+                    if (hits[h].transform.position == particles[a].particle.transform.position)
+                    {
+                        if (!deleted)
+                        {
+                            RemoveParticle(particles[a]);
+                            deleted = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**Toggles the destroy particle option of the simulation
+    @param set - a bool to set destroy to true or false
+    */
+    public void toggleDestroy(bool set)
+    {
+        destroy = set;
+    }
+
+    /**Called by the UI elements to change the size of the box
+    @param coeff - the coefficient of the size scale (float)
+    */
+    public void updateBoxSize(float coeff) 
+    {
+        box.transform.localScale = new Vector3(coeff, coeff, coeff);
+    }
+
+
 }
