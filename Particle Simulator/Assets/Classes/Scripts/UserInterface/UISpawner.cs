@@ -146,4 +146,17 @@ public class UISpawner : MonoBehaviour
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }
 
+    /**
+    Callback function used to toggle the destroy mode
+    */
+    public void ToggleDestroyT()
+    {
+        simulator.toggleDestroy(true);
+    }
+
+    public void ToggleDestroyF()
+    {
+        simulator.toggleDestroy(false);
+    }
+
 }
