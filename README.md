@@ -26,5 +26,7 @@ This will create a directory called *Small Molecules* which contains all the uni
 
 ## Running the Simulator
 
-To run the simulator, simply add the folder *small-molecules/Particle Simulator* as a project, ensuring you have the correct version of Unity installed.
+To run the simulator, simply add the folder *small-molecules/Particle Simulator* as a project, ensuring you have the correct version of Unity installed. Then load up the folder ``Assets/Scenes`` and load the scene called *Main Scene*. To run, click on the play icon. 
+
+For further instruction on how to use the simulator as a user, consult our *User Guide*.
 
