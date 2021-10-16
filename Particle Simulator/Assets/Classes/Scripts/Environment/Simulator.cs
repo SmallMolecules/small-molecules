@@ -34,10 +34,10 @@ public class Simulator  : MonoBehaviour
     private SimulationManager manager;
 
     /**The GameObject to spawn (Particle Object)*/
-    public GameObject particle_spawner;
+    public GameObject particleSpawner;
 
     /**The GameObject Environment to spawn (Box)*/
-    public GameObject box_environment;
+    public GameObject boxEnvironment;
 
     /**List of the particles*/
     List<Particle> particles = new List<Particle>();
@@ -63,7 +63,7 @@ public class Simulator  : MonoBehaviour
     { 
         // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
-        box = Instantiate(box_environment, new Vector3(0, 0, 0), Quaternion.identity);
+        box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
         box.transform.parent = this.transform;
 
         // System.Random tempRand = new System.Random();
@@ -100,7 +100,7 @@ public class Simulator  : MonoBehaviour
     {
         if (paused || manager.paused)
         {
-            if (destroy) DestroyParticle();
+            if (destroy) HandleDestroyParticle();
             return;
         }
         // List<Thread> threads = new List<Thread>();
@@ -110,20 +110,20 @@ public class Simulator  : MonoBehaviour
             // Thread updatethread = new Thread(() => updateVelocity(A));
             // threads.Add(updatethread);
             // updatethread.Start();
-            updateVelocity(a);
+            UpdateVelocity(a);
         }  
         // foreach (Thread t in threads) {
         //     t.Join();
         // }
 
-        updatePositions();
+        UpdatePositions();
     }
     /**Updates the velocity of the particle with an index of "a" in the list
     @param a - the index of the particle to update (int)*/
-    private void updateVelocity(int a) {
+    private void UpdateVelocity(int a) {
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
-            F.applyForce(particles[a], scales);
+            F.ApplyForce(particles[a], scales);
         }
 
         // Dynamic Field Contributions
@@ -132,16 +132,16 @@ public class Simulator  : MonoBehaviour
             // force to both particles to save computation time
             for (int b = a+1; b < particles.Count; b++) {
                 // F.applyForce(particles[a], particles[b], scales);
-                F.applyForce(particles[a], particles[b]);
+                F.ApplyForce(particles[a], particles[b]);
             }
         }
     }
 
     /**Updates the positions of all the particles in the list according to thier velocity*/
-    private void updatePositions() {
+    private void UpdatePositions() {
         foreach (Particle A in particles) {
-            A.step(scales.time.VAL);
-            A.checkBoxCollision();
+            A.Step(scales.time.VAL);
+            A.CheckBoxCollision();
         }
     }
     
@@ -152,7 +152,7 @@ public class Simulator  : MonoBehaviour
     @param charge (int)*/
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
     {
-        GameObject sphere = Instantiate(particle_spawner, pos, Quaternion.identity);
+        GameObject sphere = Instantiate(particleSpawner, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
@@ -170,33 +170,33 @@ public class Simulator  : MonoBehaviour
     /**Called by the UI elements to change the time scale
     @param coeff - the coefficient of the time scale (float)
     @param exp- the exponent of the time scale (int)*/
-    public void updateTime(float coeff, int exp)
+    public void UpdateTime(float coeff, int exp)
     {
         Debug.Log("Called");
 
-        scales.setTime(coeff, exp);
+        scales.SetTime(coeff, exp);
         foreach (DynamicField d in dynamicFields)
         {
-            d.updateConstants();
+            d.UpdateConstants();
         }
         foreach (StaticField s in staticFields)
         {
-            s.updateConstants();
+            s.UpdateConstants();
         }
     }
     /**Called by the UI elements to change the length scale
     @param coeff - the coefficient of the length scale (float)
     @param exp- the exponent of the length scale (int)*/
-    public void updateLength(float coeff, int index)
+    public void UpdateLength(float coeff, int index)
     {
-        scales.setLength(coeff, index);
+        scales.SetLength(coeff, index);
         foreach (DynamicField d in dynamicFields)
         {
-            d.updateConstants();
+            d.UpdateConstants();
         }
         foreach (StaticField s in staticFields)
         {
-            s.updateConstants();
+            s.UpdateConstants();
         }
     }
     
@@ -208,11 +208,11 @@ public class Simulator  : MonoBehaviour
     }
 
     /**Toggles the pause state of the simulation*/
-    public void togglePause() {
+    public void TogglePause() {
         paused = !paused;
     }
 
-    private void DestroyParticle() 
+    private void HandleDestroyParticle() 
     {
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit[] hits;
@@ -240,7 +240,7 @@ public class Simulator  : MonoBehaviour
     /**Toggles the destroy particle option of the simulation
     @param set - a bool to set destroy to true or false
     */
-    public void toggleDestroy(bool set)
+    public void ToggleDestroy(bool set)
     {
         destroy = set;
     }
@@ -248,7 +248,7 @@ public class Simulator  : MonoBehaviour
     /**Called by the UI elements to change the size of the box
     @param coeff - the coefficient of the size scale (float)
     */
-    public void updateBoxSize(float coeff) 
+    public void UpdateBoxSize(float coeff) 
     {
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
     }

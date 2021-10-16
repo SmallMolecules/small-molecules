@@ -17,22 +17,22 @@ using System.Globalization;
 public class PauseResume : MonoBehaviour
 {
     /**Reference to the pause-screen elemenet*/
-    public GameObject PauseScreen;
+    public GameObject pauseScreen;
     /**Reference to the pause button*/
-    public GameObject PauseButton;
+    public GameObject pauseButton;
     /**Reference to the system button*/
-    public Button system_button;
+    public Button systemButton;
     /**Reference to the FPS display text*/
     public Text fps;
     
     /**GameObject to spawn for the simulator sub-menu*/
-    public GameObject simulatorUI_spawner;
+    public GameObject simulatorUISpawner;
 
     /**Reference to the simulation manager object*/
     private SimulationManager manager;
 
     // stored colours
-    private Color onnColor = new Color(0.4f, 1f, 0.8f);
+    private Color onColor = new Color(0.4f, 1f, 0.8f);
     private Color offColor = new Color(1f, 1f, 1f);
 
     System.DateTime _lastTime; // marks the beginning the measurement began
@@ -45,9 +45,9 @@ public class PauseResume : MonoBehaviour
     void Start()
     {
         // show/hide menu items
-        PauseScreen.SetActive(false);
-        PauseButton.SetActive(true);
-        system_button.GetComponent<Image>().color = offColor;
+        pauseScreen.SetActive(false);
+        pauseButton.SetActive(true);
+        systemButton.GetComponent<Image>().color = offColor;
 
         // find manager script
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
@@ -80,18 +80,18 @@ public class PauseResume : MonoBehaviour
     */
     private void PauseGame()
     {
-        manager.togglePause();
-        PauseScreen.SetActive(true);
-        PauseButton.SetActive(false);
+        manager.TogglePause();
+        pauseScreen.SetActive(true);
+        pauseButton.SetActive(false);
     }
     /**
     Callback function used to resume all simulations
     */
     private void ResumeGame()
     {
-        manager.togglePause();
-        PauseScreen.SetActive(false);
-        PauseButton.SetActive(true);
+        manager.TogglePause();
+        pauseScreen.SetActive(false);
+        pauseButton.SetActive(true);
     }
 
     /**
@@ -99,17 +99,17 @@ public class PauseResume : MonoBehaviour
     simulations managed by the simulation manager object
     @param GameObject sim
     */
-    public void newSimulator(GameObject sim) {
+    public void NewSimulator(GameObject sim) {
         // create simulation UI object
-        GameObject UIentry = Instantiate(simulatorUI_spawner);
+        GameObject UIentry = Instantiate(simulatorUISpawner);
         // set parent as pause screen
-        UIentry.transform.SetParent(PauseScreen.transform, false); 
+        UIentry.transform.SetParent(pauseScreen.transform, false); 
         // find script
         UISpawner script = UIentry.GetComponent<UISpawner>();
         // give functionality to "system n" button
-        system_button.onClick.AddListener (script.show);
+        systemButton.onClick.AddListener (script.Show);
         // pass simulation gameobject into UI spawner
-        script.attachSimulator(sim);
+        script.AttachSimulator(sim);
         
         
     }
@@ -118,13 +118,13 @@ public class PauseResume : MonoBehaviour
     Callback function used to toggle a button between the "selected" colour
     and the "unselected" colour.
     */
-    public void toggleSelectedColour() {
-        Color orig = system_button.GetComponent<Image>().color;
+    public void ToggleSelectedColour() {
+        Color orig = systemButton.GetComponent<Image>().color;
         if (orig.Equals(offColor)) {
-            system_button.GetComponent<Image>().color = onnColor;
+            systemButton.GetComponent<Image>().color = onColor;
         }
         else {
-           system_button.GetComponent<Image>().color = offColor;
+           systemButton.GetComponent<Image>().color = offColor;
         }
         
     }

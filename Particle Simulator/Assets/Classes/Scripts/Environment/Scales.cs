@@ -38,8 +38,8 @@ public class Scales
     */
     public Scales()
     {
-        setTime(DEFAULT_TIME_COEFF, DEFAULT_TIME_EXP);
-        setLength(DEFAULT_LENGTH_COEFF, DEFAULT_LENGTH_EXP);
+        SetTime(DEFAULT_TIME_COEFF, DEFAULT_TIME_EXP);
+        SetLength(DEFAULT_LENGTH_COEFF, DEFAULT_LENGTH_EXP);
         // TODO add checks for charge and mass
         charge = new Scale(1.6f, -19);
         mass = new Scale(1.6f, -27);
@@ -51,7 +51,7 @@ public class Scales
     exponent seperately
     @param S, the input string (string)
     */
-    public void setTime(string S)
+    public void SetTime(string S)
     {
         string[] str = S.Split('e');
 
@@ -85,7 +85,7 @@ public class Scales
     @param coefficient (float)
     @param exponent (int)
     */
-    public void setTime(float coefficent, int exponent)
+    public void SetTime(float coefficent, int exponent)
     {
         time = new Scale(coefficent, exponent);
         return;
@@ -96,7 +96,7 @@ public class Scales
     @param coefficient (float)
     @param exponent (int)
     */
-    public void setLength(float c, int e)
+    public void SetLength(float c, int e)
     {
 
         length = new Scale(c, e);
@@ -110,7 +110,7 @@ public class Scales
 
     The use of this function is to pass in the value you wish to scale and the order of each of the 
     dimensions. For example if the input value (v) is of units Kg.m^-3.s^2 the approprate input would be 
-    scaleFactor(v, 1, -3, 2, 0).
+    ScaleFactor(v, 1, -3, 2, 0).
 
     Currently this function only supports length, mass, time and charge. 
 
@@ -121,14 +121,14 @@ public class Scales
     @param q - the order of the charge dimension (int)
     @returns the scaled value (flaot)
     */
-    public float scaleFactor(float v, int kg, int m, int s, int q)
+    public float ScaleFactor(float v, int kg, int m, int s, int q)
     {
-        Scale MASS = pow(mass, -kg);
-        Scale LENGTH = pow(length, -m);
-        Scale TIME = pow(time, -s);
-        Scale CHARGE = pow(charge, -q);
+        Scale MASS = Pow(mass, -kg);
+        Scale LENGTH = Pow(length, -m);
+        Scale TIME = Pow(time, -s);
+        Scale CHARGE = Pow(charge, -q);
         // Debug.Log(time);
-        return v * multiply(multiply(MASS, LENGTH), multiply(TIME, CHARGE)).VAL;
+        return v * Multiply(Multiply(MASS, LENGTH), Multiply(TIME, CHARGE)).VAL;
     }
 
     /**
@@ -137,7 +137,7 @@ public class Scales
     @param b (Scale)
     @returns new scale (Scale)
     */
-    public static Scale multiply(Scale a, Scale b)
+    public static Scale Multiply(Scale a, Scale b)
     {
         float coeff = a.COEFF * b.COEFF;
         int EXP = a.EXP + b.EXP;
@@ -149,7 +149,7 @@ public class Scales
     @param scale (Scale)
     @param pow (int)
     */
-    public static Scale pow(Scale scale, int pow)
+    public static Scale Pow(Scale scale, int pow)
     {
         return new Scale(Mathf.Pow(scale.COEFF, pow), scale.EXP * pow);
     }

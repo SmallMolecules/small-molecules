@@ -41,22 +41,22 @@ public class StaticField
     @param val - float value of the constant in SI units (float)
     @param unit - int array of the multiplicities of the SI unit (int[4])
     */
-    protected void registerConstant(string name, float val, int[] unit)
+    protected void RegisterConstant(string name, float val, int[] unit)
     {
         constants.Add(name, val);
         units.Add(name, unit);
-        updateConstants();
+        UpdateConstants();
     }
     /**
     Called by the simulator to update each unit when a Scale update event occurs
     */
-    public void updateConstants()
+    public void UpdateConstants()
     {
         foreach (string con in units.Keys)
         {
             int[] unit = units[con];
             float val = constants[con];
-            constants[con] = scales.scaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
+            constants[con] = scales.ScaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
         }
 
     }
@@ -67,7 +67,7 @@ public class StaticField
     @param Particle A (Particle)
     @returns zero vector (Vector3)
     */
-    public virtual Vector3 fieldDynamics(Particle A)
+    public virtual Vector3 FieldDynamics(Particle A)
     {
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
@@ -76,10 +76,10 @@ public class StaticField
     Applies a force to the input particles. 
     @param Particle A (Particle)
     */
-    public void applyForce(Particle A, Scales s)
+    public void ApplyForce(Particle A, Scales s)
     {
-        Vector3 F = fieldDynamics(A);
-        A.addForce(F);
+        Vector3 F = FieldDynamics(A);
+        A.AddForce(F);
     }
 
 

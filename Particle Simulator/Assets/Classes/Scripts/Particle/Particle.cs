@@ -47,17 +47,17 @@ public class Particle
 
         scales = S;
         
-        var cubeRenderer = particle.GetComponent<Renderer>();
+        var sphereRenderer = particle.GetComponent<Renderer>();
         
         // assign charge randomly and give colour
         if (setCharge < 0) {
-          cubeRenderer.material.SetColor("_Color", Color.red);
+          sphereRenderer.material.SetColor("_Color", Color.red);
         }
         else if (setCharge > 0){
-          cubeRenderer.material.SetColor("_Color", Color.blue);
+          sphereRenderer.material.SetColor("_Color", Color.blue);
         }
         else {
-            cubeRenderer.material.SetColor("_Color", Color.gray);
+            sphereRenderer.material.SetColor("_Color", Color.gray);
         }
 
         var myCollider = particle.GetComponent<SphereCollider>();
@@ -74,7 +74,7 @@ public class Particle
     Gets the position of the particle
     @returns position (Vector3)
     */
-    public Vector3 getPos() {
+    public Vector3 GetPos() {
         return position;
     }
 
@@ -82,7 +82,7 @@ public class Particle
     Gets the velocity of the particle
     @returns velocity (Vector3)
     */
-    public Vector3 getVel() {
+    public Vector3 GetVel() {
         return velocity;
     }
 
@@ -90,7 +90,7 @@ public class Particle
     Adds a force to the particle 
     @param Unity unit scaled force F (Vector3)
     */
-    public void addForce(Vector3 F) {
+    public void AddForce(Vector3 F) {
                 
         velocity += F/mass; //NOTE: mass is currently 1
     }
@@ -100,7 +100,7 @@ public class Particle
     its velocity.
     @param timestep  (float)
     */
-    public void step(float dt) {
+    public void Step(float dt) {
 
         position += velocity*dt;
 
@@ -111,7 +111,7 @@ public class Particle
     Checks if there was a collision with any wall of the environment box
     and reflects the velocity for the correct axis
     */
-    public void checkBoxCollision() {
+    public void CheckBoxCollision() {
         bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius);
         bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius);
         bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius);
