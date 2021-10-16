@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 5426878358802269824}
   - component: {fileID: 8931841318825062878}
   - component: {fileID: 868012588054234590}
-  - component: {fileID: 3925442522115951501}
   - component: {fileID: 965152650596447136}
   m_Layer: 6
-  m_Name: Particle_Object
+  m_Name: ParticleObject
   m_TagString: particle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,18 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3925442522115951501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195567441159503907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb66f7adece3aeb4c81c07f93431c46f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &965152650596447136
 SphereCollider:
   m_ObjectHideFlags: 0
