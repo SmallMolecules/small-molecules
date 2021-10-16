@@ -32,7 +32,7 @@ public class PauseResume : MonoBehaviour
     private SimulationManager manager;
 
     // stored colours
-    private Color onColor = new Color(0.4f, 1f, 0.8f);
+    private Color onnColor = new Color(0.4f, 1f, 0.8f);
     private Color offColor = new Color(1f, 1f, 1f);
 
     System.DateTime _lastTime; // marks the beginning the measurement began
@@ -121,7 +121,7 @@ public class PauseResume : MonoBehaviour
     public void ToggleSelectedColour() {
         Color orig = systemButton.GetComponent<Image>().color;
         if (orig.Equals(offColor)) {
-            systemButton.GetComponent<Image>().color = onColor;
+            systemButton.GetComponent<Image>().color = onnColor;
         }
         else {
            systemButton.GetComponent<Image>().color = offColor;
