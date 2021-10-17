@@ -70,12 +70,23 @@ public class UISpawner : MonoBehaviour
                 inputs[i].image.color = Color.red;
                 abort = true;
             }
+
         }
 
         if (!abort)
         {
-            Vector3 pos = new Vector3(val[0], val[1], val[2]);
-            simulator.AddNewParticle(pos);
+            if (isParticleInBounds(new Vector3(val[0], val[1], val[2]))) 
+            {
+                Vector3 pos = new Vector3(val[0], val[1], val[2]);
+                simulator.AddNewParticle(pos);
+            }
+            else 
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    inputs[i].image.color = Color.red;
+                }
+            }
         }
     }
 
@@ -163,6 +174,24 @@ public class UISpawner : MonoBehaviour
     {
         float coeff = (float)Convert.ToDouble(boxSize.value);
         simulator.UpdateBoxSize(coeff);
+    }
+
+    /**
+    Checks if the particle to be added is within the bounds of the box
+    @param pos - the position of the particle to be added
+    @radius - the radius of the particle to be added
+    */
+    private bool isParticleInBounds(Vector3 pos, float radius = 1f)
+    {
+        bool inBounds = true;
+        float boxLength = simulator.box.transform.localScale.x * simulator.BOX_LENGTH_SCALE;
+        float wallThickness = boxLength * simulator.BOX_THICKNESS_SCALE;
+
+        if (pos[0] < -boxLength/2+radius || pos[0] > boxLength/2-radius) inBounds = false;
+        if (pos[1] < wallThickness+radius || pos[1] > boxLength-radius) inBounds = false;
+        if (pos[2] < wallThickness+radius || pos[2] > boxLength-radius) inBounds = false;
+
+        return inBounds;
     }
 
 }

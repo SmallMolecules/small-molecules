@@ -27,7 +27,7 @@ public class Simulator  : MonoBehaviour
     public bool destroy = false;
 
     /**The actual box environment object for the current simulation*/
-    private GameObject box;
+    public GameObject box;
 
     /**Reference to the simulation manager
     /see SimulationManager*/
@@ -63,8 +63,8 @@ public class Simulator  : MonoBehaviour
     The values are obtained from the box prefab. Changing the constant will not change 
     the box prefab thickness
     */
-    private float BOX_THICKNESS_SCALE = 0.025f;
-    private float BOX_LENGTH_SCALE = 10;
+    public float BOX_THICKNESS_SCALE = 0.025f;
+    public float BOX_LENGTH_SCALE = 10;
 
     private System.Random rand = new System.Random(9);
     void Start()
@@ -151,8 +151,6 @@ public class Simulator  : MonoBehaviour
     @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
-        Debug.Log("Called");
-
         scales.SetTime(coeff, exp);
         foreach (DynamicField d in dynamicFields)
         {
@@ -236,6 +234,10 @@ public class Simulator  : MonoBehaviour
     {
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
     }
+
+    /**Generates a random coordinate that is inside the bounds of the box
+    @param radius - the size of the particle to be added
+    */
 
     private Vector3 generateRandomCoords(float radius = 1f) 
     {
