@@ -11,6 +11,7 @@ using System.Globalization;
     a canvas object and is responsible for managinging the interactions 
     between the simulator UI sub-menu and its corresponding simulator object.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see UISpawner Simulator
 */
@@ -68,7 +69,7 @@ public class UISpawner : MonoBehaviour
                 abort = true;
             }
         }
-        // if no errors - create new particle
+
         if (!abort)
         {
             Vector3 pos = new Vector3(val[0], val[1], val[2]);
@@ -130,15 +131,6 @@ public class UISpawner : MonoBehaviour
     }
 
     /**
-    TODO - add documenation comment
-    */
-    public void ResetTime()
-    {
-        timescale.value = 0.0001f;
-        simulator.scales.SetTime(timescale.value.ToString());
-    }
-
-    /**
     Callback function used to hide and unhide the simulator UI submenu 
     */
     public void Show()
@@ -154,6 +146,9 @@ public class UISpawner : MonoBehaviour
         simulator.ToggleDestroy(true);
     }
 
+    /**
+    Callback function used to toggle the destroy mode
+    */
     public void ToggleDestroyF()
     {
         simulator.ToggleDestroy(false);

@@ -12,6 +12,7 @@ using System;
     attributes mirror the physical properties such length and position. Each scaled quantity
     is represented as a Struct (Scale).
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date October 2021
     \see Scale Simulator
     */
@@ -43,41 +44,6 @@ public class Scales
         // TODO add checks for charge and mass
         charge = new Scale(1.6f, -19);
         mass = new Scale(1.6f, -27);
-    }
-
-    /**
-    Used to set the timescale given a scientific notation representation
-    of the value. This enables the program to extract the coefficient and the
-    exponent seperately
-    @param S, the input string (string)
-    */
-    public void SetTime(string S)
-    {
-        string[] str = S.Split('e');
-
-        string str_coeff = str[0];
-        string str_exp = str[1];
-
-        int mult = 1;
-        if (str_coeff[0] == '-')
-        {
-            mult *= -1;
-        }
-
-        int counter = -1;
-        foreach (char c in str_coeff)
-        {
-            counter++;
-            if (c != '0' && c != '+' && c != '-')
-            {
-                break;
-            }
-        }
-
-        float coeff = (float)Convert.ToDouble(str_coeff);
-        int exp = Int32.Parse(str_exp.Substring(counter));
-
-        time = new Scale(coeff, exp);
     }
 
     /**
@@ -119,7 +85,7 @@ public class Scales
     @param m - the order of the length dimension (int)
     @param s - the order of the time dimension (int)
     @param q - the order of the charge dimension (int)
-    @returns the scaled value (flaot)
+    @returns the scaled value (float)
     */
     public float ScaleFactor(float v, int kg, int m, int s, int q)
     {
@@ -127,7 +93,7 @@ public class Scales
         Scale LENGTH = Pow(length, -m);
         Scale TIME = Pow(time, -s);
         Scale CHARGE = Pow(charge, -q);
-        // Debug.Log(time);
+
         return v * Multiply(Multiply(MASS, LENGTH), Multiply(TIME, CHARGE)).VAL;
     }
 

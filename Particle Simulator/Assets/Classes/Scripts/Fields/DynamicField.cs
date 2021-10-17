@@ -9,6 +9,7 @@ using UnityEngine;
     a field that calculates forces between two particles. The force is added to both particles
     (due to conservation of forces).
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see StaticField Lennard-Jones Coloumb
     */

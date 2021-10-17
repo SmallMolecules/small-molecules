@@ -78,19 +78,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af01d7b33670cf42e173a25742343acc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#af01d7b33670cf42e173a25742343acc6">updateConstants</a> ()</td></tr>
-<tr class="separator:af01d7b33670cf42e173a25742343acc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb7973c2d2c5e14a99fb5ec0d262d897"><td class="memItemLeft" align="right" valign="top">virtual Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#adb7973c2d2c5e14a99fb5ec0d262d897">fieldDynamics</a> (<a class="el" href="classParticle.html">Particle</a> A)</td></tr>
-<tr class="separator:adb7973c2d2c5e14a99fb5ec0d262d897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28569ca764b06473225e67b7bf010141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#a28569ca764b06473225e67b7bf010141">applyForce</a> (<a class="el" href="classParticle.html">Particle</a> A, <a class="el" href="classScales.html">Scales</a> s)</td></tr>
-<tr class="separator:a28569ca764b06473225e67b7bf010141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0402f05680448a9d718ed27bd79f99a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#a0402f05680448a9d718ed27bd79f99a3">UpdateConstants</a> ()</td></tr>
+<tr class="separator:a0402f05680448a9d718ed27bd79f99a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7a7425da9342c0918fa45460b79f18"><td class="memItemLeft" align="right" valign="top">virtual Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#a6a7a7425da9342c0918fa45460b79f18">FieldDynamics</a> (<a class="el" href="classParticle.html">Particle</a> A)</td></tr>
+<tr class="separator:a6a7a7425da9342c0918fa45460b79f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab163c4e084b96162b2004927de16d68d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#ab163c4e084b96162b2004927de16d68d">ApplyForce</a> (<a class="el" href="classParticle.html">Particle</a> A, <a class="el" href="classScales.html">Scales</a> s)</td></tr>
+<tr class="separator:ab163c4e084b96162b2004927de16d68d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a986979c4adb6e8e8dd8467e8d6e3bcc8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#a986979c4adb6e8e8dd8467e8d6e3bcc8">StaticField</a> (<a class="el" href="classSimulator.html">Simulator</a> sim)</td></tr>
 <tr class="separator:a986979c4adb6e8e8dd8467e8d6e3bcc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a208a82510d8c5d7627d3e1954aa1b3e5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#a208a82510d8c5d7627d3e1954aa1b3e5">registerConstant</a> (string name, float val, int[] unit)</td></tr>
-<tr class="separator:a208a82510d8c5d7627d3e1954aa1b3e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2a6c95eb08d0e2f1c846979bbe77d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classStaticField.html#a3f2a6c95eb08d0e2f1c846979bbe77d8">RegisterConstant</a> (string name, float val, int[] unit)</td></tr>
+<tr class="separator:a3f2a6c95eb08d0e2f1c846979bbe77d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -106,7 +106,9 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A base class for static field implementations. </p>
-<p>This class specifies the requirements for an implemented instance of a static field - a field that calculates a force on one particle. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<p>This class specifies the requirements for an implemented instance of a static field - a field that calculates a force on one particle. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd>
+<dd>
+Dhruv Jobanputra </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>November 2021 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classDynamicField.html" title="A base class for dynamic field implementations.">DynamicField</a> <a class="el" href="classColoumb.html" title="A DynamicField implementation of the Couloumb potential.">Coloumb</a> <a class="el" href="classStaticField.html" title="A base class for static field implementations.">StaticField</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -143,8 +145,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a28569ca764b06473225e67b7bf010141"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28569ca764b06473225e67b7bf010141">&#9670;&nbsp;</a></span>applyForce()</h2>
+<a id="ab163c4e084b96162b2004927de16d68d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab163c4e084b96162b2004927de16d68d">&#9670;&nbsp;</a></span>ApplyForce()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,7 +155,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void StaticField.applyForce </td>
+          <td class="memname">void StaticField.ApplyForce </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classParticle.html">Particle</a>&#160;</td>
           <td class="paramname"><em>A</em>, </td>
@@ -185,8 +187,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="adb7973c2d2c5e14a99fb5ec0d262d897"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb7973c2d2c5e14a99fb5ec0d262d897">&#9670;&nbsp;</a></span>fieldDynamics()</h2>
+<a id="a6a7a7425da9342c0918fa45460b79f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7a7425da9342c0918fa45460b79f18">&#9670;&nbsp;</a></span>FieldDynamics()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -195,7 +197,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Vector3 StaticField.fieldDynamics </td>
+          <td class="memname">virtual Vector3 StaticField.FieldDynamics </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classParticle.html">Particle</a>&#160;</td>
           <td class="paramname"><em>A</em></td><td>)</td>
@@ -216,12 +218,12 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>zero vector (Vector3) </dd></dl>
 
-<p>Reimplemented in <a class="el" href="classWind.html#a9752eb9381cf2f9facfde329c8c2d3c8">Wind</a>.</p>
+<p>Reimplemented in <a class="el" href="classWind.html#a9717577d25b61e81904979c03394ddce">Wind</a>.</p>
 
 </div>
 </div>
-<a id="a208a82510d8c5d7627d3e1954aa1b3e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a208a82510d8c5d7627d3e1954aa1b3e5">&#9670;&nbsp;</a></span>registerConstant()</h2>
+<a id="a3f2a6c95eb08d0e2f1c846979bbe77d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2a6c95eb08d0e2f1c846979bbe77d8">&#9670;&nbsp;</a></span>RegisterConstant()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -230,7 +232,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void StaticField.registerConstant </td>
+          <td class="memname">void StaticField.RegisterConstant </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -270,8 +272,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="af01d7b33670cf42e173a25742343acc6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af01d7b33670cf42e173a25742343acc6">&#9670;&nbsp;</a></span>updateConstants()</h2>
+<a id="a0402f05680448a9d718ed27bd79f99a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0402f05680448a9d718ed27bd79f99a3">&#9670;&nbsp;</a></span>UpdateConstants()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -280,7 +282,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void StaticField.updateConstants </td>
+          <td class="memname">void StaticField.UpdateConstants </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

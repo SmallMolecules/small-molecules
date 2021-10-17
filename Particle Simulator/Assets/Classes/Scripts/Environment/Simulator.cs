@@ -61,36 +61,23 @@ public class Simulator  : MonoBehaviour
     private System.Random rand = new System.Random(9);
     void Start()
     { 
-        // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
         box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
         box.transform.parent = this.transform;
 
-        // System.Random tempRand = new System.Random();
-        // seed = tempRand.Next();
-        // rand = tempRand(seed);
-       
-        //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
             float x = rand.Next(-10, 10);
             float z = rand.Next(-10, 10);
             float y = rand.Next(-10, 10);
 
-            float radius = Random.Range(1, 2);
-            // float radius = 1f;
-            // float mass = Random.Range(0, 10);
-            float mass = 1f;
+            float radius = Random.Range(1, 3);
+            float mass = Random.Range(1, 3);
             int charge = (int)Random.Range(0, 3)-1;
             
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
         }
 
-        // add dynamic feilds
-        dynamicFields.Add(new Coloumb(this));
-        // dynamicFields.Add(new LennardJones());
-
-        // add static fields
-        // staticFields.Add(new Wind());      
+        dynamicFields.Add(new Coloumb(this));    
     }
 
     /**
@@ -103,42 +90,31 @@ public class Simulator  : MonoBehaviour
             if (destroy) HandleDestroyParticle();
             return;
         }
-        // List<Thread> threads = new List<Thread>();
 
-        // for all particles
         for (int a = 0; a < particles.Count; a++) {
-            // Thread updatethread = new Thread(() => updateVelocity(A));
-            // threads.Add(updatethread);
-            // updatethread.Start();
             UpdateVelocity(a);
         }  
-        // foreach (Thread t in threads) {
-        //     t.Join();
-        // }
 
         UpdatePositions();
     }
     /**Updates the velocity of the particle with an index of "a" in the list
     @param a - the index of the particle to update (int)*/
-    private void UpdateVelocity(int a) {
-        // Static Field Contributions
+    private void UpdateVelocity(int a) 
+    {
         foreach (StaticField F in staticFields) {
             F.ApplyForce(particles[a], scales);
         }
 
-        // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
-            // only apply to particles after index as F.applyForce applies
-            // force to both particles to save computation time
             for (int b = a+1; b < particles.Count; b++) {
-                // F.applyForce(particles[a], particles[b], scales);
                 F.ApplyForce(particles[a], particles[b]);
             }
         }
     }
 
     /**Updates the positions of all the particles in the list according to thier velocity*/
-    private void UpdatePositions() {
+    private void UpdatePositions() 
+    {
         foreach (Particle A in particles) {
             A.Step(scales.time.VAL);
             A.CheckBoxCollision();
@@ -160,7 +136,8 @@ public class Simulator  : MonoBehaviour
     /**Adds a particle at a random position with default physical properties
     /see AddNewParticle
     */
-    public void AddNewParticleRandom() {
+    public void AddNewParticleRandom() 
+    {
         float z = rand.Next(-10, 10);
         float x = rand.Next(-10, 10);
         float y = rand.Next(-10, 10);
@@ -169,7 +146,7 @@ public class Simulator  : MonoBehaviour
 
     /**Called by the UI elements to change the time scale
     @param coeff - the coefficient of the time scale (float)
-    @param exp- the exponent of the time scale (int)*/
+    @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
         Debug.Log("Called");
@@ -184,9 +161,10 @@ public class Simulator  : MonoBehaviour
             s.UpdateConstants();
         }
     }
+    
     /**Called by the UI elements to change the length scale
     @param coeff - the coefficient of the length scale (float)
-    @param exp- the exponent of the length scale (int)*/
+    @param exp - the exponent of the length scale (int)*/
     public void UpdateLength(float coeff, int index)
     {
         scales.SetLength(coeff, index);
@@ -202,16 +180,20 @@ public class Simulator  : MonoBehaviour
     
     /**Removes a particle, A, from the simulation
     @param A - the particle to remove (Particle)*/
-    private void RemoveParticle(Particle A) {
+    private void RemoveParticle(Particle A) 
+    {
         Destroy(A.particle);
         particles.Remove(A);
     }
 
     /**Toggles the pause state of the simulation*/
-    public void TogglePause() {
+    public void TogglePause() 
+    {
         paused = !paused;
     }
 
+    /**Checks if a particle if clicked to destroy
+    and calls RemoveParticle()*/ 
     private void HandleDestroyParticle() 
     {
         if (Input.GetMouseButtonDown(0)) {
