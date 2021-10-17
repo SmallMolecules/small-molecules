@@ -45,12 +45,10 @@ public class PauseResume : MonoBehaviour
     */
     void Start()
     {
-        // show/hide menu items
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
         systemButton.GetComponent<Image>().color = offColor;
 
-        // find manager script
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
         
     }
@@ -60,18 +58,15 @@ public class PauseResume : MonoBehaviour
     */
     void Update()
     {
-        // update FPS counter
         _framesRendered++;
 
-        // calculate frames
         if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
         {
-            // one second has elapsed
             _fps = _framesRendered;                     
             _framesRendered = 0;            
             _lastTime = System.DateTime.Now;
         }
-        // display FPS counter
+
         fps.text = String.Format("FPS:\t{0}", _fps);
         
     }
@@ -102,18 +97,14 @@ public class PauseResume : MonoBehaviour
     */
     public void NewSimulator(GameObject sim) 
     {
-        // create simulation UI object
         GameObject UIentry = Instantiate(simulatorUISpawner);
-        // set parent as pause screen
         UIentry.transform.SetParent(pauseScreen.transform, false); 
-        // find script
+
         UISpawner script = UIentry.GetComponent<UISpawner>();
-        // give functionality to "system n" button
+
         systemButton.onClick.AddListener (script.Show);
-        // pass simulation gameobject into UI spawner
+
         script.AttachSimulator(sim);
-        
-        
     }
 
     /**
@@ -128,7 +119,7 @@ public class PauseResume : MonoBehaviour
         }
         else {
            systemButton.GetComponent<Image>().color = offColor;
-        }
-        
+        }    
     }
+
 }

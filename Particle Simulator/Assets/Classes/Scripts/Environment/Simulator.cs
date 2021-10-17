@@ -61,36 +61,23 @@ public class Simulator  : MonoBehaviour
     private System.Random rand = new System.Random(9);
     void Start()
     { 
-        // set reference to parent script
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
         box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
         box.transform.parent = this.transform;
 
-        // System.Random tempRand = new System.Random();
-        // seed = tempRand.Next();
-        // rand = tempRand(seed);
-       
-        //creates random particles
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
             float x = rand.Next(-10, 10);
             float z = rand.Next(-10, 10);
             float y = rand.Next(-10, 10);
 
-            float radius = Random.Range(1, 2);
-            // float radius = 1f;
-            // float mass = Random.Range(0, 10);
-            float mass = 1f;
+            float radius = Random.Range(1, 3);
+            float mass = Random.Range(1, 3);
             int charge = (int)Random.Range(0, 3)-1;
             
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
         }
 
-        // add dynamic feilds
-        dynamicFields.Add(new Coloumb(this));
-        // dynamicFields.Add(new LennardJones());
-
-        // add static fields
-        // staticFields.Add(new Wind());      
+        dynamicFields.Add(new Coloumb(this));    
     }
 
     /**
@@ -103,18 +90,10 @@ public class Simulator  : MonoBehaviour
             if (destroy) HandleDestroyParticle();
             return;
         }
-        // List<Thread> threads = new List<Thread>();
 
-        // for all particles
         for (int a = 0; a < particles.Count; a++) {
-            // Thread updatethread = new Thread(() => updateVelocity(A));
-            // threads.Add(updatethread);
-            // updatethread.Start();
             UpdateVelocity(a);
         }  
-        // foreach (Thread t in threads) {
-        //     t.Join();
-        // }
 
         UpdatePositions();
     }
@@ -122,17 +101,12 @@ public class Simulator  : MonoBehaviour
     @param a - the index of the particle to update (int)*/
     private void UpdateVelocity(int a) 
     {
-        // Static Field Contributions
         foreach (StaticField F in staticFields) {
             F.ApplyForce(particles[a], scales);
         }
 
-        // Dynamic Field Contributions
         foreach (DynamicField F in dynamicFields) {
-            // only apply to particles after index as F.applyForce applies
-            // force to both particles to save computation time
             for (int b = a+1; b < particles.Count; b++) {
-                // F.applyForce(particles[a], particles[b], scales);
                 F.ApplyForce(particles[a], particles[b]);
             }
         }
@@ -187,6 +161,7 @@ public class Simulator  : MonoBehaviour
             s.UpdateConstants();
         }
     }
+    
     /**Called by the UI elements to change the length scale
     @param coeff - the coefficient of the length scale (float)
     @param exp - the exponent of the length scale (int)*/

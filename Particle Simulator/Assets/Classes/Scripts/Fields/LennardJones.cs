@@ -49,8 +49,6 @@ public class LennardJones : DynamicField
         float con = 4 * EPSILON * (Mathf.Pow(SIGMA / r, 12) - Mathf.Pow(SIGMA / r, 6));
 
         return con * Vector3.Normalize(A.GetPos() - B.GetPos());
-
-
     }
 
 

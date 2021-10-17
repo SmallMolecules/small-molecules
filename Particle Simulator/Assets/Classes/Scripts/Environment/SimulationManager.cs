@@ -65,11 +65,9 @@ public class SimulationManager : MonoBehaviour
 
         newestSim++;
 
-        // set parent
         sim.transform.parent = this.transform;
         simulations.Add(sim);
         
-        // add new simulator to UI menu
         UI.GetComponent<PauseResume>().NewSimulator(sim);
     }
 

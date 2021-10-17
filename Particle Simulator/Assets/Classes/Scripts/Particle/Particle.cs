@@ -50,7 +50,6 @@ public class Particle
         
         var sphereRenderer = particle.GetComponent<Renderer>();
         
-        // assign charge randomly and give colour
         if (setCharge < 0) {
           sphereRenderer.material.SetColor("_Color", Color.red);
         }
@@ -96,7 +95,7 @@ public class Particle
     public void AddForce(Vector3 F) 
     {
                 
-        velocity += F/mass; //NOTE: mass is currently 1
+        velocity += F/mass;
     }
 
     /**
@@ -139,6 +138,5 @@ public class Particle
             velocity.z = -vz;
         }
     }
-
-
+    
 }

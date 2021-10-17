@@ -69,7 +69,7 @@ public class UISpawner : MonoBehaviour
                 abort = true;
             }
         }
-        // if no errors - create new particle
+
         if (!abort)
         {
             Vector3 pos = new Vector3(val[0], val[1], val[2]);
