@@ -14,16 +14,15 @@ using System;
     */
 public class LennardJones : DynamicField
 {
+    float sigma;
+    float epsilon;
     /**Contructor method - calls base constructor. This is where
     the constant SI units should be registered.
     @param sim - the parent Simulator (Simulator)*/
     public LennardJones(Simulator sim) : base(sim)
     {
-        int[] unitsSigma = { 0, 1, 0, 0 };
-        RegisterConstant("sigma", 1E-9f, unitsSigma);
-        int[] unitsEpsilon = { 1, 1, -2, 0 };
-        RegisterConstant("epsilson", 1E-9f, unitsEpsilon);
-
+        sigma = sim.scales.constantFromSI(1E-9f, 0, 1, 0, 0);
+        epsilon = sim.scales.constantFromSI(1E-9f, 1, 1, -2, 0);
     }
 
     /**
@@ -34,11 +33,7 @@ public class LennardJones : DynamicField
     */
     public override Vector3 FieldDynamics(Particle A, Particle B)
     {
-
         float r = Vector3.Distance(A.GetPos(), B.GetPos());
-
-        float SIGMA = constants["sigma"];
-        float EPSILON = constants["epsilon"];
 
         //TODO - autimatically calculate collision distance
         if (r < 1.7f)
@@ -46,10 +41,8 @@ public class LennardJones : DynamicField
             r = 1.7f;
         }
 
-        float con = 4 * EPSILON * (Mathf.Pow(SIGMA / r, 12) - Mathf.Pow(SIGMA / r, 6));
+        float con = 4 * epsilon * (Mathf.Pow(sigma / r, 12) - Mathf.Pow(sigma / r, 6));
 
         return con * Vector3.Normalize(A.GetPos() - B.GetPos());
     }
-
-
 }

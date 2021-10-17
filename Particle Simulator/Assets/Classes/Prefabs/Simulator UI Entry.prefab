@@ -640,6 +640,9 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
+  m_OnSubmit:
+    m_PersistentCalls:
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1588,6 +1591,9 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_CharacterLimit: 0
   m_OnEndEdit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
   m_OnValueChanged:
@@ -3000,7 +3006,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2416633098821423409}
         m_TargetAssemblyTypeName: UISpawner, Assembly-CSharp
-        m_MethodName: updateScales
+        m_MethodName: UpdateScales
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3010,6 +3016,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  m_OnSubmit:
+    m_PersistentCalls:
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3539,6 +3548,9 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_CharacterLimit: 0
   m_OnEndEdit:
+    m_PersistentCalls:
+      m_Calls: []
+  m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
   m_OnValueChanged:
