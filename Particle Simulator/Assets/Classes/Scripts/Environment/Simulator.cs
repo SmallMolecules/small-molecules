@@ -27,7 +27,7 @@ public class Simulator  : MonoBehaviour
     public bool destroy = false;
 
     /**The actual box environment object for the current simulation*/
-    private GameObject box;
+    public GameObject box;
 
     /**Reference to the simulation manager
     /see SimulationManager*/
@@ -58,23 +58,32 @@ public class Simulator  : MonoBehaviour
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
 
+    /**Ratio of wall thickness to length of the inside of the sides is 1:40
+    Ratio of unity scale to unity length is 1:10
+    The values are obtained from the box prefab. Changing the constant will not change 
+    the box prefab thickness
+    */
+    public float BOX_THICKNESS_SCALE = 0.025f;
+    public float BOX_LENGTH_SCALE = 10;
+    public float boxLength;
+    public float wallThickness;
+
     private System.Random rand = new System.Random(9);
     void Start()
     { 
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
         box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
         box.transform.parent = this.transform;
+        UpdateBoxSize(box.transform.localScale.x);
+
 
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
-            float x = rand.Next(-10, 10);
-            float z = rand.Next(5, 15);
-            float y = rand.Next(5, 15);
 
             float radius = Random.Range(1, 2);
             float mass = Random.Range(1, 2);
             int charge = (int)Random.Range(0, 3)-1;
-            
-            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
+                
+            AddNewParticle(generateRandomCoords(radius), mass, radius, charge);
         }
 
         dynamicFields.Add(new Coloumb(this));    
@@ -116,8 +125,9 @@ public class Simulator  : MonoBehaviour
     private void UpdatePositions() 
     {
         foreach (Particle A in particles) {
-            A.Step(scales.time.VAL);
+            checkOutOfBounds(A);
             A.CheckBoxCollision();
+            A.Step(scales.time.VAL);
         }
     }
     
@@ -138,10 +148,7 @@ public class Simulator  : MonoBehaviour
     */
     public void AddNewParticleRandom() 
     {
-        float z = rand.Next(-10, 10);
-        float x = rand.Next(-10, 10);
-        float y = rand.Next(-10, 10);
-        AddNewParticle(new Vector3(x,y,z));
+        AddNewParticle(generateRandomCoords());
     }
 
     /**Called by the UI elements to change the time scale
@@ -149,8 +156,6 @@ public class Simulator  : MonoBehaviour
     @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
-        Debug.Log("Called");
-
         scales.SetTime(coeff, exp);
         foreach (DynamicField d in dynamicFields)
         {
@@ -233,6 +238,78 @@ public class Simulator  : MonoBehaviour
     public void UpdateBoxSize(float coeff) 
     {
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
+        boxLength = box.transform.localScale.x * BOX_LENGTH_SCALE;
+        wallThickness = boxLength * BOX_THICKNESS_SCALE;
+
+    }
+
+    /**Generates a random coordinate that is inside the bounds of the box
+    @param radius - the size of the particle to be added
+    */
+    private Vector3 generateRandomCoords(float radius = 1f) 
+    {
+        float halfLength = boxLength/2-radius;
+        float fullLength = boxLength-radius;
+        float minimum = wallThickness+radius;
+        
+        float x = rand.Next((int) Mathf.Ceil(-halfLength), (int) Mathf.Floor(halfLength));
+        float y = rand.Next((int) Mathf.Ceil(minimum), (int) Mathf.Floor(fullLength));
+        float z = rand.Next((int) Mathf.Ceil(minimum), (int) Mathf.Floor(fullLength));
+        
+        return new Vector3(x, y, z);
+    }
+
+    /**Checks if the particle is outside the bounds 
+    of the boxand puts it back in
+    @param p - the particle being checked
+    */
+    public void checkOutOfBounds(Particle p) {
+        Vector3 pos = p.particle.transform.position;
+        float radius = p.radius;
+
+        float halfLength = boxLength/2 - radius;
+        float fullLength = boxLength + wallThickness - radius;
+        float minimum = wallThickness + radius;
+
+        float x = pos.x;
+
+        if (pos.x < -halfLength) {
+            x = -halfLength;
+        }
+        if (pos.x > halfLength) {   
+            x = halfLength; 
+        };
+
+        float y = pos.y;
+        if (pos.y < minimum) {
+            y = minimum; 
+        }
+
+        if (pos.y > fullLength) {
+            y = fullLength;
+        }
+
+        float z = pos.z;
+        if (pos.z < minimum) {
+            z = minimum; 
+        }
+
+        if (pos.z > fullLength) {
+            z = fullLength;
+        }
+
+        // For some reason this block of code doesn't work even though it should be the same thing as above
+        // x = Mathf.Max(pos.x, -halfLength);
+        // x = Mathf.Min(pos.x, halfLength);
+
+        // y = Mathf.Max(pos.y, minimum);
+        // y = Mathf.Min(pos.y, fullLength);
+
+        // z = Mathf.Max(pos.z, minimum);
+        // z = Mathf.Min(pos.z, fullLength);
+
+        p.particle.transform.position = new Vector3(x, y, z);
+
     }
 
 
