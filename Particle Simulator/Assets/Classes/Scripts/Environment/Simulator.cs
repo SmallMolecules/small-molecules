@@ -241,12 +241,12 @@ public class Simulator  : MonoBehaviour
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
         boxLength = box.transform.localScale.x * BOX_LENGTH_SCALE;
         wallThickness = boxLength * BOX_THICKNESS_SCALE;
+
     }
 
     /**Generates a random coordinate that is inside the bounds of the box
     @param radius - the size of the particle to be added
     */
-
     private Vector3 generateRandomCoords(float radius = 1f) 
     {
         float halfLength = boxLength/2-radius;
@@ -260,52 +260,56 @@ public class Simulator  : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
+    /**Checks if the particle is outside the bounds 
+    of the boxand puts it back in
+    @param p - the particle being checked
+    */
     public void checkOutOfBounds(Particle p) {
         Vector3 pos = p.particle.transform.position;
-        float radius = p.radius*2; // radius*2 is the actual radius on screen due to scaling
+        float radius = p.radius;
 
-        float halfLength = boxLength/2 - radius*2;
-        float fullLength = boxLength + wallThickness - radius*2;
-        float minimum = wallThickness + radius*2;
+        float halfLength = boxLength/2 - radius;
+        float fullLength = boxLength + wallThickness - radius;
+        float minimum = wallThickness + radius;
 
         float x = pos.x;
-        float vx = p.velocity.x;
-        float vy = p.velocity.y;
-        float vz = p.velocity.z;
 
         if (pos.x < -halfLength) {
             x = -halfLength;
-            vx = -vx;
         }
         if (pos.x > halfLength) {   
             x = halfLength; 
-            vx = -vx;
         };
 
         float y = pos.y;
         if (pos.y < minimum) {
             y = minimum; 
-            vy = -vy;
         }
 
         if (pos.y > fullLength) {
             y = fullLength;
-            vy = -vy;
         }
 
         float z = pos.z;
         if (pos.z < minimum) {
             z = minimum; 
-            vz = -vz;
         }
 
         if (pos.z > fullLength) {
             z = fullLength;
-            vz = -vz;
         }
 
+        // For some reason this block of code doesn't work even though it should be the same thing as above
+        // x = Mathf.Max(pos.x, -halfLength);
+        // x = Mathf.Min(pos.x, halfLength);
+
+        // y = Mathf.Max(pos.y, minimum);
+        // y = Mathf.Min(pos.y, fullLength);
+
+        // z = Mathf.Max(pos.z, minimum);
+        // z = Mathf.Min(pos.z, fullLength);
+
         p.particle.transform.position = new Vector3(x, y, z);
-        p.velocity = new Vector3(vx, vy, vz);
 
     }
 
