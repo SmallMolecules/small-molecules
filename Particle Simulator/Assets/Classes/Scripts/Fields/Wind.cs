@@ -19,7 +19,7 @@ public class Wind : StaticField
     @param sim - the parent Simulator (Simulator)*/
     public Wind(Simulator sim) : base(sim)
     {
-        wind = sim.scales.constantFromSI(1.0E+10f, 1, 1, -2, 0);
+        wind = sim.scales.ConstantFromSI(1.0E+10f, 1, 1, -2, 0);
     }
 
     /**

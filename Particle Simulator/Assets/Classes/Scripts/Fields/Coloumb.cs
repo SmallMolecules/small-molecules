@@ -19,7 +19,7 @@ public class Coloumb : DynamicField
     @param sim - the parent Simulator (Simulator)*/
     public Coloumb(Simulator sim) : base(sim)
     {
-        constant = sim.scales.constantFromSI(8.988E+9f, 1, 3, -2, -2);
+        constant = sim.scales.ConstantFromSI(8.988E+9f, 1, 3, -2, -2);
     }
 
     /**
