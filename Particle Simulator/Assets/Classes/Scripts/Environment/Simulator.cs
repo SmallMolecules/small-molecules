@@ -67,11 +67,11 @@ public class Simulator  : MonoBehaviour
 
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
             float x = rand.Next(-10, 10);
-            float z = rand.Next(-10, 10);
-            float y = rand.Next(-10, 10);
+            float z = rand.Next(5, 15);
+            float y = rand.Next(5, 15);
 
-            float radius = Random.Range(1, 3);
-            float mass = Random.Range(1, 3);
+            float radius = Random.Range(1, 2);
+            float mass = Random.Range(1, 2);
             int charge = (int)Random.Range(0, 3)-1;
             
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);

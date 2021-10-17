@@ -21,6 +21,8 @@ public class UISpawner : MonoBehaviour
     public InputField[] inputs;
     /**Reference to the timescale slider*/
     public Slider timescale;
+    /**Reference to the boxSize slider*/
+    public Slider boxSize;
     /**Reference to the text representation of the unit scales*/
     public Text scales;
     /**Reference to the text representation of the coefficient of the time scale
@@ -152,6 +154,15 @@ public class UISpawner : MonoBehaviour
     public void ToggleDestroyF()
     {
         simulator.ToggleDestroy(false);
+    }
+
+    /**
+    Callback function used to resize the box
+    */
+    public void UpdateBoxSize()
+    {
+        float coeff = (float)Convert.ToDouble(boxSize.value);
+        simulator.UpdateBoxSize(coeff);
     }
 
 }
