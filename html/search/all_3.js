@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['default_5flength_5fcoeff_20',['DEFAULT_LENGTH_COEFF',['../classScales.html#a4dbd833e5c9b11219c2dd4f4f67a4fc1',1,'Scales']]],
-  ['default_5flength_5fexp_21',['DEFAULT_LENGTH_EXP',['../classScales.html#a1e617d4a6586cedf96a9ae0d9c411e7d',1,'Scales']]],
-  ['default_5ftime_5fcoeff_22',['DEFAULT_TIME_COEFF',['../classScales.html#aa3b681aba27edaed5f837e33d5853107',1,'Scales']]],
-  ['default_5ftime_5fexp_23',['DEFAULT_TIME_EXP',['../classScales.html#a4bfeaaa6b91379bb2a93a3d2fc778b53',1,'Scales']]],
-  ['dev_5fguide_2emd_24',['DEV_GUIDE.md',['../DEV__GUIDE_8md.html',1,'']]],
-  ['dynamicfield_25',['DynamicField',['../classDynamicField.html',1,'DynamicField'],['../classDynamicField.html#aafcee4182a1285bdc7517d2d29a078c7',1,'DynamicField.DynamicField()']]],
-  ['dynamicfield_2ecs_26',['DynamicField.cs',['../DynamicField_8cs.html',1,'']]],
-  ['dynamicfields_27',['dynamicFields',['../classSimulator.html#a9405d09a1b12e9f4678e9d43e18e49cd',1,'Simulator']]]
+  ['charge_11',['charge',['../classScales.html#a12b84fc5bd3c1fb8aa5d48b2c820cef3',1,'Scales.charge()'],['../classParticle.html#a364300cb5fc20088bd93eb738c6394db',1,'Particle.charge()']]],
+  ['checkboxcollision_12',['CheckBoxCollision',['../classParticle.html#a64e2720c0e3b0fcac44812e8c74906b8',1,'Particle']]],
+  ['ci_13',['ci',['../classUISpawner.html#a2739c743a0b301f59057b200f379ac29',1,'UISpawner']]],
+  ['clearcolour_14',['ClearColour',['../classUISpawner.html#a594086b5bd1430dcfa705fc751d4da3a',1,'UISpawner']]],
+  ['coeff_15',['COEFF',['../structScale.html#ab27796cf6f4551192c87f4a1482c4501',1,'Scale']]],
+  ['coefficient_16',['coefficient',['../classUISpawner.html#a6ae71f1905e652776856d77be6a01cb0',1,'UISpawner']]],
+  ['coloumb_17',['Coloumb',['../classColoumb.html',1,'Coloumb'],['../classColoumb.html#ad9950562cca034710b30be05cfcad9ee',1,'Coloumb.Coloumb()']]],
+  ['coloumb_2ecs_18',['Coloumb.cs',['../Coloumb_8cs.html',1,'']]],
+  ['constants_19',['constants',['../classDynamicField.html#a01438eef03ea7169c36e7ee74193617c',1,'DynamicField.constants()'],['../classStaticField.html#a983c442f8c0e24901190b4b001140d41',1,'StaticField.constants()']]],
+  ['createsimulator_20',['CreateSimulator',['../classSimulationManager.html#ac2e56718c6137c7c39ce005c5f667f55',1,'SimulationManager']]]
 ];

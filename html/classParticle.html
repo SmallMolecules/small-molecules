@@ -79,16 +79,16 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aadf1b522b4dc16ad1285a2870b8c3f5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#aadf1b522b4dc16ad1285a2870b8c3f5a">Particle</a> (GameObject p, <a class="el" href="classScales.html">Scales</a> S, float setMass, float setRadius, int setCharge)</td></tr>
 <tr class="separator:aadf1b522b4dc16ad1285a2870b8c3f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bdf844f2124b312cd9836b3272aebbe"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a9bdf844f2124b312cd9836b3272aebbe">getPos</a> ()</td></tr>
-<tr class="separator:a9bdf844f2124b312cd9836b3272aebbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1e5548e78b84056f7e4b2b33e8ee586"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#aa1e5548e78b84056f7e4b2b33e8ee586">getVel</a> ()</td></tr>
-<tr class="separator:aa1e5548e78b84056f7e4b2b33e8ee586"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f717a736cd28af3d29c431f5785a8de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a6f717a736cd28af3d29c431f5785a8de">addForce</a> (Vector3 F)</td></tr>
-<tr class="separator:a6f717a736cd28af3d29c431f5785a8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f9d8aca10e4641db0b85d959760b656"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a0f9d8aca10e4641db0b85d959760b656">step</a> (float dt)</td></tr>
-<tr class="separator:a0f9d8aca10e4641db0b85d959760b656"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf6305fd29f1ce39530e69247d72f79b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#abf6305fd29f1ce39530e69247d72f79b">checkBoxCollision</a> ()</td></tr>
-<tr class="separator:abf6305fd29f1ce39530e69247d72f79b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cc7970bc12201f135ce5365c661f4a5"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a2cc7970bc12201f135ce5365c661f4a5">GetPos</a> ()</td></tr>
+<tr class="separator:a2cc7970bc12201f135ce5365c661f4a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c2a8f76d4eadba7e8a60d1a5105409b"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a3c2a8f76d4eadba7e8a60d1a5105409b">GetVel</a> ()</td></tr>
+<tr class="separator:a3c2a8f76d4eadba7e8a60d1a5105409b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2627b256902e7d688c9ab238a14a80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a1c2627b256902e7d688c9ab238a14a80">AddForce</a> (Vector3 F)</td></tr>
+<tr class="separator:a1c2627b256902e7d688c9ab238a14a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b1732f8ef61e6fcd4a3e7e50aa83db3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a5b1732f8ef61e6fcd4a3e7e50aa83db3">Step</a> (float dt)</td></tr>
+<tr class="separator:a5b1732f8ef61e6fcd4a3e7e50aa83db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64e2720c0e3b0fcac44812e8c74906b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classParticle.html#a64e2720c0e3b0fcac44812e8c74906b8">CheckBoxCollision</a> ()</td></tr>
+<tr class="separator:a64e2720c0e3b0fcac44812e8c74906b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -112,7 +112,9 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for managing the properites of particle objects. </p>
-<p>This class manages particle properties such as position, velocity, radius, mass, charge and GameObject is is binds to. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<p>This class manages particle properties such as position, velocity, radius, mass, charge and GameObject is is binds to. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd>
+<dd>
+Dhruv Jobanputra </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>September 2021 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -181,8 +183,8 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6f717a736cd28af3d29c431f5785a8de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f717a736cd28af3d29c431f5785a8de">&#9670;&nbsp;</a></span>addForce()</h2>
+<a id="a1c2627b256902e7d688c9ab238a14a80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c2627b256902e7d688c9ab238a14a80">&#9670;&nbsp;</a></span>AddForce()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -191,7 +193,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Particle.addForce </td>
+          <td class="memname">void Particle.AddForce </td>
           <td>(</td>
           <td class="paramtype">Vector3&#160;</td>
           <td class="paramname"><em>F</em></td><td>)</td>
@@ -204,12 +206,17 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Adds a force to the particle @rparam Unity unit scaled force F (Vector3) </p>
+<p>Adds a force to the particle </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Unity</td><td>unit scaled force F (Vector3) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="abf6305fd29f1ce39530e69247d72f79b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf6305fd29f1ce39530e69247d72f79b">&#9670;&nbsp;</a></span>checkBoxCollision()</h2>
+<a id="a64e2720c0e3b0fcac44812e8c74906b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64e2720c0e3b0fcac44812e8c74906b8">&#9670;&nbsp;</a></span>CheckBoxCollision()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,7 +225,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Particle.checkBoxCollision </td>
+          <td class="memname">void Particle.CheckBoxCollision </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -230,11 +237,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Checks if there was a collision with any wall of the environment box and reflects the velocity for the correct axis </p>
 
 </div>
 </div>
-<a id="a9bdf844f2124b312cd9836b3272aebbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bdf844f2124b312cd9836b3272aebbe">&#9670;&nbsp;</a></span>getPos()</h2>
+<a id="a2cc7970bc12201f135ce5365c661f4a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cc7970bc12201f135ce5365c661f4a5">&#9670;&nbsp;</a></span>GetPos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +251,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Vector3 Particle.getPos </td>
+          <td class="memname">Vector3 Particle.GetPos </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -259,8 +267,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa1e5548e78b84056f7e4b2b33e8ee586"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1e5548e78b84056f7e4b2b33e8ee586">&#9670;&nbsp;</a></span>getVel()</h2>
+<a id="a3c2a8f76d4eadba7e8a60d1a5105409b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c2a8f76d4eadba7e8a60d1a5105409b">&#9670;&nbsp;</a></span>GetVel()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +277,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Vector3 Particle.getVel </td>
+          <td class="memname">Vector3 Particle.GetVel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -285,8 +293,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0f9d8aca10e4641db0b85d959760b656"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f9d8aca10e4641db0b85d959760b656">&#9670;&nbsp;</a></span>step()</h2>
+<a id="a5b1732f8ef61e6fcd4a3e7e50aa83db3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b1732f8ef61e6fcd4a3e7e50aa83db3">&#9670;&nbsp;</a></span>Step()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +303,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Particle.step </td>
+          <td class="memname">void Particle.Step </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>dt</em></td><td>)</td>

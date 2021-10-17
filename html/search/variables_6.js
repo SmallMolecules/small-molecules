@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['length_199',['length',['../classScales.html#a0b685bdc8da4c756d2748d79511ab90b',1,'Scales']]]
+  ['inputs_209',['inputs',['../classUISpawner.html#a37c2b7345e8f947873489ad94ca919b8',1,'UISpawner']]]
 ];

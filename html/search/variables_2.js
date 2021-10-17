@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['default_5flength_5fcoeff_190',['DEFAULT_LENGTH_COEFF',['../classScales.html#a4dbd833e5c9b11219c2dd4f4f67a4fc1',1,'Scales']]],
-  ['default_5flength_5fexp_191',['DEFAULT_LENGTH_EXP',['../classScales.html#a1e617d4a6586cedf96a9ae0d9c411e7d',1,'Scales']]],
-  ['default_5ftime_5fcoeff_192',['DEFAULT_TIME_COEFF',['../classScales.html#aa3b681aba27edaed5f837e33d5853107',1,'Scales']]],
-  ['default_5ftime_5fexp_193',['DEFAULT_TIME_EXP',['../classScales.html#a4bfeaaa6b91379bb2a93a3d2fc778b53',1,'Scales']]],
-  ['dynamicfields_194',['dynamicFields',['../classSimulator.html#a9405d09a1b12e9f4678e9d43e18e49cd',1,'Simulator']]]
+  ['charge_195',['charge',['../classScales.html#a12b84fc5bd3c1fb8aa5d48b2c820cef3',1,'Scales.charge()'],['../classParticle.html#a364300cb5fc20088bd93eb738c6394db',1,'Particle.charge()']]],
+  ['ci_196',['ci',['../classUISpawner.html#a2739c743a0b301f59057b200f379ac29',1,'UISpawner']]],
+  ['coeff_197',['COEFF',['../structScale.html#ab27796cf6f4551192c87f4a1482c4501',1,'Scale']]],
+  ['coefficient_198',['coefficient',['../classUISpawner.html#a6ae71f1905e652776856d77be6a01cb0',1,'UISpawner']]],
+  ['constants_199',['constants',['../classDynamicField.html#a01438eef03ea7169c36e7ee74193617c',1,'DynamicField.constants()'],['../classStaticField.html#a983c442f8c0e24901190b4b001140d41',1,'StaticField.constants()']]]
 ];

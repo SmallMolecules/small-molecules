@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['update_174',['Update',['../classParticleBehaviour.html#a984d4818dda7c86c57e24fc7c05f9766',1,'ParticleBehaviour.Update()'],['../classSimulationManager.html#a6c75de507b04005d131ac37f0a1685a5',1,'SimulationManager.Update()'],['../classSimulator.html#a4ffa85a280756095b4b755ccef7b0fb2',1,'Simulator.Update()'],['../classPauseResume.html#a103bd342b9923c3b02c193d7f7e99fbf',1,'PauseResume.Update()'],['../classUISpawner.html#ae9628d7e1f9bf018082e9782d69d0b62',1,'UISpawner.Update()']]],
-  ['updateconstants_175',['updateConstants',['../classDynamicField.html#a48476433f1950b4dd75f02f5938cfad3',1,'DynamicField.updateConstants()'],['../classStaticField.html#af01d7b33670cf42e173a25742343acc6',1,'StaticField.updateConstants()']]],
-  ['updatelength_176',['updateLength',['../classSimulator.html#a3eb7cd2e4db2d5d5c332b6296332c758',1,'Simulator']]],
-  ['updatepositions_177',['updatePositions',['../classSimulator.html#a7b7a9378ad032521d2010f91b70c1ab3',1,'Simulator']]],
-  ['updatescales_178',['updateScales',['../classUISpawner.html#ae2687eab6184b9df0b7982e1a84d4f74',1,'UISpawner']]],
-  ['updatetime_179',['updateTime',['../classSimulator.html#ac7902fe017cb44761967255b99a6bbf3',1,'Simulator']]],
-  ['updatevelocity_180',['updateVelocity',['../classSimulator.html#a4b034b73d15d4cfdac2ba83c3f64ea69',1,'Simulator']]]
+  ['toggledestroy_175',['ToggleDestroy',['../classSimulator.html#a8a7168665f848b59def75e0284725357',1,'Simulator']]],
+  ['toggledestroyf_176',['ToggleDestroyF',['../classUISpawner.html#ad844b7bdb283726301ab37d4cbbf8810',1,'UISpawner']]],
+  ['toggledestroyt_177',['ToggleDestroyT',['../classUISpawner.html#afb78c758d31f073ef7378c07570cc605',1,'UISpawner']]],
+  ['togglepause_178',['TogglePause',['../classSimulationManager.html#a1514de1c73616c18c42bc7265c2f8e2c',1,'SimulationManager.TogglePause()'],['../classSimulator.html#a4219a6d5fcc1ec94a18a3d40917be6f5',1,'Simulator.TogglePause()']]],
+  ['toggleselectedcolour_179',['ToggleSelectedColour',['../classPauseResume.html#a5665693ec5e60bfe3c7d7634a35abe3b',1,'PauseResume']]],
+  ['tostring_180',['ToString',['../structScale.html#a04689049e0d62ca4c29872d57d72e288',1,'Scale']]]
 ];

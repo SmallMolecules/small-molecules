@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['getpos_148',['getPos',['../classParticle.html#a9bdf844f2124b312cd9836b3272aebbe',1,'Particle']]],
-  ['getvel_149',['getVel',['../classParticle.html#aa1e5548e78b84056f7e4b2b33e8ee586',1,'Particle']]]
+  ['getpos_151',['GetPos',['../classParticle.html#a2cc7970bc12201f135ce5365c661f4a5',1,'Particle']]],
+  ['getvel_152',['GetVel',['../classParticle.html#a3c2a8f76d4eadba7e8a60d1a5105409b',1,'Particle']]]
 ];

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['getpos_32',['getPos',['../classParticle.html#a9bdf844f2124b312cd9836b3272aebbe',1,'Particle']]],
-  ['getvel_33',['getVel',['../classParticle.html#aa1e5548e78b84056f7e4b2b33e8ee586',1,'Particle']]],
-  ['guide_20for_20developers_34',['Guide for Developers',['../index.html',1,'']]]
+  ['fielddynamics_32',['FieldDynamics',['../classColoumb.html#aac980803bd77e06cd0c6b1e4c0e66fe2',1,'Coloumb.FieldDynamics()'],['../classDynamicField.html#aaf04ad56f23ab63fb8ab3b7c8f07c84c',1,'DynamicField.FieldDynamics()'],['../classLennardJones.html#a121442f281ff0600af25f4552439f9c0',1,'LennardJones.FieldDynamics()'],['../classStaticField.html#a6a7a7425da9342c0918fa45460b79f18',1,'StaticField.FieldDynamics()'],['../classWind.html#a9717577d25b61e81904979c03394ddce',1,'Wind.FieldDynamics()']]],
+  ['fps_33',['fps',['../classPauseResume.html#aeec4395fe529176daac526bba573631d',1,'PauseResume']]]
 ];

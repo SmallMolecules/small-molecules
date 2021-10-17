@@ -75,7 +75,7 @@ $(function() {
 <p>The overall structure of this framework is to manage multiple simulators, which each hold their own set of particles, fields and scales. All simulators are managed by a Simulation Manager which controlls global properties such as the pause state, the max number of particles and the creation and deletion of the simulators. The fields classes (<a class="el" href="classStaticField.html" title="A base class for static field implementations.">StaticField</a> and <a class="el" href="classDynamicField.html" title="A base class for dynamic field implementations.">DynamicField</a>) are superclasses that can be extended to produce custom fields.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Simulator</h1>
-<p>The [simulator]() class is a MonoBehaviour class that is attached to an empty GameObject. It contains an two array of fields, one for the static fields and one for the dynamic fields. If you wish to add your own custom field, navigate to <code>start()</code> function of the <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> class and add</p>
+<p>The <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> class is a MonoBehaviour class that is attached to an empty GameObject. It contains an two array of fields, one for the static fields and one for the dynamic fields. If you wish to add your own custom field, navigate to <code>start()</code> function of the <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> class and add</p>
 <div class="fragment"><div class="line">DynmaicFields.add(<span class="keyword">new</span> YourDynamicField(scales)); <span class="comment">//For Dynamic Fields</span></div>
 <div class="line"><span class="comment">// or</span></div>
 <div class="line">StaticFields.add(<span class="keyword">new</span> YourStaticField(scales)); <span class="comment">//For Static Fields</span></div>
@@ -83,13 +83,13 @@ Simulator</h1>
 <p>The scales object of the <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> is referenced by the particles and the fields in their calculations.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Simulator Manager</h1>
-<p>The [simulator manager]() class is a MonoBehaviour class that is attached to an empty GameObject. it is responsible for managing global properties outside of each simulator.</p>
+<p>The <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> Manager class is a MonoBehaviour class that is attached to an empty GameObject. it is responsible for managing global properties outside of each simulator.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Particle</h1>
-<p>The <a class="el" href="classParticle.html" title="Class for managing the properites of particle objects.">Particle</a> class manages the properties of a particle. Each particle class contains a particle GameObject, but is not itself attached to it (see <a class="el" href="classParticleBehaviour.html">ParticleBehaviour</a>). It contains staitc fields for the mass, charge and radius and well as fields for the position and velocity.</p>
+<p>The <a class="el" href="classParticle.html" title="Class for managing the properites of particle objects.">Particle</a> class manages the properties of a particle. Each particle class contains a particle GameObject, but is not itself attached to it (see ParticleBehaviour). It contains staitc fields for the mass, charge and radius and well as fields for the position and velocity.</p>
 <p>The static fields are expressed in scaled units that we refer to as "Unity Units" as the calculations in the fields are done on these units. See <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> for the conversions used.</p>
 <p>The position and velocity fields are similarly expressed in "Unity Units". A user that wishes to measure the "real-world" representation of the position or velocity will recieve a conversion from the Unity Units to the real-world unit based on the <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> object of the partent simulator.</p>
-<p>The particle's velocity is initialised to some value and updated by a fields's <code>AddForce()</code> method. The position of the particle is updated by its parent simulator's <code>updatePosition()</code> method.</p>
+<p>The particle's velocity is initialised to some value and updated by a fields's <code>AddForce()</code> method. The position of the particle is updated by its parent simulator's <code>UpdatePositions()</code> method.</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Scales and the Scale Struct</h1>
 <p>Each simulator contains an <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> object - an object that contains multiple scale structs each representing the conversion between some Unity unit and the corresponding real-world representation. The <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> can be updated through the callback methods used in by UI elements or by calling the inbuilt functions.</p>
@@ -98,10 +98,25 @@ Scales and the Scale Struct</h1>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Dynamic and Static Field Classes</h1>
 <p>The dynamic and static fields classes are super classes that should be extended to provide functionality for the <code>AddForce()</code> method (see <a class="el" href="classColoumb.html" title="A DynamicField implementation of the Couloumb potential.">Coloumb</a> and <a class="el" href="classWind.html" title="A StaticField implementation of a wind vector field.">Wind</a> for two examples of an implementation).</p>
-<p>Importantly, if you wish to use any constants expressed in SI units, you must use the method <code>scaleConstant(float v, int kg, int m, int s, int q)</code> provided by <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a>. This will return the scaled value of the constant in Unity Units. See <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> for the use of this method.</p>
-<p>Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone. </p>
+<p>Each field class contains two dictionaries, shown below:</p>
+<div class="fragment"><div class="line"><span class="keyword">protected</span> Dictionary&lt;string, float&gt; constants;</div>
+<div class="line"><span class="keyword">private</span> Dictionary&lt;string, int[]&gt; units;</div>
+</div><!-- fragment --><p>If you wish to implement your own field, you must use the <code>RegisterConstant(string name, float val, int[] unit)</code> function. This function converts the SI value of the constant to unity units for use in interal calculation by the framework. Apon any time or length scaling of the simulator, this value, stored in <code>constants</code>, will be updated according to the values stored in <code>units</code>.</p>
+<p>The value of the units dictionary is an int array of size 4 that specify the index of the mass (kg), length (m), time (s) and charge (Q) units. For example, if your units are of the form kg m s<sup>-2</sup>, the unit value would be {1, 1, -2, 0}.</p>
+<p>See <a class="el" href="classStaticField.html" title="A base class for static field implementations.">StaticField</a> and <a class="el" href="classDynamicField.html" title="A base class for dynamic field implementations.">DynamicField</a> for more details.</p>
+<p>Using an example from the <a class="el" href="classColoumb.html" title="A DynamicField implementation of the Couloumb potential.">Coloumb</a> class, we can see how the constructor should be implemented.</p>
+<div class="fragment"><div class="line"><span class="keyword">public</span> <a class="code" href="classColoumb.html">Coloumb</a>(<a class="code" href="classSimulator.html">Simulator</a> sim) : base(sim)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordtype">int</span>[] units = { 1, 3, -2, -2 };</div>
+<div class="line">    RegisterConstant(<span class="stringliteral">&quot;coloumb&quot;</span>, 8.988E+9f, units);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>To access your constants from your <code>FieldDynamics</code> override function simply reference it as follows:</p>
+<div class="fragment"><div class="line"><span class="keywordtype">float</span> coloumb = constants[<span class="stringliteral">&quot;coloumb&quot;</span>];</div>
+</div><!-- fragment --><p>Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
+<div class="ttc" id="aclassSimulator_html"><div class="ttname"><a href="classSimulator.html">Simulator</a></div><div class="ttdoc">Class for managing the properites of a simulator instance.</div><div class="ttdef"><b>Definition:</b> Simulator.cs:16</div></div>
+<div class="ttc" id="aclassColoumb_html"><div class="ttname"><a href="classColoumb.html">Coloumb</a></div><div class="ttdoc">A DynamicField implementation of the Couloumb potential.</div><div class="ttdef"><b>Definition:</b> Coloumb.cs:13</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">
