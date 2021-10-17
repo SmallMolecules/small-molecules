@@ -57,7 +57,8 @@ public class SimulationManager : MonoBehaviour
 
     /**Makes a new simulator and adds it to the list of simulators. Also names the system as
     "System X".*/
-    private void CreateSimulator() {
+    private void CreateSimulator() 
+    {
         GameObject sim = Instantiate(simulatorSpawner);
         sim.name = String.Format("System {0}", newestSim);
 
@@ -74,7 +75,8 @@ public class SimulationManager : MonoBehaviour
 
     // TODO - implement this function
     /**Resets a simulator*/
-    public void ResetSystems() {
+    public void ResetSystems() 
+    {
         List<GameObject> newSimulations = new List<GameObject>();    
         foreach (GameObject S in simulations) {
             Destroy(S);
@@ -87,7 +89,8 @@ public class SimulationManager : MonoBehaviour
     }
     
     /**Toggles the pause state of the simulation*/
-    public void TogglePause() {
+    public void TogglePause() 
+    {
         paused = !paused;
         foreach (GameObject S in simulations) {
             S.GetComponent<Simulator>().paused = paused;

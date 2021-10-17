@@ -46,41 +46,6 @@ public class Scales
     }
 
     /**
-    Used to set the timescale given a scientific notation representation
-    of the value. This enables the program to extract the coefficient and the
-    exponent seperately
-    @param S, the input string (string)
-    */
-    public void SetTime(string S)
-    {
-        string[] str = S.Split('e');
-
-        string str_coeff = str[0];
-        string str_exp = str[1];
-
-        int mult = 1;
-        if (str_coeff[0] == '-')
-        {
-            mult *= -1;
-        }
-
-        int counter = -1;
-        foreach (char c in str_coeff)
-        {
-            counter++;
-            if (c != '0' && c != '+' && c != '-')
-            {
-                break;
-            }
-        }
-
-        float coeff = (float)Convert.ToDouble(str_coeff);
-        int exp = Int32.Parse(str_exp.Substring(counter));
-
-        time = new Scale(coeff, exp);
-    }
-
-    /**
     Sets the time-scale given a coefficent and an exponent
     @param coefficient (float)
     @param exponent (int)

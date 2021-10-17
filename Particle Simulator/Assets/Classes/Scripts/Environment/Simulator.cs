@@ -120,7 +120,8 @@ public class Simulator  : MonoBehaviour
     }
     /**Updates the velocity of the particle with an index of "a" in the list
     @param a - the index of the particle to update (int)*/
-    private void UpdateVelocity(int a) {
+    private void UpdateVelocity(int a) 
+    {
         // Static Field Contributions
         foreach (StaticField F in staticFields) {
             F.ApplyForce(particles[a], scales);
@@ -138,7 +139,8 @@ public class Simulator  : MonoBehaviour
     }
 
     /**Updates the positions of all the particles in the list according to thier velocity*/
-    private void UpdatePositions() {
+    private void UpdatePositions() 
+    {
         foreach (Particle A in particles) {
             A.Step(scales.time.VAL);
             A.CheckBoxCollision();
@@ -160,7 +162,8 @@ public class Simulator  : MonoBehaviour
     /**Adds a particle at a random position with default physical properties
     /see AddNewParticle
     */
-    public void AddNewParticleRandom() {
+    public void AddNewParticleRandom() 
+    {
         float z = rand.Next(-10, 10);
         float x = rand.Next(-10, 10);
         float y = rand.Next(-10, 10);
@@ -202,13 +205,15 @@ public class Simulator  : MonoBehaviour
     
     /**Removes a particle, A, from the simulation
     @param A - the particle to remove (Particle)*/
-    private void RemoveParticle(Particle A) {
+    private void RemoveParticle(Particle A) 
+    {
         Destroy(A.particle);
         particles.Remove(A);
     }
 
     /**Toggles the pause state of the simulation*/
-    public void TogglePause() {
+    public void TogglePause() 
+    {
         paused = !paused;
     }
 

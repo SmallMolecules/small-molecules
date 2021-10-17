@@ -40,7 +40,8 @@ public class Particle
     @param setRadius (float)
     @param setCharge (int)
     */
-    public Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge) {
+    public Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge) 
+    {
         particle = p;
         position = p.transform.position;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
@@ -74,7 +75,8 @@ public class Particle
     Gets the position of the particle
     @returns position (Vector3)
     */
-    public Vector3 GetPos() {
+    public Vector3 GetPos() 
+    {
         return position;
     }
 
@@ -82,7 +84,8 @@ public class Particle
     Gets the velocity of the particle
     @returns velocity (Vector3)
     */
-    public Vector3 GetVel() {
+    public Vector3 GetVel() 
+    {
         return velocity;
     }
 
@@ -90,7 +93,8 @@ public class Particle
     Adds a force to the particle 
     @param Unity unit scaled force F (Vector3)
     */
-    public void AddForce(Vector3 F) {
+    public void AddForce(Vector3 F) 
+    {
                 
         velocity += F/mass; //NOTE: mass is currently 1
     }
@@ -100,7 +104,8 @@ public class Particle
     its velocity.
     @param timestep  (float)
     */
-    public void Step(float dt) {
+    public void Step(float dt) 
+    {
 
         position += velocity*dt;
 
@@ -111,7 +116,8 @@ public class Particle
     Checks if there was a collision with any wall of the environment box
     and reflects the velocity for the correct axis
     */
-    public void CheckBoxCollision() {
+    public void CheckBoxCollision() 
+    {
         bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius);
         bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius);
         bool collideUp = Physics.Raycast(particle.transform.position, Vector3.up, radius);

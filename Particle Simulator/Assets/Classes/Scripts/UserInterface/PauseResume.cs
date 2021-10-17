@@ -99,7 +99,8 @@ public class PauseResume : MonoBehaviour
     simulations managed by the simulation manager object
     @param GameObject sim
     */
-    public void NewSimulator(GameObject sim) {
+    public void NewSimulator(GameObject sim) 
+    {
         // create simulation UI object
         GameObject UIentry = Instantiate(simulatorUISpawner);
         // set parent as pause screen
@@ -118,7 +119,8 @@ public class PauseResume : MonoBehaviour
     Callback function used to toggle a button between the "selected" colour
     and the "unselected" colour.
     */
-    public void ToggleSelectedColour() {
+    public void ToggleSelectedColour() 
+    {
         Color orig = systemButton.GetComponent<Image>().color;
         if (orig.Equals(offColor)) {
             systemButton.GetComponent<Image>().color = onnColor;
