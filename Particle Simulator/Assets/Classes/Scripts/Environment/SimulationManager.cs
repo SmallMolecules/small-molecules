@@ -9,6 +9,7 @@ using System.IO;
     This class manages all simulations in the environment. It specifies values such as the 
     pause state of all the simulations, the max number of particles.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date October 2021
     \see Simulator Scales
     */

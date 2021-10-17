@@ -11,6 +11,7 @@ using System.Globalization;
     a canvas object and is responsible for managinging the interactions 
     between the UI screen and the system.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see UISpawner SimulationManager
     */

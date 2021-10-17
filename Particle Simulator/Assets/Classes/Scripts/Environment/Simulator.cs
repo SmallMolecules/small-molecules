@@ -172,7 +172,7 @@ public class Simulator  : MonoBehaviour
 
     /**Called by the UI elements to change the time scale
     @param coeff - the coefficient of the time scale (float)
-    @param exp- the exponent of the time scale (int)*/
+    @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
         Debug.Log("Called");
@@ -189,7 +189,7 @@ public class Simulator  : MonoBehaviour
     }
     /**Called by the UI elements to change the length scale
     @param coeff - the coefficient of the length scale (float)
-    @param exp- the exponent of the length scale (int)*/
+    @param exp - the exponent of the length scale (int)*/
     public void UpdateLength(float coeff, int index)
     {
         scales.SetLength(coeff, index);
@@ -217,6 +217,8 @@ public class Simulator  : MonoBehaviour
         paused = !paused;
     }
 
+    /**Checks if a particle if clicked to destroy
+    and calls RemoveParticle()*/ 
     private void HandleDestroyParticle() 
     {
         if (Input.GetMouseButtonDown(0)) {

@@ -8,6 +8,7 @@ using System;
     This class extends the DynamicField class and overrides the fieldDynamics 
     method to give a realistic implementation of the Lennard-Jones Potential.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see Coloumb DynamicField StaticField
     */

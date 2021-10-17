@@ -12,6 +12,7 @@ using System;
     attributes mirror the physical properties such length and position. Each scaled quantity
     is represented as a Struct (Scale).
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date October 2021
     \see Scale Simulator
     */
@@ -84,7 +85,7 @@ public class Scales
     @param m - the order of the length dimension (int)
     @param s - the order of the time dimension (int)
     @param q - the order of the charge dimension (int)
-    @returns the scaled value (flaot)
+    @returns the scaled value (float)
     */
     public float ScaleFactor(float v, int kg, int m, int s, int q)
     {

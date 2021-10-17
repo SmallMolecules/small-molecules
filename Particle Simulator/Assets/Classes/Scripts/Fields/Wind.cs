@@ -7,6 +7,7 @@ using UnityEngine;
     This class extends the DynamicField class and overrides the fieldDynamics 
     method to give an implementation of a wind vector field.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see StaticField
     */
