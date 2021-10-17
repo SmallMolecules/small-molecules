@@ -115,6 +115,7 @@ public class UISpawner : MonoBehaviour
     */
     public void UpdateScales()
     {
+        if (simulator == null) return;
         float coeff = (float)Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
@@ -143,6 +144,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ToggleDestroyT()
     {
+        if (simulator == null) return;
         simulator.ToggleDestroy(true);
     }
 
@@ -151,6 +153,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ToggleDestroyF()
     {
+        if (simulator == null) return;
         simulator.ToggleDestroy(false);
     }
 

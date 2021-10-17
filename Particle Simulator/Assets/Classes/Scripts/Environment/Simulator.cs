@@ -77,7 +77,8 @@ public class Simulator  : MonoBehaviour
             AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
         }
 
-        dynamicFields.Add(new Coloumb(this));    
+        // dynamicFields.Add(new Coloumb(this));    
+        staticFields.Add(new Wind(this));
     }
 
     /**
@@ -116,7 +117,7 @@ public class Simulator  : MonoBehaviour
     private void UpdatePositions() 
     {
         foreach (Particle A in particles) {
-            A.Step(scales.time.VAL);
+            A.Step();
             A.CheckBoxCollision();
         }
     }
@@ -149,17 +150,7 @@ public class Simulator  : MonoBehaviour
     @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
-        Debug.Log("Called");
-
         scales.SetTime(coeff, exp);
-        foreach (DynamicField d in dynamicFields)
-        {
-            d.UpdateConstants();
-        }
-        foreach (StaticField s in staticFields)
-        {
-            s.UpdateConstants();
-        }
     }
     
     /**Called by the UI elements to change the length scale
@@ -170,11 +161,11 @@ public class Simulator  : MonoBehaviour
         scales.SetLength(coeff, index);
         foreach (DynamicField d in dynamicFields)
         {
-            d.UpdateConstants();
+            // d.UpdateConstants();
         }
         foreach (StaticField s in staticFields)
         {
-            s.UpdateConstants();
+            // s.UpdateConstants();
         }
     }
     

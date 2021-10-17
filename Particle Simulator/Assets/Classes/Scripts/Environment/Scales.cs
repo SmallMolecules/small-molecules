@@ -64,7 +64,6 @@ public class Scales
     */
     public void SetLength(float c, int e)
     {
-
         length = new Scale(c, e);
     }
 
@@ -87,7 +86,7 @@ public class Scales
     @param q - the order of the charge dimension (int)
     @returns the scaled value (float)
     */
-    public float ScaleFactor(float v, int kg, int m, int s, int q)
+    public float scaleConstant(float v, int kg, int m, int s, int q)
     {
         Scale MASS = Pow(mass, -kg);
         Scale LENGTH = Pow(length, -m);

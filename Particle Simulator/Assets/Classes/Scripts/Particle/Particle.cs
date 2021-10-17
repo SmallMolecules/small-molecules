@@ -93,8 +93,7 @@ public class Particle
     @param Unity unit scaled force F (Vector3)
     */
     public void AddForce(Vector3 F) 
-    {
-                
+    {               
         velocity += F/mass;
     }
 
@@ -103,12 +102,10 @@ public class Particle
     its velocity.
     @param timestep  (float)
     */
-    public void Step(float dt) 
+    public void Step() 
     {
-
-        position += velocity*dt;
-
-        particle.transform.Translate(velocity*dt);
+        position += velocity*scales.time.VAL;
+        particle.transform.Translate(velocity*scales.time.VAL);
     }
 
     /**
@@ -128,15 +125,37 @@ public class Particle
         float vy = velocity.y;
         float vz = velocity.z;
 
-        if (collideRight || collideLeft) {
-            velocity.x = -vx;
-
-        } else if (collideUp || collideDown) {
-            velocity.y = -vy;
-
-        } else if (collideForward || collideBack) {
-            velocity.z = -vz;
+        if (collideRight) {
+            if (vx > 0) {
+                velocity.x = -vx;
+            }
+        }
+        else if( collideLeft) {
+            if (vx < 0) {
+                velocity.x = -vx;
+            }
+        } 
+        if (collideUp)
+        {
+            if (vy > 0) {
+                velocity.y = -vy;
+            }     
+        }
+        else if (collideDown) {
+            if (vy < 0) {
+                velocity.y = -vy;
+            }
+        } 
+        if (collideForward) 
+        {
+            if (vz > 0) {
+                velocity.z = -vz;
+            }           
+        } 
+        else if(collideBack) {
+            if (vz < 0) {
+                velocity.z = -vz;
+            }         
         }
     }
-    
 }

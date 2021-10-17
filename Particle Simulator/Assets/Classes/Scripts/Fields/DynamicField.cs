@@ -59,7 +59,7 @@ public class DynamicField
         {
             int[] unit = units[con];
             float val = constants[con];
-            constants[con] = scales.ScaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
+            // constants[con] = scales.ScaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
         }
     }
 
