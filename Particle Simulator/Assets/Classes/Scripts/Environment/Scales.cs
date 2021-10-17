@@ -86,7 +86,7 @@ public class Scales
     @param q - the order of the charge dimension (int)
     @returns the scaled value (float)
     */
-    public float constantFromSI(float v, int kg, int m, int s, int q)
+    public float ConstantFromSI(float v, int kg, int m, int s, int q)
     {
         Scale MASS = Pow(mass, -kg);
         Scale LENGTH = Pow(length, -m);
