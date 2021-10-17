@@ -18,7 +18,7 @@ public class Wind : StaticField
     public Wind(Simulator sim) : base(sim)
     {
         int[] units = { 1, 1, -2, 0 };
-        registerConstant("k", 1.0E+10f, units);
+        RegisterConstant("k", 1.0E+10f, units);
     }
 
     /**
@@ -27,7 +27,7 @@ public class Wind : StaticField
     @param Particle B (Particle)
     @returns force on A by B (Vector3)
     */
-    public override Vector3 fieldDynamics(Particle A)
+    public override Vector3 FieldDynamics(Particle A)
     {
         return constants["wind"] * (new Vector3(0.0f, 1.0f, 0.0f));
     }

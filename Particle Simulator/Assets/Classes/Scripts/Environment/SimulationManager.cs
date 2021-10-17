@@ -19,7 +19,7 @@ public class SimulationManager : MonoBehaviour
     public int NUM_PARTICLES = 10;
 
     /**Reference to the GameObject this class is attached to*/
-    public GameObject simulator_spawner;
+    public GameObject simulatorSpawner;
 
     /**Reference to the UI pause screen that interacts with the simulatorManager*/
     public GameObject UI;
@@ -43,7 +43,7 @@ public class SimulationManager : MonoBehaviour
         newestSim = 1;
         // TODO - give position
 
-        createSimulator();
+        CreateSimulator();
         paused = false;
     }
 
@@ -57,8 +57,8 @@ public class SimulationManager : MonoBehaviour
 
     /**Makes a new simulator and adds it to the list of simulators. Also names the system as
     "System X".*/
-    private void createSimulator() {
-        GameObject sim = Instantiate(simulator_spawner);
+    private void CreateSimulator() {
+        GameObject sim = Instantiate(simulatorSpawner);
         sim.name = String.Format("System {0}", newestSim);
 
         newestSim++;
@@ -68,17 +68,17 @@ public class SimulationManager : MonoBehaviour
         simulations.Add(sim);
         
         // add new simulator to UI menu
-        UI.GetComponent<PauseResume>().newSimulator(sim);
+        UI.GetComponent<PauseResume>().NewSimulator(sim);
     }
 
 
     // TODO - implement this function
     /**Resets a simulator*/
-    public void resetSystems() {
+    public void ResetSystems() {
         List<GameObject> newSimulations = new List<GameObject>();    
         foreach (GameObject S in simulations) {
             Destroy(S);
-            GameObject sim = Instantiate(simulator_spawner);
+            GameObject sim = Instantiate(simulatorSpawner);
             sim.transform.parent = this.transform;
             newSimulations.Add(sim);
         }
@@ -87,10 +87,10 @@ public class SimulationManager : MonoBehaviour
     }
     
     /**Toggles the pause state of the simulation*/
-    public void togglePause() {
+    public void TogglePause() {
         paused = !paused;
         foreach (GameObject S in simulations) {
-            S.GetComponent<Simulator>().paused =  paused;
+            S.GetComponent<Simulator>().paused = paused;
         }
     }
 

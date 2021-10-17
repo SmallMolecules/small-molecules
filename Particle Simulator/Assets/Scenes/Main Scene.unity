@@ -542,7 +542,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2094330334}
         m_TargetAssemblyTypeName: PauseResume, Assembly-CSharp
-        m_MethodName: toggleSelectedColour
+        m_MethodName: ToggleSelectedColour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1319,7 +1319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NUM_PARTICLES: 10
-  simulator_spawner: {fileID: 3722022466204481631, guid: 4d434a41aaac665afba536295ad3acac, type: 3}
+  simulatorSpawner: {fileID: 3722022466204481631, guid: 4d434a41aaac665afba536295ad3acac, type: 3}
   UI: {fileID: 2094330329}
   paused: 0
 --- !u!1 &2094330329
@@ -1437,8 +1437,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68327ee7e9f0578e5a5a02a923c6926d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PauseScreen: {fileID: 1515966206}
-  PauseButton: {fileID: 1382635439}
-  system_button: {fileID: 1199068077}
+  pauseScreen: {fileID: 1515966206}
+  pauseButton: {fileID: 1382635439}
+  systemButton: {fileID: 1199068077}
   fps: {fileID: 1261891213}
-  simulatorUI_spawner: {fileID: 5473545152470227865, guid: 899d58f9f7dc197ababa29357f8e693a, type: 3}
+  simulatorUISpawner: {fileID: 5473545152470227865, guid: 899d58f9f7dc197ababa29357f8e693a, type: 3}

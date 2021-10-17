@@ -19,9 +19,9 @@ public class LennardJones : DynamicField
     public LennardJones(Simulator sim) : base(sim)
     {
         int[] unitsSigma = { 0, 1, 0, 0 };
-        registerConstant("sigma", 1E-9f, unitsSigma);
+        RegisterConstant("sigma", 1E-9f, unitsSigma);
         int[] unitsEpsilon = { 1, 1, -2, 0 };
-        registerConstant("epsilson", 1E-9f, unitsEpsilon);
+        RegisterConstant("epsilson", 1E-9f, unitsEpsilon);
 
     }
 
@@ -31,10 +31,10 @@ public class LennardJones : DynamicField
     @param Particle B (Particle)
     @returns force on A by B (Vector3)
     */
-    public override Vector3 fieldDynamics(Particle A, Particle B)
+    public override Vector3 FieldDynamics(Particle A, Particle B)
     {
 
-        float r = Vector3.Distance(A.getPos(), B.getPos());
+        float r = Vector3.Distance(A.GetPos(), B.GetPos());
 
         float SIGMA = constants["sigma"];
         float EPSILON = constants["epsilon"];
@@ -47,7 +47,7 @@ public class LennardJones : DynamicField
 
         float con = 4 * EPSILON * (Mathf.Pow(SIGMA / r, 12) - Mathf.Pow(SIGMA / r, 6));
 
-        return con * Vector3.Normalize(A.getPos() - B.getPos());
+        return con * Vector3.Normalize(A.GetPos() - B.GetPos());
 
 
     }

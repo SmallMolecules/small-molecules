@@ -43,22 +43,22 @@ public class DynamicField
     @param val - float value of the constant in SI units (float)
     @param unit - int array of the multiplicities of the SI unit (int[4])
     */
-    protected void registerConstant(string name, float val, int[] unit)
+    protected void RegisterConstant(string name, float val, int[] unit)
     {
         constants.Add(name, val);
         units.Add(name, unit);
-        updateConstants();
+        UpdateConstants();
     }
     /**
     Called by the simulator to update each unit when a Scale update event occurs
     */
-    public void updateConstants()
+    public void UpdateConstants()
     {
         foreach (string con in units.Keys)
         {
             int[] unit = units[con];
             float val = constants[con];
-            constants[con] = scales.scaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
+            constants[con] = scales.ScaleFactor(val, unit[0], unit[1], unit[2], unit[3]);
         }
     }
 
@@ -69,7 +69,7 @@ public class DynamicField
     @param particle B (Particle)
     @returns zero vector (Vector3)
     */
-    public virtual Vector3 fieldDynamics(Particle A, Particle B)
+    public virtual Vector3 FieldDynamics(Particle A, Particle B)
     {
         return new Vector3(0.0f, 0.0f, 0.0f);
     }
@@ -79,12 +79,12 @@ public class DynamicField
     @param particle A (Particle)
     @param particle B (Particle)
     */
-    public void applyForce(Particle A, Particle B)
+    public void ApplyForce(Particle A, Particle B)
     {
-        Vector3 F = fieldDynamics(A, B);
+        Vector3 F = FieldDynamics(A, B);
 
-        A.addForce(F);
-        B.addForce(-F);
+        A.AddForce(F);
+        B.AddForce(-F);
     }
 
 }

@@ -89,11 +89,11 @@ public class UISpawner : MonoBehaviour
     the input GameObject
     @param Simulator to attach (GameObject)
     */
-    public void attachSimulator(GameObject sim)
+    public void AttachSimulator(GameObject sim)
     {
         simulator = sim.GetComponent<Simulator>();
         exponent.text = simulator.scales.time.EXP.ToString();
-        updateScales();
+        UpdateScales();
     }
 
     /**
@@ -112,12 +112,12 @@ public class UISpawner : MonoBehaviour
     representation of the scales according to the values of the 
     input fields.
     */
-    public void updateScales()
+    public void UpdateScales()
     {
         float coeff = (float)Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
-        simulator.updateTime(coeff, exp);
+        simulator.UpdateTime(coeff, exp);
 
         coefficient.text = timescale.value.ToString("0.00") + " x 10^"; ;
         exponent.text = simulator.scales.time.EXP.ToString();
@@ -135,13 +135,13 @@ public class UISpawner : MonoBehaviour
     public void ResetTime()
     {
         timescale.value = 0.0001f;
-        simulator.scales.setTime(timescale.value.ToString());
+        simulator.scales.SetTime(timescale.value.ToString());
     }
 
     /**
     Callback function used to hide and unhide the simulator UI submenu 
     */
-    public void show()
+    public void Show()
     {
         gameObject.SetActive(!gameObject.activeInHierarchy);
     }
@@ -151,12 +151,12 @@ public class UISpawner : MonoBehaviour
     */
     public void ToggleDestroyT()
     {
-        simulator.toggleDestroy(true);
+        simulator.ToggleDestroy(true);
     }
 
     public void ToggleDestroyF()
     {
-        simulator.toggleDestroy(false);
+        simulator.ToggleDestroy(false);
     }
 
 }

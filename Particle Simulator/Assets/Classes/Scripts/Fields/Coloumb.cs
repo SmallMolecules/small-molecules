@@ -18,7 +18,7 @@ public class Coloumb : DynamicField
     public Coloumb(Simulator sim) : base(sim)
     {
         int[] units = { 1, 3, -2, -2 };
-        registerConstant("con", 8.988E+9f, units);
+        RegisterConstant("con", 8.988E+9f, units);
     }
 
     /**
@@ -27,13 +27,13 @@ public class Coloumb : DynamicField
     @param Particle B (Particle)
     @returns force on A by B (Vector3)
     */
-    public override Vector3 fieldDynamics(Particle A, Particle B)
+    public override Vector3 FieldDynamics(Particle A, Particle B)
     {
 
         float q1 = B.charge;
         float q2 = A.charge;
 
-        float r = Vector3.Distance(A.getPos(), B.getPos());
+        float r = Vector3.Distance(A.GetPos(), B.GetPos());
 
         if (r < 2f)
         {
@@ -41,6 +41,6 @@ public class Coloumb : DynamicField
         }
         // Debug.Log(constants["con"]);
         float coeff = constants["con"] * q1 * q2 / r;
-        return coeff * Vector3.Normalize(A.getPos() - B.getPos());
+        return coeff * Vector3.Normalize(A.GetPos() - B.GetPos());
     }
 }
