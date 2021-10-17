@@ -88,8 +88,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a594086b5bd1430dcfa705fc751d4da3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafae8788f3679685a2e5f72a349f7f44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#aafae8788f3679685a2e5f72a349f7f44">UpdateScales</a> ()</td></tr>
 <tr class="separator:aafae8788f3679685a2e5f72a349f7f44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a597a69d4ac9aba8a9d98771cb199459e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#a597a69d4ac9aba8a9d98771cb199459e">ResetTime</a> ()</td></tr>
-<tr class="separator:a597a69d4ac9aba8a9d98771cb199459e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af66131957b636d6e3d00fcc3d0bedd68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#af66131957b636d6e3d00fcc3d0bedd68">Show</a> ()</td></tr>
 <tr class="separator:af66131957b636d6e3d00fcc3d0bedd68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb78c758d31f073ef7378c07570cc605"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUISpawner.html#afb78c758d31f073ef7378c07570cc605">ToggleDestroyT</a> ()</td></tr>
@@ -126,7 +124,9 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for managing UI interactions with simulator sub-menu. </p>
-<p>This class extends Unity's MonoBehaviour class. It is attached to a canvas object and is responsible for managinging the interactions between the simulator UI sub-menu and its corresponding simulator object. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<p>This class extends Unity's MonoBehaviour class. It is attached to a canvas object and is responsible for managinging the interactions between the simulator UI sub-menu and its corresponding simulator object. </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd>
+<dd>
+Dhruv Jobanputra </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>November 2021 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classUISpawner.html" title="Class for managing UI interactions with simulator sub-menu.">UISpawner</a> <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -240,32 +240,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a597a69d4ac9aba8a9d98771cb199459e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a597a69d4ac9aba8a9d98771cb199459e">&#9670;&nbsp;</a></span>ResetTime()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void UISpawner.ResetTime </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>TODO - add documenation comment </p>
-
-</div>
-</div>
 <a id="af66131957b636d6e3d00fcc3d0bedd68"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af66131957b636d6e3d00fcc3d0bedd68">&#9670;&nbsp;</a></span>Show()</h2>
 
@@ -340,6 +314,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Callback function used to toggle the destroy mode </p>
 
 </div>
 </div>

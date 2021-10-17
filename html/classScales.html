@@ -80,8 +80,6 @@ $(function() {
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af0b41de3004fbf47dfd5f7137b99f440"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScales.html#af0b41de3004fbf47dfd5f7137b99f440">Scales</a> ()</td></tr>
 <tr class="separator:af0b41de3004fbf47dfd5f7137b99f440"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87ccaf325810f827bc460bd06088702b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScales.html#a87ccaf325810f827bc460bd06088702b">SetTime</a> (string S)</td></tr>
-<tr class="separator:a87ccaf325810f827bc460bd06088702b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c170efd01b37d0f871e4367fb83ef95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScales.html#a3c170efd01b37d0f871e4367fb83ef95">SetTime</a> (float coefficent, int exponent)</td></tr>
 <tr class="separator:a3c170efd01b37d0f871e4367fb83ef95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9ab8e0ba6ce6c768b90449f19c3bbf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classScales.html#ae9ab8e0ba6ce6c768b90449f19c3bbf0">SetLength</a> (float c, int e)</td></tr>
@@ -120,7 +118,9 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for managing scaling factors for a simulator. </p>
-<p>This class manages scale factors such as as time, length, charge and mass. The purpose of abstracting these scales to a single class is so the physics caluculations can be done in Unity space and translated to SI units upon the user's request. By doing so no precison is lost to floating point rounding of tiny floats, and that the GameObject attributes mirror the physical properties such length and position. Each scaled quantity is represented as a Struct (<a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a>). </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd></dl>
+<p>This class manages scale factors such as as time, length, charge and mass. The purpose of abstracting these scales to a single class is so the physics caluculations can be done in Unity space and translated to SI units upon the user's request. By doing so no precison is lost to floating point rounding of tiny floats, and that the GameObject attributes mirror the physical properties such length and position. Each scaled quantity is represented as a Struct (<a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a>). </p><dl class="section author"><dt>Author</dt><dd>Isaac Bergl </dd>
+<dd>
+Dhruv Jobanputra </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>October 2021 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a> <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -302,7 +302,7 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the scaled value (flaot) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the scaled value (float) </dd></dl>
 
 </div>
 </div>
@@ -350,7 +350,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a3c170efd01b37d0f871e4367fb83ef95"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c170efd01b37d0f871e4367fb83ef95">&#9670;&nbsp;</a></span>SetTime() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c170efd01b37d0f871e4367fb83ef95">&#9670;&nbsp;</a></span>SetTime()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -386,38 +386,6 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">coefficient</td><td>(float) </td></tr>
     <tr><td class="paramname">exponent</td><td>(int) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a87ccaf325810f827bc460bd06088702b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87ccaf325810f827bc460bd06088702b">&#9670;&nbsp;</a></span>SetTime() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Scales.SetTime </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>S</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Used to set the timescale given a scientific notation representation of the value. This enables the program to extract the coefficient and the exponent seperately </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">S,the</td><td>input string (string) </td></tr>
   </table>
   </dd>
 </dl>

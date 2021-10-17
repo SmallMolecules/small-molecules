@@ -7,6 +7,7 @@ using UnityEngine;
     This class extends the DynamicField class and overrides the fieldDynamics 
     method to give a realistic implementation of the coloumb potential.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see Lennard-Jones DynamicField StaticField
     */
@@ -29,7 +30,6 @@ public class Coloumb : DynamicField
     */
     public override Vector3 FieldDynamics(Particle A, Particle B)
     {
-
         float q1 = B.charge;
         float q2 = A.charge;
 
@@ -39,7 +39,7 @@ public class Coloumb : DynamicField
         {
             r = 0.5f;
         }
-        // Debug.Log(constants["con"]);
+
         float coeff = constants["con"] * q1 * q2 / r;
         return coeff * Vector3.Normalize(A.GetPos() - B.GetPos());
     }

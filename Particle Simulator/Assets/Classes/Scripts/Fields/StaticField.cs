@@ -7,6 +7,7 @@ using UnityEngine;
     This class specifies the requirements for an implemented instance of a static field -
     a field that calculates a force on one particle.
     @author Isaac Bergl
+    @author Dhruv Jobanputra
     @date November 2021
     \see DynamicField Coloumb StaticField
     */
