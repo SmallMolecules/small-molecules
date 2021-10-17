@@ -10,7 +10,7 @@ The overall structure of this framework is to manage multiple simulators, which 
 
 ## Simulator    
 
-The [simulator]() class is a MonoBehaviour class that is attached to an empty GameObject. It contains an two array of fields, one for the static fields and one for the dynamic fields. If you wish to add your own custom field, navigate to ``start()`` function of the Simulator class and add
+The Simulator class is a MonoBehaviour class that is attached to an empty GameObject. It contains an two array of fields, one for the static fields and one for the dynamic fields. If you wish to add your own custom field, navigate to ``start()`` function of the Simulator class and add
 
 ```cs
 DynmaicFields.add(new YourDynamicField(scales)); //For Dynamic Fields
@@ -24,7 +24,7 @@ The scales object of the Simulator is referenced by the particles and the fields
 
 ## Simulator Manager
 
-The [simulator manager]() class is a MonoBehaviour class that is attached to an empty GameObject. it is responsible for managing global properties outside of each simulator.
+The Simulator Manager class is a MonoBehaviour class that is attached to an empty GameObject. it is responsible for managing global properties outside of each simulator.
 
 ## Particle
 
@@ -34,7 +34,7 @@ The static fields are expressed in scaled units that we refer to as "Unity Units
 
 The position and velocity fields are similarly expressed in "Unity Units". A user that wishes to measure the "real-world" representation of the position or velocity will recieve a conversion from the Unity Units to the real-world unit based on the Scales object of the partent simulator.
 
-The particle's velocity is initialised to some value and updated by a fields's ``AddForce()`` method. The position of the particle is updated by its parent simulator's ``updatePosition()`` method. 
+The particle's velocity is initialised to some value and updated by a fields's ``AddForce()`` method. The position of the particle is updated by its parent simulator's ``UpdatePositions()`` method. 
 
 ## Scales and the Scale Struct
 
@@ -48,6 +48,33 @@ The scale struct is necessary over a floating point representation of the value 
 
 The dynamic and static fields classes are super classes that should be extended to provide functionality for the ``AddForce()`` method (see Coloumb and Wind for two examples of an implementation). 
 
-Importantly, if you wish to use any constants expressed in SI units, you must use the method ``scaleConstant(float v, int kg, int m, int s, int q)`` provided by Scales. This will return the scaled value of the constant in Unity Units. See Scales for the use of this method. 
+Each field class contains two dictionaries, shown below:
+
+```cs
+protected Dictionary<string, float> constants;
+private Dictionary<string, int[]> units;
+```
+
+If you wish to implement your own field, you must use the ``RegisterConstant(string name, float val, int[] unit)`` function. This function converts the SI value of the constant to unity units for use in interal calculation by the framework. Apon any time or length scaling of the simulator, this value, stored in ``constants``, will be updated according to the values stored in ``units``. 
+
+The value of the units dictionary is an int array of size 4 that specify the index of the mass (kg), length (m), time (s) and charge (Q) units. For example, if your units are of the form kg m s<sup>-2</sup>, the unit value would be {1, 1, -2, 0}.
+
+See StaticField and DynamicField for more details. 
+
+Using an example from the Coloumb class, we can see how the constructor should be implemented.
+
+```cs
+public Coloumb(Simulator sim) : base(sim)
+{
+    int[] units = { 1, 3, -2, -2 };
+    RegisterConstant("coloumb", 8.988E+9f, units);
+}
+```
+To access your constants from your ``FieldDynamics`` override function simply reference it as follows:
+
+```cs
+float coloumb = constants["coloumb"];
+```
+
 
 Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone.
