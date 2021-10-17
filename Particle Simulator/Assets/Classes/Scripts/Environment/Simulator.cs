@@ -58,6 +58,14 @@ public class Simulator  : MonoBehaviour
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
 
+    /**Ratio of wall thickness to length of the inside of the sides is 1:40
+    Ratio of unity scale to unity length is 1:10
+    The values are obtained from the box prefab. Changing the constant will not change 
+    the box prefab thickness
+    */
+    private float BOX_THICKNESS_SCALE = 0.025f;
+    private float BOX_LENGTH_SCALE = 10;
+
     private System.Random rand = new System.Random(9);
     void Start()
     { 
@@ -66,15 +74,12 @@ public class Simulator  : MonoBehaviour
         box.transform.parent = this.transform;
 
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
-            float x = rand.Next(-10, 10);
-            float z = rand.Next(5, 15);
-            float y = rand.Next(5, 15);
 
             float radius = Random.Range(1, 2);
             float mass = Random.Range(1, 2);
             int charge = (int)Random.Range(0, 3)-1;
-            
-            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
+                
+            AddNewParticle(generateRandomCoords(radius), mass, radius, charge);
         }
 
         dynamicFields.Add(new Coloumb(this));    
@@ -138,10 +143,7 @@ public class Simulator  : MonoBehaviour
     */
     public void AddNewParticleRandom() 
     {
-        float z = rand.Next(-10, 10);
-        float x = rand.Next(-10, 10);
-        float y = rand.Next(-10, 10);
-        AddNewParticle(new Vector3(x,y,z));
+        AddNewParticle(generateRandomCoords());
     }
 
     /**Called by the UI elements to change the time scale
@@ -233,6 +235,18 @@ public class Simulator  : MonoBehaviour
     public void UpdateBoxSize(float coeff) 
     {
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
+    }
+
+    private Vector3 generateRandomCoords(float radius = 1f) 
+    {
+        float boxLength = box.transform.localScale.x * BOX_LENGTH_SCALE;
+        float wallThickness = boxLength * BOX_THICKNESS_SCALE;
+
+        float x = rand.Next((int) Mathf.Ceil(-boxLength/2+radius), (int) Mathf.Floor(boxLength/2-radius));
+        float y = rand.Next((int) Mathf.Ceil(wallThickness+radius), (int) Mathf.Floor(boxLength-radius));
+        float z = rand.Next((int) Mathf.Ceil(wallThickness+radius), (int) Mathf.Floor(boxLength-radius));
+        
+        return new Vector3(x, y, z);
     }
 
 
