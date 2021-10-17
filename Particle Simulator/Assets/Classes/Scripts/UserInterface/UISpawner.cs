@@ -75,7 +75,9 @@ public class UISpawner : MonoBehaviour
 
         if (!abort)
         {
-            if (isParticleInBounds(new Vector3(val[0], val[1], val[2]))) 
+            bool[] inBounds = isParticleInBounds(new Vector3(val[0], val[1], val[2]));
+
+            if (inBounds[0] && inBounds[1] && inBounds[2]) 
             {
                 Vector3 pos = new Vector3(val[0], val[1], val[2]);
                 simulator.AddNewParticle(pos);
@@ -84,7 +86,7 @@ public class UISpawner : MonoBehaviour
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    inputs[i].image.color = Color.red;
+                    if (!inBounds[i]) inputs[i].image.color = Color.red;
                 }
             }
         }
@@ -181,15 +183,17 @@ public class UISpawner : MonoBehaviour
     @param pos - the position of the particle to be added
     @radius - the radius of the particle to be added
     */
-    private bool isParticleInBounds(Vector3 pos, float radius = 1f)
+    private bool[] isParticleInBounds(Vector3 pos, float radius = 1f)
     {
-        bool inBounds = true;
-        float boxLength = simulator.box.transform.localScale.x * simulator.BOX_LENGTH_SCALE;
-        float wallThickness = boxLength * simulator.BOX_THICKNESS_SCALE;
+        bool[] inBounds = {true, true, true};
 
-        if (pos[0] < -boxLength/2+radius || pos[0] > boxLength/2-radius) inBounds = false;
-        if (pos[1] < wallThickness+radius || pos[1] > boxLength-radius) inBounds = false;
-        if (pos[2] < wallThickness+radius || pos[2] > boxLength-radius) inBounds = false;
+        float halfLength = simulator.boxLength/2 - radius;
+        float fullLength = simulator.boxLength + simulator.wallThickness - radius;
+        float minimum = simulator.wallThickness + radius;
+
+        if (pos[0] < -halfLength || pos[0] > halfLength) inBounds[0] = false;
+        if (pos[1] < minimum || pos[1] > fullLength) inBounds[1] = false;
+        if (pos[2] < minimum || pos[2] > fullLength) inBounds[2] = false;
 
         return inBounds;
     }
