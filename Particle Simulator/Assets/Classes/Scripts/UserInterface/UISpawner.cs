@@ -81,6 +81,7 @@ public class UISpawner : MonoBehaviour
             {
                 Vector3 pos = new Vector3(val[0], val[1], val[2]);
                 simulator.AddNewParticle(pos);
+                ClearColour();
             }
             else 
             {

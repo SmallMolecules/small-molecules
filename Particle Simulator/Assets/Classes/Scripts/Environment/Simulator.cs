@@ -74,8 +74,7 @@ public class Simulator  : MonoBehaviour
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
         box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
         box.transform.parent = this.transform;
-        boxLength = box.transform.localScale.x * BOX_LENGTH_SCALE;
-        wallThickness = boxLength * BOX_THICKNESS_SCALE;
+        UpdateBoxSize(box.transform.localScale.x);
 
 
         for (int i = 0; i < manager.NUM_PARTICLES; i++) {
