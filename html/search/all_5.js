@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fielddynamics_30',['fieldDynamics',['../classColoumb.html#aac15fbab3a9fa1de129f68bbb4ad430e',1,'Coloumb.fieldDynamics()'],['../classDynamicField.html#a53d527c72619809ffd3218a9298c9c3b',1,'DynamicField.fieldDynamics()'],['../classLennardJones.html#a92bd9976d5e55629d298a684870e22cb',1,'LennardJones.fieldDynamics()'],['../classStaticField.html#adb7973c2d2c5e14a99fb5ec0d262d897',1,'StaticField.fieldDynamics()'],['../classWind.html#a9752eb9381cf2f9facfde329c8c2d3c8',1,'Wind.fieldDynamics()']]],
-  ['fps_31',['fps',['../classPauseResume.html#aeec4395fe529176daac526bba573631d',1,'PauseResume']]]
+  ['exp_30',['EXP',['../structScale.html#aa3512f0550acbb11460ea59c80bb1700',1,'Scale']]],
+  ['exponent_31',['exponent',['../classUISpawner.html#aeb0d01ae012f3eff8cbfa17139c7be57',1,'UISpawner']]]
 ];

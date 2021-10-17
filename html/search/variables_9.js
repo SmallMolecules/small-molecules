@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['offcolor_204',['offColor',['../classPauseResume.html#a8d0575219851cd323e1d2e9716cb58dc',1,'PauseResume']]],
-  ['onncolor_205',['onnColor',['../classPauseResume.html#a64ca7b6d16ef1d7f482abd12c75be937',1,'PauseResume']]]
+  ['newestsim_211',['newestSim',['../classSimulationManager.html#ae861cd70a866ceb192a2d563df85e724',1,'SimulationManager']]],
+  ['num_5fparticles_212',['NUM_PARTICLES',['../classSimulationManager.html#a0776852a9bbae1164e0f54ffcb0acd02',1,'SimulationManager']]]
 ];

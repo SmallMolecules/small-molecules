@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['newsimulator_152',['newSimulator',['../classPauseResume.html#ad4683ee3b8d6708c1698f0b177529989',1,'PauseResume']]]
+  ['multiply_154',['Multiply',['../classScales.html#ac1eb377969b6962d2d0a53b90172c5b2',1,'Scales']]]
 ];
