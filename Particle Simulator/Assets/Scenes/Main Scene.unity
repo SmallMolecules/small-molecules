@@ -542,7 +542,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2094330334}
         m_TargetAssemblyTypeName: PauseResume, Assembly-CSharp
-        m_MethodName: toggleSelectedColour
+        m_MethodName: ToggleSelectedColour
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1439,6 +1439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 1515966206}
   pauseButton: {fileID: 1382635439}
-  systemButton: {fileID: 0}
+  systemButton: {fileID: 1199068077}
   fps: {fileID: 1261891213}
   simulatorUISpawner: {fileID: 5473545152470227865, guid: 899d58f9f7dc197ababa29357f8e693a, type: 3}

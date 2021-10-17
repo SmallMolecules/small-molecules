@@ -1873,7 +1873,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5473545152470227865}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -415, y: 50.679413, z: -156.97699}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2032,9 +2032,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5473545152470227865}
+      - m_Target: {fileID: 2416633098821423409}
         m_TargetAssemblyTypeName: UISpawner, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: AttemptCreateParticle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
