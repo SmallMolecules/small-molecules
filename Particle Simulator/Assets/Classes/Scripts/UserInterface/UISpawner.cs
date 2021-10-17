@@ -23,6 +23,9 @@ public class UISpawner : MonoBehaviour
     public Slider timescale;
     /**Reference to the boxSize slider*/
     public Slider boxSize;
+    /**Reference to the text representation of the size of the box
+    (eg for a size of 1 the length would be 10 unity units*/
+    public Text boxSizeText;
     /**Reference to the text representation of the unit scales*/
     public Text scales;
     /**Reference to the text representation of the coefficient of the time scale
@@ -111,6 +114,7 @@ public class UISpawner : MonoBehaviour
         simulator = sim.GetComponent<Simulator>();
         exponent.text = simulator.scales.time.EXP.ToString();
         UpdateScales();
+        UpdateBoxSize();
     }
 
     /**
@@ -136,7 +140,7 @@ public class UISpawner : MonoBehaviour
         Int32.TryParse(exponent.text, out exp);
         simulator.UpdateTime(coeff, exp);
 
-        coefficient.text = timescale.value.ToString("0.00") + " x 10^"; ;
+        coefficient.text = timescale.value.ToString("0.00") + " x 10^";
         exponent.text = simulator.scales.time.EXP.ToString();
 
         scales.text = "System 1:\n";
@@ -176,6 +180,7 @@ public class UISpawner : MonoBehaviour
     public void UpdateBoxSize()
     {
         float coeff = (float)Convert.ToDouble(boxSize.value);
+        boxSizeText.text = boxSize.value.ToString("0");
         simulator.UpdateBoxSize(coeff);
     }
 
