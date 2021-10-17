@@ -13,7 +13,7 @@ using System.Threading;
     @date September 2021
     \see Simulator Scales
     */
-public class Simulator  : MonoBehaviour
+public class Simulator : MonoBehaviour
 {
     /**Set of scales used by the simulator. This object is referenced by other 
     objects such as particles and fields.
@@ -60,24 +60,26 @@ public class Simulator  : MonoBehaviour
 
     private System.Random rand = new System.Random(9);
     void Start()
-    { 
+    {
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
         box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
         box.transform.parent = this.transform;
 
-        for (int i = 0; i < manager.NUM_PARTICLES; i++) {
+        for (int i = 0; i < manager.NUM_PARTICLES; i++)
+        {
             float x = rand.Next(-10, 10);
             float z = rand.Next(5, 15);
             float y = rand.Next(5, 15);
 
             float radius = Random.Range(1, 2);
             float mass = Random.Range(1, 2);
-            int charge = (int)Random.Range(0, 3)-1;
-            
-            AddNewParticle(new Vector3(x,y,z), mass, radius, charge);
+            int charge = (int)Random.Range(0, 3) - 1;
+
+            AddNewParticle(new Vector3(x, y, z), mass, radius, charge);
         }
 
-        dynamicFields.Add(new Coloumb(this));    
+        // dynamicFields.Add(new Coloumb(this));
+        dynamicFields.Add(new Coloumb(this));
     }
 
     /**
@@ -91,42 +93,47 @@ public class Simulator  : MonoBehaviour
             return;
         }
 
-        for (int a = 0; a < particles.Count; a++) {
+        for (int a = 0; a < particles.Count; a++)
+        {
             UpdateVelocity(a);
-        }  
+        }
 
         UpdatePositions();
     }
     /**Updates the velocity of the particle with an index of "a" in the list
     @param a - the index of the particle to update (int)*/
-    private void UpdateVelocity(int a) 
+    private void UpdateVelocity(int a)
     {
-        foreach (StaticField F in staticFields) {
-            F.ApplyForce(particles[a], scales);
+        foreach (StaticField F in staticFields)
+        {
+            F.ApplyForce(particles[a]);
         }
 
-        foreach (DynamicField F in dynamicFields) {
-            for (int b = a+1; b < particles.Count; b++) {
+        foreach (DynamicField F in dynamicFields)
+        {
+            for (int b = a + 1; b < particles.Count; b++)
+            {
                 F.ApplyForce(particles[a], particles[b]);
             }
         }
     }
 
     /**Updates the positions of all the particles in the list according to thier velocity*/
-    private void UpdatePositions() 
+    private void UpdatePositions()
     {
-        foreach (Particle A in particles) {
-            A.Step(scales.time.VAL);
+        foreach (Particle A in particles)
+        {
+            A.Step();
             A.CheckBoxCollision();
         }
     }
-    
+
     /**Adds a new particle at a given position with the specified parameters
     @param pos (Vector3)
     @param mass (float)
     @param radius (float)
     @param charge (int)*/
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0) 
+    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
     {
         GameObject sphere = Instantiate(particleSpawner, pos, Quaternion.identity);
         sphere.transform.parent = this.transform;
@@ -136,12 +143,12 @@ public class Simulator  : MonoBehaviour
     /**Adds a particle at a random position with default physical properties
     /see AddNewParticle
     */
-    public void AddNewParticleRandom() 
+    public void AddNewParticleRandom()
     {
         float z = rand.Next(-10, 10);
         float x = rand.Next(-10, 10);
         float y = rand.Next(-10, 10);
-        AddNewParticle(new Vector3(x,y,z));
+        AddNewParticle(new Vector3(x, y, z));
     }
 
     /**Called by the UI elements to change the time scale
@@ -149,54 +156,37 @@ public class Simulator  : MonoBehaviour
     @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
-        Debug.Log("Called");
-
         scales.SetTime(coeff, exp);
-        foreach (DynamicField d in dynamicFields)
-        {
-            d.UpdateConstants();
-        }
-        foreach (StaticField s in staticFields)
-        {
-            s.UpdateConstants();
-        }
     }
-    
+
     /**Called by the UI elements to change the length scale
     @param coeff - the coefficient of the length scale (float)
     @param exp - the exponent of the length scale (int)*/
     public void UpdateLength(float coeff, int index)
     {
         scales.SetLength(coeff, index);
-        foreach (DynamicField d in dynamicFields)
-        {
-            d.UpdateConstants();
-        }
-        foreach (StaticField s in staticFields)
-        {
-            s.UpdateConstants();
-        }
     }
-    
+
     /**Removes a particle, A, from the simulation
     @param A - the particle to remove (Particle)*/
-    private void RemoveParticle(Particle A) 
+    private void RemoveParticle(Particle A)
     {
         Destroy(A.particle);
         particles.Remove(A);
     }
 
     /**Toggles the pause state of the simulation*/
-    public void TogglePause() 
+    public void TogglePause()
     {
         paused = !paused;
     }
 
     /**Checks if a particle if clicked to destroy
-    and calls RemoveParticle()*/ 
-    private void HandleDestroyParticle() 
+    and calls RemoveParticle()*/
+    private void HandleDestroyParticle()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0))
+        {
             RaycastHit[] hits;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             int layerMask = 1 << 6;
@@ -230,7 +220,7 @@ public class Simulator  : MonoBehaviour
     /**Called by the UI elements to change the size of the box
     @param coeff - the coefficient of the size scale (float)
     */
-    public void UpdateBoxSize(float coeff) 
+    public void UpdateBoxSize(float coeff)
     {
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
     }

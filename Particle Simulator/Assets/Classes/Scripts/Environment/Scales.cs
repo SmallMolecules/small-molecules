@@ -29,7 +29,7 @@ public class Scales
 
 
     private float DEFAULT_TIME_COEFF = 1.0f;
-    private int DEFAULT_TIME_EXP = -9;
+    private int DEFAULT_TIME_EXP = -14;
 
     private float DEFAULT_LENGTH_COEFF = 1.0f;
     private int DEFAULT_LENGTH_EXP = -9;
@@ -64,7 +64,6 @@ public class Scales
     */
     public void SetLength(float c, int e)
     {
-
         length = new Scale(c, e);
     }
 
@@ -87,11 +86,11 @@ public class Scales
     @param q - the order of the charge dimension (int)
     @returns the scaled value (float)
     */
-    public float ScaleFactor(float v, int kg, int m, int s, int q)
+    public float constantFromSI(float v, int kg, int m, int s, int q)
     {
         Scale MASS = Pow(mass, -kg);
         Scale LENGTH = Pow(length, -m);
-        Scale TIME = Pow(time, -s);
+        Scale TIME = Pow(time, -s - 1);
         Scale CHARGE = Pow(charge, -q);
 
         return v * Multiply(Multiply(MASS, LENGTH), Multiply(TIME, CHARGE)).VAL;

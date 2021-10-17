@@ -2919,7 +2919,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2416633098821423409}
         m_TargetAssemblyTypeName: UISpawner, Assembly-CSharp
-        m_MethodName: updateScales
+        m_MethodName: UpdateScales
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
