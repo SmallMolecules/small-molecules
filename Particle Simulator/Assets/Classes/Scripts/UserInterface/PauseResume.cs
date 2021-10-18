@@ -18,16 +18,16 @@ using System.Globalization;
 public class PauseResume : MonoBehaviour
 {
     /**Reference to the pause-screen elemenet*/
-    public GameObject pauseScreen;
+    [SerializeField] private GameObject pauseScreen;
     /**Reference to the pause button*/
-    public GameObject pauseButton;
+    [SerializeField] private GameObject pauseButton;
     /**Reference to the system button*/
-    public Button systemButton;
+    [SerializeField] private Button systemButton;
     /**Reference to the FPS display text*/
-    public Text fps;
+    [SerializeField] private Text fps;
     
     /**GameObject to spawn for the simulator sub-menu*/
-    public GameObject simulatorUISpawner;
+    [SerializeField] private GameObject simulatorUISpawner;
 
     /**Reference to the simulation manager object*/
     private SimulationManager manager;

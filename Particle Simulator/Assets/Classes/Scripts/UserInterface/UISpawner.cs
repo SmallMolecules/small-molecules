@@ -18,25 +18,25 @@ using System.Globalization;
 public class UISpawner : MonoBehaviour
 {
     /**Reference to the (x,y,z) spawn location and the atomic properties input fields*/
-    public InputField[] inputs;
+    [SerializeField] private InputField[] inputs;
     /**Reference to the timescale slider*/
-    public Slider timescale;
+    [SerializeField] private Slider timescale;
     /**Reference to the boxSize slider*/
-    public Slider boxSize;
+    [SerializeField] private Slider boxSize;
     /**Reference to the text representation of the size of the box
     (eg for a size of 1 the length would be 10 unity units*/
-    public Text boxSizeText;
+    [SerializeField] private Text boxSizeText;
     /**Reference to the text representation of the unit scales*/
-    public Text scales;
+    [SerializeField] private Text scales;
     /**Reference to the text representation of the coefficient of the time scale
     (eg for a timescale of 1.2e-9 the coefficient would be 1.2)*/
-    public Text coefficient;
+    [SerializeField] private Text coefficient;
     /**Reference to the text representation of the exponent of the time scale
     (eg for a timescale of 1.2e-9 the exponent would be -9)*/
-    public InputField exponent;
+    [SerializeField] private InputField exponent;
 
     /**Reference to the corresponding simulator object*/
-    public Simulator simulator;
+    [SerializeField] private Simulator simulator;
 
     //needed for string formatting for who knows why
     CultureInfo ci = new CultureInfo("en-us");
