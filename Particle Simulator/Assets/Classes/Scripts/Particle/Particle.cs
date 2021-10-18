@@ -14,22 +14,22 @@ using UnityEngine;
 public class Particle
 {
     /**The GameObject that this object is dictating*/
-    public GameObject particle;
+    [HideInInspector] public GameObject particle;
 
     /**Mass of the particle. Min value of 1.0*/
-    public float mass;
+    [HideInInspector] public float mass;
     /**Radius of the particle. Min value of 1.0*/
-    public float radius;
+    [HideInInspector] public float radius;
     /**Charge of the particle. Min value of 1*/
-    public int charge;
+    [HideInInspector] public int charge;
 
     /**Vector velocity of the particle. Dictates the position.*/
-    public Vector3 velocity;
+    [HideInInspector] public Vector3 velocity;
     /**Vector position of the particle. Dictates the GameObject position */
     private Vector3 position;
 
     /**Reference to the Scales of the parent Simulator*/
-    public Scales scales;
+    [HideInInspector] public Scales scales;
 
     /**
     Constructor for a particle. Sets the GameObject to be the one given in as a parameter, 
@@ -80,15 +80,6 @@ public class Particle
     public Vector3 GetPos()
     {
         return position;
-    }
-
-    /**
-    Gets the velocity of the particle
-    @returns velocity (Vector3)
-    */
-    public Vector3 GetVel()
-    {
-        return velocity;
     }
 
     /**
