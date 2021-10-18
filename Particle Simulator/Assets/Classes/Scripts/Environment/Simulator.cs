@@ -245,7 +245,7 @@ public class Simulator : MonoBehaviour
     /**Generates a random coordinate that is inside the bounds of the box
     @param radius - the size of the particle to be added
     */
-    private Vector3 generateRandomCoords(float radius = 1f)
+    public Vector3 generateRandomCoords(float radius = 1f)
     {
         float halfLength = boxLength / 2 - radius;
         float fullLength = boxLength - radius;
