@@ -156,7 +156,9 @@ public class Simulator : MonoBehaviour
     */
     public void AddNewParticleRandom()
     {
-        float mass=1f; float radius= 0.5f;int charge=0;
+        float radius = Random.Range(1, 2);
+        float mass = Random.Range(1, 2);
+        int charge = (int)Random.Range(0, 3) - 1;
         AddNewParticle(generateRandomCoords(), mass, radius, charge);
     }
 
