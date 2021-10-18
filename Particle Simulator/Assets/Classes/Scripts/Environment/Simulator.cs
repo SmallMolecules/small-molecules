@@ -27,7 +27,7 @@ public class Simulator : MonoBehaviour
     public bool destroy = false;
 
     /**The actual box environment object for the current simulation*/
-    public GameObject box;
+    private GameObject box;
 
     /**Reference to the simulation manager
     /see SimulationManager*/
