@@ -43,7 +43,7 @@ public class Particle
     public Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge)
     {
         particle = p;
-        position = p.transform.localPosition;
+        position = p.transform.position;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         scales = S;

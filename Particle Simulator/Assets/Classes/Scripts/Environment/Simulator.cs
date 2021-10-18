@@ -87,7 +87,7 @@ public class Simulator : MonoBehaviour
             AddNewParticle(generateRandomCoords(radius), mass, radius, charge);
         }
 
-        // dynamicFields.Add(new Coloumb(this));
+        dynamicFields.Add(new LennardJones(this));
         dynamicFields.Add(new Coloumb(this));
     }
 
@@ -145,9 +145,8 @@ public class Simulator : MonoBehaviour
     @param charge (int)*/
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
     {
-        GameObject sphere = Instantiate(particleSpawner, transform.position, transform.rotation);
-        // sphere.transform.parent = box.transform;
-        sphere.transform.localPosition = pos;
+        GameObject sphere = Instantiate(particleSpawner, transform);
+        sphere.transform.position = pos;
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
@@ -259,7 +258,7 @@ public class Simulator : MonoBehaviour
     */
     public void checkOutOfBounds(Particle p)
     {
-        Vector3 pos = p.particle.transform.position - transform.position;
+        Vector3 pos = p.particle.transform.localPosition;
         float radius = p.radius;
 
         float halfLength = boxLength / 2 - radius;

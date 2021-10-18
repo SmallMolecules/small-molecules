@@ -21,8 +21,10 @@ public class LennardJones : DynamicField
     @param sim - the parent Simulator (Simulator)*/
     public LennardJones(Simulator sim) : base(sim)
     {
-        sigma = sim.scales.ConstantFromSI(1E-9f, 0, 1, 0, 0);
-        epsilon = sim.scales.ConstantFromSI(1E-9f, 1, 1, -2, 0);
+        // sigma = sim.scales.ConstantFromSI(1.66E-21f, 1, 2, -2, 0);
+        sigma = 1f;
+        epsilon = 2f;
+        // Debug.Log("sigma = " + sigma.ToString());
     }
 
     /**
