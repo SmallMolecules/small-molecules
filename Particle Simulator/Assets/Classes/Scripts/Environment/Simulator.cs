@@ -150,7 +150,7 @@ public class Simulator : MonoBehaviour
     public void AddNewParticle(Vector3 pos, float mass, float radius, int charge)
     {
         GameObject sphere = Instantiate(particleSpawner, transform);
-        sphere.transform.position = pos;
+        sphere.transform.localPosition = pos;
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
@@ -256,7 +256,7 @@ public class Simulator : MonoBehaviour
         float z = rand.Next((int)Mathf.Ceil(minimum), (int)Mathf.Floor(fullLength));
 
         Vector3 relative = new Vector3(x, y, z);
-        return transform.position + relative;
+        return relative;
     }
 
     /**Checks if the particle is outside the bounds 
@@ -310,7 +310,7 @@ public class Simulator : MonoBehaviour
         }
 
         p.velocity = new Vector3(vx, vy, vz);
-        p.particle.transform.position = transform.position + new Vector3(x, y, z);
+        p.particle.transform.localPosition = new Vector3(x, y, z);
 
     }
 
