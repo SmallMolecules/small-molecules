@@ -21,17 +21,17 @@ public class SimulationManager : MonoBehaviour
     public int NUM_PARTICLES = 10;
 
     /**Reference to the GameObject this class is attached to*/
-    public GameObject simulatorSpawner;
+    [SerializeField] private GameObject simulatorSpawner;
 
     /**Reference to the UI pause screen that interacts with the simulatorManager*/
-    public GameObject UI;
+    [SerializeField] private GameObject UI;
 
     /**List of all simulation GameObjects*/
     List<GameObject> simulations = new List<GameObject>();
 
     /**Pause-state of all simulators. Dicates the pause-state of all simulators - if
     True then all simulators can be unpaused, if False then all simulators are paused*/
-    public bool paused;
+    [HideInInspector] public bool paused;
 
     /**Integer that specifies how many Simulators currently exist for naming purposes*/
     private int newestSim;
@@ -76,7 +76,7 @@ public class SimulationManager : MonoBehaviour
 
 
     /**Resets a simulator*/
-    public void ResetSystems()
+    private void ResetSystems()
     {
         List<GameObject> newSimulations = new List<GameObject>();
         foreach (GameObject S in simulations)
