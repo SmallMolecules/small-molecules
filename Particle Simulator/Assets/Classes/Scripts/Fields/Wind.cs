@@ -20,8 +20,8 @@ public class Wind : StaticField
     @param sim - the parent Simulator (Simulator)*/
     public Wind(Simulator sim) : base(sim)
     {
-        // simulates a constant force of 10^-10 Kg m s^-2
-        wind = sim.scales.ConstantFromSI(1.0E-10f, 1, 1, -2, 0);
+        // simulates a constant force of 10^-14 Kg m s^-2 (or N)
+        wind = sim.scales.ConstantFromSI(1.0E-14f, 1, 1, -2, 0);
     }
 
     /**
