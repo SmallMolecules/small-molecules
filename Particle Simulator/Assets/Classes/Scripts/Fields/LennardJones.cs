@@ -14,15 +14,19 @@ using System;
     */
 public class LennardJones : DynamicField
 {
+    /**The effective "size" of the particle*/
     float sigma;
+    /**The dispersion energy*/
     float epsilon;
     /**Contructor method - calls base constructor. This is where
     the constant SI units should be registered.
     @param sim - the parent Simulator (Simulator)*/
     public LennardJones(Simulator sim) : base(sim)
     {
-        sigma = sim.scales.ConstantFromSI(1E-9f, 0, 1, 0, 0);
-        epsilon = sim.scales.ConstantFromSI(1E-9f, 1, 1, -2, 0);
+        // sigma = sim.scales.ConstantFromSI(1.66E-21f, 1, 2, -2, 0);
+        sigma = 2f;
+        epsilon = 1E+12f;
+        // Debug.Log("sigma = " + sigma.ToString());
     }
 
     /**
@@ -35,10 +39,9 @@ public class LennardJones : DynamicField
     {
         float r = Vector3.Distance(A.GetPos(), B.GetPos());
 
-        //TODO - autimatically calculate collision distance
-        if (r < 1.7f)
+        if (r < A.radius + B.radius)
         {
-            r = 1.7f;
+            r = 0.9f * (A.radius + B.radius);
         }
 
         float con = 4 * epsilon * (Mathf.Pow(sigma / r, 12) - Mathf.Pow(sigma / r, 6));

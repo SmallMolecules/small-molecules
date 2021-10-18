@@ -87,8 +87,12 @@ public class Simulator : MonoBehaviour
             AddNewParticle(generateRandomCoords(radius), mass, radius, charge);
         }
 
-        // dynamicFields.Add(new Coloumb(this));
+        // dynamic feilds added here
+        dynamicFields.Add(new LennardJones(this));
         dynamicFields.Add(new Coloumb(this));
+
+        // static fields added here
+        // staticFields.Add(new Wind(this));
     }
 
     /**
@@ -132,9 +136,9 @@ public class Simulator : MonoBehaviour
     {
         foreach (Particle A in particles)
         {
-            checkOutOfBounds(A);
             A.CheckBoxCollision();
             A.Step();
+            checkOutOfBounds(A);
         }
     }
 
@@ -145,9 +149,8 @@ public class Simulator : MonoBehaviour
     @param charge (int)*/
     public void AddNewParticle(Vector3 pos, float mass, float radius, int charge)
     {
-        GameObject sphere = Instantiate(particleSpawner, transform.position, transform.rotation);
-        // sphere.transform.parent = box.transform;
-        sphere.transform.localPosition = pos;
+        GameObject sphere = Instantiate(particleSpawner, transform);
+        sphere.transform.position = pos;
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
@@ -262,7 +265,7 @@ public class Simulator : MonoBehaviour
     */
     public void checkOutOfBounds(Particle p)
     {
-        Vector3 pos = p.particle.transform.position - transform.position;
+        Vector3 pos = p.particle.transform.localPosition;
         float radius = p.radius;
 
         float halfLength = boxLength / 2 - radius;
@@ -301,16 +304,6 @@ public class Simulator : MonoBehaviour
         {
             z = fullLength;
         }
-
-        // For some reason this block of code doesn't work even though it should be the same thing as above
-        // x = Mathf.Max(pos.x, -halfLength);
-        // x = Mathf.Min(pos.x, halfLength);
-
-        // y = Mathf.Max(pos.y, minimum);
-        // y = Mathf.Min(pos.y, fullLength);
-
-        // z = Mathf.Max(pos.z, minimum);
-        // z = Mathf.Min(pos.z, fullLength);
 
         p.particle.transform.position = transform.position + new Vector3(x, y, z);
 

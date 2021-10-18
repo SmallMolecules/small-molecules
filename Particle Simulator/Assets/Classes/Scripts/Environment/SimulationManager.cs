@@ -75,7 +75,6 @@ public class SimulationManager : MonoBehaviour
     }
 
 
-    // TODO - implement this function
     /**Resets a simulator*/
     public void ResetSystems()
     {
