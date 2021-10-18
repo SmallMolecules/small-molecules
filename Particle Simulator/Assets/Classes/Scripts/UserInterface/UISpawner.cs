@@ -17,7 +17,7 @@ using System.Globalization;
 */
 public class UISpawner : MonoBehaviour
 {
-    /**Reference to the (x,y,z) spawn location InputFeilds*/
+    /**Reference to the (x,y,z) spawn location and the atomic properties of the particle*/
     public InputField[] inputs;
 
     /**Reference to the timescale slider*/
