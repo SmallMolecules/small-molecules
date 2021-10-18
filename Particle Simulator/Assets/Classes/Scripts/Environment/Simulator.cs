@@ -72,7 +72,7 @@ public class Simulator : MonoBehaviour
     void Start()
     {
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
-        box = Instantiate(boxEnvironment, new Vector3(0, 0, 0), Quaternion.identity);
+        box = Instantiate(boxEnvironment, transform.position, transform.rotation);
         box.transform.parent = this.transform;
         UpdateBoxSize(box.transform.localScale.x);
 
@@ -145,8 +145,9 @@ public class Simulator : MonoBehaviour
     @param charge (int)*/
     public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
     {
-        GameObject sphere = Instantiate(particleSpawner, pos, Quaternion.identity);
-        sphere.transform.parent = this.transform;
+        GameObject sphere = Instantiate(particleSpawner, transform.position, transform.rotation);
+        // sphere.transform.parent = box.transform;
+        sphere.transform.localPosition = pos;
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
@@ -248,7 +249,8 @@ public class Simulator : MonoBehaviour
         float y = rand.Next((int)Mathf.Ceil(minimum), (int)Mathf.Floor(fullLength));
         float z = rand.Next((int)Mathf.Ceil(minimum), (int)Mathf.Floor(fullLength));
 
-        return new Vector3(x, y, z);
+        Vector3 relative = new Vector3(x, y, z);
+        return transform.position + relative;
     }
 
     /**Checks if the particle is outside the bounds 
@@ -257,7 +259,7 @@ public class Simulator : MonoBehaviour
     */
     public void checkOutOfBounds(Particle p)
     {
-        Vector3 pos = p.particle.transform.position;
+        Vector3 pos = p.particle.transform.position - transform.position;
         float radius = p.radius;
 
         float halfLength = boxLength / 2 - radius;
@@ -307,7 +309,7 @@ public class Simulator : MonoBehaviour
         // z = Mathf.Max(pos.z, minimum);
         // z = Mathf.Min(pos.z, fullLength);
 
-        p.particle.transform.position = new Vector3(x, y, z);
+        p.particle.transform.position = transform.position + new Vector3(x, y, z);
 
     }
 
