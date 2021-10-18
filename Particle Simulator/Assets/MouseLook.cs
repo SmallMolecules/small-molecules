@@ -28,8 +28,10 @@ public class MouseLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         /*Rotates independant of the frame rate*/
         xRotation -= mouseY;
+        /*Clamp rotation so we cant over rotate and go behind the player*/
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        /*Reference for local camera*/
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
     }
