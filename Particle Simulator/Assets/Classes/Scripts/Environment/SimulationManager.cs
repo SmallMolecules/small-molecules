@@ -63,7 +63,7 @@ public class SimulationManager : MonoBehaviour
     "System X".*/
     private void CreateSimulator()
     {
-        GameObject sim = Instantiate(simulatorSpawner, new Vector3(-10, Y_HEIGHT, 20), Quaternion.identity);
+        GameObject sim = Instantiate(simulatorSpawner, new Vector3(0, Y_HEIGHT, 0), Quaternion.identity);
         sim.name = String.Format("System {0}", newestSim);
 
         newestSim++;

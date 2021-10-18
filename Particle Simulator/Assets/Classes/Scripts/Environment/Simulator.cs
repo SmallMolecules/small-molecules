@@ -63,10 +63,10 @@ public class Simulator : MonoBehaviour
     The values are obtained from the box prefab. Changing the constant will not change 
     the box prefab thickness
     */
-    public float BOX_THICKNESS_SCALE = 0.025f;
-    public float BOX_LENGTH_SCALE = 10;
-    public float boxLength;
-    public float wallThickness;
+    [HideInInspector] public float BOX_THICKNESS_SCALE = 0.025f;
+    [HideInInspector] public float BOX_LENGTH_SCALE = 10;
+    [HideInInspector] public float boxLength;
+    [HideInInspector] public float wallThickness;
 
     private System.Random rand = new System.Random(9);
     void Start()
@@ -150,7 +150,7 @@ public class Simulator : MonoBehaviour
     public void AddNewParticle(Vector3 pos, float mass, float radius, int charge)
     {
         GameObject sphere = Instantiate(particleSpawner, transform);
-        sphere.transform.position = pos;
+        sphere.transform.localPosition = pos;
         particles.Add(new Particle(sphere, scales, mass, radius, charge));
     }
 
@@ -256,7 +256,7 @@ public class Simulator : MonoBehaviour
         float z = rand.Next((int)Mathf.Ceil(minimum), (int)Mathf.Floor(fullLength));
 
         Vector3 relative = new Vector3(x, y, z);
-        return transform.position + relative;
+        return relative;
     }
 
     /**Checks if the particle is outside the bounds 
@@ -272,40 +272,45 @@ public class Simulator : MonoBehaviour
         float fullLength = boxLength + wallThickness - radius;
         float minimum = wallThickness + radius;
 
+        
         float x = pos.x;
+        float vx = p.velocity.x;
+        float vy = p.velocity.y;
+        float vz = p.velocity.z;
 
-        if (pos.x < -halfLength)
-        {
+        if (pos.x < -halfLength) {
             x = -halfLength;
+            vx = -vx;
         }
-        if (pos.x > halfLength)
-        {
-            x = halfLength;
+        if (pos.x > halfLength) {   
+            x = halfLength; 
+            vx = -vx;
         };
 
         float y = pos.y;
-        if (pos.y < minimum)
-        {
-            y = minimum;
+        if (pos.y < minimum) {
+            y = minimum; 
+            vy = -vy;
         }
 
-        if (pos.y > fullLength)
-        {
+        if (pos.y > fullLength) {
             y = fullLength;
+            vy = -vy;
         }
 
         float z = pos.z;
-        if (pos.z < minimum)
-        {
-            z = minimum;
+        if (pos.z < minimum) {
+            z = minimum; 
+            vz = -vz;
         }
 
-        if (pos.z > fullLength)
-        {
+        if (pos.z > fullLength) {
             z = fullLength;
+            vz = -vz;
         }
 
-        p.particle.transform.position = transform.position + new Vector3(x, y, z);
+        p.velocity = new Vector3(vx, vy, vz);
+        p.particle.transform.localPosition = new Vector3(x, y, z);
 
     }
 
