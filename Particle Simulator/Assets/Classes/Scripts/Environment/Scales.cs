@@ -19,13 +19,14 @@ using System;
 public class Scales
 {
     /**The time-scale in seconds (s)*/
-    public Scale time;
+    [HideInInspector] public Scale time;
     /**The length-scale in meters (m)*/
-    public Scale length;
-    /**The mass-scale in kilograms (kg)*/
-    public static Scale mass;
+    [HideInInspector] public Scale length;
     /**The charge-scale in coloumbs (C)*/
-    public static Scale charge;
+    [HideInInspector] public Scale charge;
+    /**The mass-scale in kilograms (kg)*/
+    [HideInInspector] public Scale mass;
+
 
     // Default values for scales
     private static float DEFAULT_TIME_COEFF = 2.0f;
@@ -93,7 +94,7 @@ public class Scales
     @param b (Scale)
     @returns new scale (Scale)
     */
-    public static Scale Multiply(Scale a, Scale b)
+    private static Scale Multiply(Scale a, Scale b)
     {
         float coeff = a.COEFF * b.COEFF;
         int EXP = a.EXP + b.EXP;
@@ -105,7 +106,7 @@ public class Scales
     @param scale (Scale)
     @param pow (int)
     */
-    public static Scale Pow(Scale scale, int pow)
+    private static Scale Pow(Scale scale, int pow)
     {
         return new Scale(Mathf.Pow(scale.COEFF, pow), scale.EXP * pow);
     }

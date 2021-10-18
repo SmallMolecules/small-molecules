@@ -21,10 +21,10 @@ public class Simulator : MonoBehaviour
     public Scales scales = new Scales();
 
     /**Dictates if the simulation is paused. True if this simulation is paused, false otherwise*/
-    public bool paused;
+    [HideInInspector] public bool paused;
 
     /**Specifies if destroy mode has been activated*/
-    public bool destroy = false;
+    private bool destroy = false;
 
     /**The actual box environment object for the current simulation*/
     private GameObject box;
@@ -34,10 +34,10 @@ public class Simulator : MonoBehaviour
     private SimulationManager manager;
 
     /**The GameObject to spawn (Particle Object)*/
-    public GameObject particleSpawner;
+    [HideInInspector] public GameObject particleSpawner;
 
     /**The GameObject Environment to spawn (Box)*/
-    public GameObject boxEnvironment;
+    [HideInInspector] public GameObject boxEnvironment;
 
     /**List of the particles*/
     List<Particle> particles = new List<Particle>();
@@ -52,7 +52,7 @@ public class Simulator : MonoBehaviour
     random seed is generated and used to construct this object*/
     // private System.Random rand;
     /**The seed used to generate this simulator's random object*/
-    public int seed;
+    private int seed;
 
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
@@ -84,15 +84,12 @@ public class Simulator : MonoBehaviour
             float mass = Random.Range(1, 2);
             int charge = (int)Random.Range(0, 3) - 1;
 
-            AddNewParticle(generateRandomCoords(radius), mass, radius, charge);
+            AddNewParticle(GenerateRandomCoords(radius), mass, radius, charge);
         }
 
-        // dynamic feilds added here
         dynamicFields.Add(new LennardJones(this));
         dynamicFields.Add(new Coloumb(this));
 
-        // static fields added here
-        // staticFields.Add(new Wind(this));
     }
 
     /**
@@ -138,7 +135,7 @@ public class Simulator : MonoBehaviour
         {
             A.CheckBoxCollision();
             A.Step();
-            checkOutOfBounds(A);
+            CheckOutOfBounds(A);
         }
     }
 
@@ -162,7 +159,7 @@ public class Simulator : MonoBehaviour
         float radius = Random.Range(1, 2);
         float mass = Random.Range(1, 2);
         int charge = (int)Random.Range(0, 3) - 1;
-        AddNewParticle(generateRandomCoords(), mass, radius, charge);
+        AddNewParticle(GenerateRandomCoords(), mass, radius, charge);
     }
 
     /**Called by the UI elements to change the time scale. Also updates
@@ -245,7 +242,7 @@ public class Simulator : MonoBehaviour
     /**Generates a random coordinate that is inside the bounds of the box
     @param radius - the size of the particle to be added
     */
-    public Vector3 generateRandomCoords(float radius = 1f)
+    public Vector3 GenerateRandomCoords(float radius = 1f)
     {
         float halfLength = boxLength / 2 - radius;
         float fullLength = boxLength - radius;
@@ -263,7 +260,7 @@ public class Simulator : MonoBehaviour
     of the boxand puts it back in
     @param p - the particle being checked
     */
-    public void checkOutOfBounds(Particle p)
+    private void CheckOutOfBounds(Particle p)
     {
         Vector3 pos = p.particle.transform.localPosition;
         float radius = p.radius;
@@ -271,7 +268,6 @@ public class Simulator : MonoBehaviour
         float halfLength = boxLength / 2 - radius;
         float fullLength = boxLength + wallThickness - radius;
         float minimum = wallThickness + radius;
-
 
         float x = pos.x;
         float vx = p.velocity.x;
