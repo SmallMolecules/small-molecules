@@ -17,7 +17,7 @@ using System.Globalization;
 */
 public class UISpawner : MonoBehaviour
 {
-    /**Reference to the (x,y,z) spawn location InputFeilds*/
+    /**Reference to the (x,y,z) spawn location and the atomic properties input fields*/
     public InputField[] inputs;
     /**Reference to the timescale slider*/
     public Slider timescale;
@@ -64,8 +64,8 @@ public class UISpawner : MonoBehaviour
     public void AttemptCreateParticle()
     {
         bool abort = false;
-        float[] val = new float[3];
-        for (int i = 0; i < 3; i++)
+        float[] val = new float[6];
+        for (int i = 0; i < 6; i++)
         {
 
             if (!float.TryParse(inputs[i].text, out val[i]))
@@ -83,7 +83,7 @@ public class UISpawner : MonoBehaviour
             if (inBounds[0] && inBounds[1] && inBounds[2]) 
             {
                 Vector3 pos = new Vector3(val[0], val[1], val[2]);
-                simulator.AddNewParticle(pos);
+                simulator.AddNewParticle(pos, val[3], val[4], (int)val[5]);
                 ClearColour();
             }
             else 

@@ -145,7 +145,7 @@ public class Simulator : MonoBehaviour
     @param mass (float)
     @param radius (float)
     @param charge (int)*/
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
+    public void AddNewParticle(Vector3 pos, float mass, float radius, int charge)
     {
         GameObject sphere = Instantiate(particleSpawner, transform);
         sphere.transform.position = pos;
@@ -157,7 +157,10 @@ public class Simulator : MonoBehaviour
     */
     public void AddNewParticleRandom()
     {
-        AddNewParticle(generateRandomCoords());
+        float radius = Random.Range(1, 2);
+        float mass = Random.Range(1, 2);
+        int charge = (int)Random.Range(0, 3) - 1;
+        AddNewParticle(generateRandomCoords(), mass, radius, charge);
     }
 
     /**Called by the UI elements to change the time scale
