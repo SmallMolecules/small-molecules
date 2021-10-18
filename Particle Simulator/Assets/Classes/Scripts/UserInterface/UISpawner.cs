@@ -19,6 +19,7 @@ public class UISpawner : MonoBehaviour
 {
     /**Reference to the (x,y,z) spawn location InputFeilds*/
     public InputField[] inputs;
+
     /**Reference to the timescale slider*/
     public Slider timescale;
     /**Reference to the boxSize slider*/
@@ -31,6 +32,7 @@ public class UISpawner : MonoBehaviour
     /**Reference to the text representation of the exponent of the time scale
     (eg for a timescale of 1.2e-9 the exponent would be -9)*/
     public InputField exponent;
+
 
     /**Reference to the corresponding simulator object*/
     public Simulator simulator;
@@ -61,8 +63,8 @@ public class UISpawner : MonoBehaviour
     public void AttemptCreateParticle()
     {
         bool abort = false;
-        float[] val = new float[3];
-        for (int i = 0; i < 3; i++)
+        float[] val = new float[6];
+        for (int i = 0; i < 6; i++)
         {
 
             if (!float.TryParse(inputs[i].text, out val[i]))
@@ -74,8 +76,11 @@ public class UISpawner : MonoBehaviour
 
         if (!abort)
         {
-            Vector3 pos = new Vector3(val[0], val[1], val[2]);
-            simulator.AddNewParticle(pos);
+            Vector3 pos = new Vector3(val[0], val[1], val[2]); 
+            float mass=val[3]; 
+            float radius=val[4];
+            int charge=(int)val[5];
+            simulator.AddNewParticle(pos, mass, radius, charge);
         }
     }
 
@@ -85,6 +90,12 @@ public class UISpawner : MonoBehaviour
     public void RandomCreate()
     {
         simulator.AddNewParticleRandom();
+    }
+
+    public void getInputOnClick()
+    {
+
+
     }
 
     /**
@@ -104,7 +115,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ClearColour()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 6; i++)
         {
             inputs[i].image.color = Color.white;
         }
