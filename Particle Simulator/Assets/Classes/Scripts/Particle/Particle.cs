@@ -107,8 +107,8 @@ public class Particle
     */
     public void Step()
     {
-        position += velocity * scales.time.VAL;
-        particle.transform.Translate(velocity * scales.time.VAL);
+        position += velocity;
+        particle.transform.Translate(velocity);
     }
 
     /**

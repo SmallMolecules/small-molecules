@@ -42,7 +42,7 @@ public class StaticField
     */
     public void ApplyForce(Particle A)
     {
-        Vector3 F = FieldDynamics(A);
+        Vector3 F = FieldDynamics(A) * scales.time.VAL * scales.time.VAL;
         A.AddForce(F);
     }
 

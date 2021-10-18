@@ -64,11 +64,14 @@ public class Simulator : MonoBehaviour
     the box prefab thickness
     */
     public float BOX_THICKNESS_SCALE = 0.025f;
+    /**Scale of the box*/
     public float BOX_LENGTH_SCALE = 10;
+    /**Length of the box walls*/
     public float boxLength;
+    /**Thickness of the box walls*/
     public float wallThickness;
 
-    private System.Random rand = new System.Random(9);
+    private System.Random rand = new System.Random();
     void Start()
     {
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
@@ -88,11 +91,11 @@ public class Simulator : MonoBehaviour
         }
 
         // dynamic feilds added here
-        dynamicFields.Add(new LennardJones(this));
-        dynamicFields.Add(new Coloumb(this));
+        // dynamicFields.Add(new LennardJones(this));
+        // dynamicFields.Add(new Coloumb(this));
 
         // static fields added here
-        // staticFields.Add(new Wind(this));
+        staticFields.Add(new Wind(this));
     }
 
     /**
@@ -171,14 +174,6 @@ public class Simulator : MonoBehaviour
     public void UpdateTime(float coeff, int exp)
     {
         scales.SetTime(coeff, exp);
-    }
-
-    /**Called by the UI elements to change the length scale
-    @param coeff - the coefficient of the length scale (float)
-    @param exp - the exponent of the length scale (int)*/
-    public void UpdateLength(float coeff, int index)
-    {
-        scales.SetLength(coeff, index);
     }
 
     /**Removes a particle, A, from the simulation
@@ -308,6 +303,4 @@ public class Simulator : MonoBehaviour
         p.particle.transform.position = transform.position + new Vector3(x, y, z);
 
     }
-
-
 }
