@@ -87,9 +87,11 @@ public class Simulator : MonoBehaviour
             AddNewParticle(generateRandomCoords(radius), mass, radius, charge);
         }
 
+        // dynamic feilds added here
         dynamicFields.Add(new LennardJones(this));
-        // dynamicFields.Add(new Coloumb(this));
+        dynamicFields.Add(new Coloumb(this));
 
+        // static fields added here
         // staticFields.Add(new Wind(this));
     }
 
@@ -134,9 +136,9 @@ public class Simulator : MonoBehaviour
     {
         foreach (Particle A in particles)
         {
-            checkOutOfBounds(A);
             A.CheckBoxCollision();
             A.Step();
+            checkOutOfBounds(A);
         }
     }
 
@@ -302,16 +304,6 @@ public class Simulator : MonoBehaviour
         {
             z = fullLength;
         }
-
-        // For some reason this block of code doesn't work even though it should be the same thing as above
-        // x = Mathf.Max(pos.x, -halfLength);
-        // x = Mathf.Min(pos.x, halfLength);
-
-        // y = Mathf.Max(pos.y, minimum);
-        // y = Mathf.Min(pos.y, fullLength);
-
-        // z = Mathf.Max(pos.z, minimum);
-        // z = Mathf.Min(pos.z, fullLength);
 
         p.particle.transform.position = transform.position + new Vector3(x, y, z);
 
