@@ -20,7 +20,6 @@ public class Coloumb : DynamicField
     public Coloumb(Simulator sim) : base(sim)
     {
         couloumbConstant = sim.scales.ConstantFromSI(8.988E+9f, 1, 3, -2, -2);
-        Debug.Log(couloumbConstant);
     }
 
     /**
