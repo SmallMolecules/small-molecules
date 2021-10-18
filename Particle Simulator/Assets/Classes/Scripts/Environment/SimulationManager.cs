@@ -74,7 +74,6 @@ public class SimulationManager : MonoBehaviour
         UI.GetComponent<PauseResume>().NewSimulator(sim);
     }
 
-
     /**Resets a simulator*/
     private void ResetSystems()
     {

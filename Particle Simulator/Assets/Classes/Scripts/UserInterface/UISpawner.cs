@@ -19,6 +19,10 @@ public class UISpawner : MonoBehaviour
 {
     /**Reference to the (x,y,z) spawn location and the atomic properties input fields*/
     [SerializeField] private InputField[] inputs;
+
+    /** Reference to panel holding premade elements**/
+    public GameObject premadepanel;
+
     /**Reference to the timescale slider*/
     [SerializeField] private Slider timescale;
     /**Reference to the boxSize slider*/
@@ -80,13 +84,13 @@ public class UISpawner : MonoBehaviour
         {
             bool[] inBounds = isParticleInBounds(new Vector3(val[0], val[1], val[2]));
 
-            if (inBounds[0] && inBounds[1] && inBounds[2]) 
+            if (inBounds[0] && inBounds[1] && inBounds[2])
             {
                 Vector3 pos = new Vector3(val[0], val[1], val[2]);
                 simulator.AddNewParticle(pos, val[3], val[4], (int)val[5]);
                 ClearColour();
             }
-            else 
+            else
             {
                 for (int i = 0; i < 3; i++)
                 {
@@ -103,6 +107,21 @@ public class UISpawner : MonoBehaviour
     {
         simulator.AddNewParticleRandom();
     }
+
+    /**
+    Function to open panel which contains premade elements
+    */
+    public void panelOpener()
+    {
+        if (premadepanel != null)
+        {
+
+            bool isActive = premadepanel.activeSelf;
+            premadepanel.SetActive(!isActive);
+
+        }
+    }
+
 
     /**
     Binds the "simulator" property of this object to 
@@ -195,9 +214,9 @@ public class UISpawner : MonoBehaviour
     */
     private bool[] isParticleInBounds(Vector3 pos, float radius = 1f)
     {
-        bool[] inBounds = {true, true, true};
+        bool[] inBounds = { true, true, true };
 
-        float halfLength = simulator.boxLength/2 - radius;
+        float halfLength = simulator.boxLength / 2 - radius;
         float fullLength = simulator.boxLength + simulator.wallThickness - radius;
         float minimum = simulator.wallThickness + radius;
 
@@ -207,5 +226,43 @@ public class UISpawner : MonoBehaviour
 
         return inBounds;
     }
+
+    /** hard coded premade trial elements with 0 charge**/
+
+    public void spawnH()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(0.53f), 1.007f, 0.53f, 0);
+    }
+
+    public void spawnHe()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(0.31f), 4.002f, 0.31f, 0);
+    }
+
+    public void spawnLi()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(1.67f), 6.941f, 1.67f, 0);
+    }
+
+    public void spawnBe()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(1.12f), 9.012f, 1.12f, 0);
+    }
+
+    public void spawnB()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(0.87f), 10.811f, 0.87f, 0);
+    }
+
+    public void spawnC()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(0.67f), 12.011f, 0.67f, 0);
+    }
+
+    public void spawnO()
+    {
+        simulator.AddNewParticle(simulator.GenerateRandomCoords(0.484f), 15.999f, 0.484f, 0);
+    }
+
 
 }

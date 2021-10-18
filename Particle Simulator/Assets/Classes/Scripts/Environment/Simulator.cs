@@ -68,7 +68,7 @@ public class Simulator : MonoBehaviour
     [HideInInspector] public float boxLength;
     [HideInInspector] public float wallThickness;
 
-    private System.Random rand = new System.Random(9);
+    private System.Random rand = new System.Random();
     void Start()
     {
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
@@ -135,7 +135,7 @@ public class Simulator : MonoBehaviour
         {
             A.CheckBoxCollision();
             A.Step();
-            checkOutOfBounds(A);
+            CheckOutOfBounds(A);
         }
     }
 
@@ -162,20 +162,19 @@ public class Simulator : MonoBehaviour
         AddNewParticle(GenerateRandomCoords(), mass, radius, charge);
     }
 
-    /**Called by the UI elements to change the time scale
+    /**Called by the UI elements to change the time scale. Also updates
+    the velocities of all the paritlces by calculating the ratio of the 
+    time-scale change.
     @param coeff - the coefficient of the time scale (float)
     @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
+        Scale ratio = new Scale(coeff / scales.time.COEFF, exp - scales.time.EXP);
         scales.SetTime(coeff, exp);
-    }
-
-    /**Called by the UI elements to change the length scale
-    @param coeff - the coefficient of the length scale (float)
-    @param exp - the exponent of the length scale (int)*/
-    public void UpdateLength(float coeff, int index)
-    {
-        scales.SetLength(coeff, index);
+        foreach (Particle A in particles)
+        {
+            A.adjustVelocity(ratio.VAL);
+        }
     }
 
     /**Removes a particle, A, from the simulation
@@ -233,6 +232,7 @@ public class Simulator : MonoBehaviour
     */
     public void UpdateBoxSize(float coeff)
     {
+        if (box == null) return;
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
         boxLength = box.transform.localScale.x * BOX_LENGTH_SCALE;
         wallThickness = boxLength * BOX_THICKNESS_SCALE;
@@ -242,7 +242,7 @@ public class Simulator : MonoBehaviour
     /**Generates a random coordinate that is inside the bounds of the box
     @param radius - the size of the particle to be added
     */
-    private Vector3 GenerateRandomCoords(float radius = 1f)
+    public Vector3 GenerateRandomCoords(float radius = 1f)
     {
         float halfLength = boxLength / 2 - radius;
         float fullLength = boxLength - radius;
@@ -260,7 +260,7 @@ public class Simulator : MonoBehaviour
     of the boxand puts it back in
     @param p - the particle being checked
     */
-    private void checkOutOfBounds(Particle p)
+    private void CheckOutOfBounds(Particle p)
     {
         Vector3 pos = p.particle.transform.localPosition;
         float radius = p.radius;
@@ -274,33 +274,39 @@ public class Simulator : MonoBehaviour
         float vy = p.velocity.y;
         float vz = p.velocity.z;
 
-        if (pos.x < -halfLength) {
+        if (pos.x < -halfLength)
+        {
             x = -halfLength;
             vx = -vx;
         }
-        if (pos.x > halfLength) {   
-            x = halfLength; 
+        if (pos.x > halfLength)
+        {
+            x = halfLength;
             vx = -vx;
         };
 
         float y = pos.y;
-        if (pos.y < minimum) {
-            y = minimum; 
+        if (pos.y < minimum)
+        {
+            y = minimum;
             vy = -vy;
         }
 
-        if (pos.y > fullLength) {
+        if (pos.y > fullLength)
+        {
             y = fullLength;
             vy = -vy;
         }
 
         float z = pos.z;
-        if (pos.z < minimum) {
-            z = minimum; 
+        if (pos.z < minimum)
+        {
+            z = minimum;
             vz = -vz;
         }
 
-        if (pos.z > fullLength) {
+        if (pos.z > fullLength)
+        {
             z = fullLength;
             vz = -vz;
         }
@@ -309,6 +315,4 @@ public class Simulator : MonoBehaviour
         p.particle.transform.localPosition = new Vector3(x, y, z);
 
     }
-
-
 }

@@ -65,7 +65,7 @@ public class Particle
 
         var myCollider = particle.GetComponent<SphereCollider>();
 
-        myCollider.radius = setRadius;
+        myCollider.radius = setRadius * 0.5f;
         mass = setMass;
         charge = setCharge;
         radius = setRadius;
@@ -83,6 +83,22 @@ public class Particle
     }
 
     /**
+    Gets the velocity of the particle
+    @returns velocity (Vector3)
+    */
+    public Vector3 GetVel()
+    {
+        return velocity;
+    }
+
+    /**Updates the velocity when the timescale changes. Used by the
+    particles parent simulator*/
+    public void adjustVelocity(float ratio)
+    {
+        velocity *= ratio;
+    }
+
+    /**
     Adds a force to the particle 
     @param Unity unit scaled force F (Vector3)
     */
@@ -92,14 +108,13 @@ public class Particle
     }
 
     /**
-    Steps the particle position and moves the GameObject accordin to
+    Steps the particle position and moves the GameObject according to
     its velocity.
-    @param timestep  (float)
     */
     public void Step()
     {
-        position += velocity * scales.time.VAL;
-        particle.transform.Translate(velocity * scales.time.VAL);
+        position += velocity;
+        particle.transform.Translate(velocity);
     }
 
     /**

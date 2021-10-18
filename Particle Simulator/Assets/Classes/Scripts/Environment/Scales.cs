@@ -28,11 +28,18 @@ public class Scales
     [HideInInspector] public Scale mass;
 
 
-    private float DEFAULT_TIME_COEFF = 1.0f;
-    private int DEFAULT_TIME_EXP = -14;
+    // Default values for scales
+    private static float DEFAULT_TIME_COEFF = 2.0f;
+    private static int DEFAULT_TIME_EXP = -11;
 
-    private float DEFAULT_LENGTH_COEFF = 1.0f;
-    private int DEFAULT_LENGTH_EXP = -9;
+    private static float DEFAULT_LENGTH_COEFF = 0.85f; // charge radius
+    private static int DEFAULT_LENGTH_EXP = -15;
+
+    private static float DEFAULT_MASS_COEFF = 1.6f; // mass of proton
+    private static int DEFAULT_MASS_EXP = -19;
+
+    private static float DEFAULT_CHARGE_COEFF = 1.67f; // equal to 1 C
+    private static int DEFAULT_CHARGE_EXP = -27;
 
     /**
     Default constructor for the scales class. Sets all scales to the default values.
@@ -40,10 +47,9 @@ public class Scales
     public Scales()
     {
         SetTime(DEFAULT_TIME_COEFF, DEFAULT_TIME_EXP);
-        SetLength(DEFAULT_LENGTH_COEFF, DEFAULT_LENGTH_EXP);
-        // TODO add checks for charge and mass
-        charge = new Scale(1.6f, -19);
-        mass = new Scale(1.6f, -27);
+        length = new Scale(DEFAULT_LENGTH_COEFF, DEFAULT_LENGTH_EXP);
+        mass = new Scale(DEFAULT_MASS_COEFF, DEFAULT_MASS_EXP);
+        charge = new Scale(DEFAULT_CHARGE_COEFF, DEFAULT_CHARGE_EXP);
     }
 
     /**
@@ -58,24 +64,11 @@ public class Scales
     }
 
     /**
-    Sets the length-scale given a coefficent and an exponent
-    @param coefficient (float)
-    @param exponent (int)
-    */
-    public void SetLength(float c, int e)
-    {
-        length = new Scale(c, e);
-    }
+    The purpose of this function is to be used in the DynamicField and StaticFeild classes. Given an SI value (v) 
+    and the indexes of the units, this function will scale it according to the scale fields.
 
-    /**
-    The purpose of this function is to be used in the DynamicField and StaticFeild classes.
-    This solves the problem of scale invariance - for example a user may wish to use a constant
-    value in SI units in their field implementation. However this constnat needs to be scaled 
-    according to the values in the scales class to be representative of unity the unity units. 
-
-    The use of this function is to pass in the value you wish to scale and the order of each of the 
-    dimensions. For example if the input value (v) is of units Kg.m^-3.s^2 the approprate input would be 
-    ScaleFactor(v, 1, -3, 2, 0).
+    For example if the input value (v) is of units Kg.m^-3.s^2 the approprate input would be 
+    ConstantFromSI(v, 1, -3, 2, 0).
 
     Currently this function only supports length, mass, time and charge. 
 
@@ -90,9 +83,8 @@ public class Scales
     {
         Scale MASS = Pow(mass, -kg);
         Scale LENGTH = Pow(length, -m);
-        Scale TIME = Pow(time, -s - 1);
+        Scale TIME = Pow(time, -s - 2);
         Scale CHARGE = Pow(charge, -q);
-
         return v * Multiply(Multiply(MASS, LENGTH), Multiply(TIME, CHARGE)).VAL;
     }
 
