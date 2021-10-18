@@ -11,11 +11,11 @@ using UnityEngine;
     @date September 2021
     \see Simulator Scales
     */
-public class Particle 
-{ 
+public class Particle
+{
     /**The GameObject that this object is dictating*/
     public GameObject particle;
-    
+
     /**Mass of the particle. Min value of 1.0*/
     public float mass;
     /**Radius of the particle. Min value of 1.0*/
@@ -40,23 +40,26 @@ public class Particle
     @param setRadius (float)
     @param setCharge (int)
     */
-    public Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge) 
+    public Particle(GameObject p, Scales S, float setMass, float setRadius, int setCharge)
     {
         particle = p;
-        position = p.transform.position;
+        position = p.transform.localPosition;
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
 
         scales = S;
-        
+
         var sphereRenderer = particle.GetComponent<Renderer>();
-        
-        if (setCharge < 0) {
-          sphereRenderer.material.SetColor("_Color", Color.red);
+
+        if (setCharge < 0)
+        {
+            sphereRenderer.material.SetColor("_Color", Color.red);
         }
-        else if (setCharge > 0){
-          sphereRenderer.material.SetColor("_Color", Color.blue);
+        else if (setCharge > 0)
+        {
+            sphereRenderer.material.SetColor("_Color", Color.blue);
         }
-        else {
+        else
+        {
             sphereRenderer.material.SetColor("_Color", Color.gray);
         }
 
@@ -67,14 +70,14 @@ public class Particle
         charge = setCharge;
         radius = setRadius;
 
-        particle.transform.localScale = new Vector3(setRadius*2, setRadius*2, setRadius*2);
+        particle.transform.localScale = new Vector3(setRadius * 2, setRadius * 2, setRadius * 2);
     }
 
     /**
     Gets the position of the particle
     @returns position (Vector3)
     */
-    public Vector3 GetPos() 
+    public Vector3 GetPos()
     {
         return position;
     }
@@ -83,7 +86,7 @@ public class Particle
     Gets the velocity of the particle
     @returns velocity (Vector3)
     */
-    public Vector3 GetVel() 
+    public Vector3 GetVel()
     {
         return velocity;
     }
@@ -92,10 +95,9 @@ public class Particle
     Adds a force to the particle 
     @param Unity unit scaled force F (Vector3)
     */
-    public void AddForce(Vector3 F) 
+    public void AddForce(Vector3 F)
     {
-                
-        velocity += F/mass;
+        velocity += F / mass;
     }
 
     /**
@@ -103,19 +105,17 @@ public class Particle
     its velocity.
     @param timestep  (float)
     */
-    public void Step(float dt) 
+    public void Step()
     {
-
-        position += velocity*dt;
-
-        particle.transform.Translate(velocity*dt);
+        position += velocity * scales.time.VAL;
+        particle.transform.Translate(velocity * scales.time.VAL);
     }
 
     /**
     Checks if there was a collision with any wall of the environment box
     and reflects the velocity for the correct axis
     */
-    public void CheckBoxCollision() 
+    public void CheckBoxCollision()
     {
         bool collideRight = Physics.Raycast(particle.transform.position, Vector3.right, radius);
         bool collideLeft = Physics.Raycast(particle.transform.position, Vector3.left, radius);
@@ -128,15 +128,31 @@ public class Particle
         float vy = velocity.y;
         float vz = velocity.z;
 
-        if (collideRight || collideLeft) {
+        if (collideRight && vx > 0)
+        {
             velocity.x = -vx;
-
-        } else if (collideUp || collideDown) {
+        }
+        else if (collideLeft && vx < 0)
+        {
+            velocity.x = -vx;
+        }
+        if (collideUp && vy > 0)
+        {
             velocity.y = -vy;
 
-        } else if (collideForward || collideBack) {
+        }
+        else if (collideDown && vy < 0)
+        {
+            velocity.y = -vy;
+        }
+        if (collideForward && vz > 0)
+        {
             velocity.z = -vz;
         }
+        else if (collideBack && vz < 0)
+        {
+            velocity.z = -vz;
+
+        }
     }
-    
 }

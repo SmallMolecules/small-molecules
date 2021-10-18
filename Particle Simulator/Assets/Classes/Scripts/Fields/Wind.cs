@@ -13,13 +13,13 @@ using UnityEngine;
     */
 public class Wind : StaticField
 {
+    float wind;
     /**Contructor method - calls base constructor. This is where
     the constant SI units should be registered.
     @param sim - the parent Simulator (Simulator)*/
     public Wind(Simulator sim) : base(sim)
     {
-        int[] units = { 1, 1, -2, 0 };
-        RegisterConstant("k", 1.0E+10f, units);
+        wind = sim.scales.ConstantFromSI(1.0E+10f, 1, 1, -2, 0);
     }
 
     /**
@@ -30,7 +30,7 @@ public class Wind : StaticField
     */
     public override Vector3 FieldDynamics(Particle A)
     {
-        return constants["wind"] * (new Vector3(0.0f, 1.0f, 0.0f));
+        return wind * (new Vector3(0.0f, 1.0f, 0.0f));
     }
 
 

@@ -14,9 +14,10 @@ using System.IO;
     \see Simulator Scales
     */
 public class SimulationManager : MonoBehaviour
-{   
+{
     /**The maximum number of particles allowed for each simulator*/
-    [SerializeField][Range(0,20)]
+    [SerializeField]
+    [Range(0, 20)]
     public int NUM_PARTICLES = 10;
 
     /**Reference to the GameObject this class is attached to*/
@@ -35,6 +36,8 @@ public class SimulationManager : MonoBehaviour
     /**Integer that specifies how many Simulators currently exist for naming purposes*/
     private int newestSim;
 
+    /**Static value that defines the table height of all simulators*/
+    private static float Y_HEIGHT = 0;
 
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
@@ -53,45 +56,47 @@ public class SimulationManager : MonoBehaviour
     */
     void Update()
     {
-        
+
     }
 
     /**Makes a new simulator and adds it to the list of simulators. Also names the system as
     "System X".*/
-    private void CreateSimulator() 
+    private void CreateSimulator()
     {
-        GameObject sim = Instantiate(simulatorSpawner);
+        GameObject sim = Instantiate(simulatorSpawner, new Vector3(-10, Y_HEIGHT, 20), Quaternion.identity);
         sim.name = String.Format("System {0}", newestSim);
 
         newestSim++;
 
         sim.transform.parent = this.transform;
         simulations.Add(sim);
-        
+
         UI.GetComponent<PauseResume>().NewSimulator(sim);
     }
 
 
     // TODO - implement this function
     /**Resets a simulator*/
-    public void ResetSystems() 
+    public void ResetSystems()
     {
-        List<GameObject> newSimulations = new List<GameObject>();    
-        foreach (GameObject S in simulations) {
+        List<GameObject> newSimulations = new List<GameObject>();
+        foreach (GameObject S in simulations)
+        {
             Destroy(S);
             GameObject sim = Instantiate(simulatorSpawner);
             sim.transform.parent = this.transform;
             newSimulations.Add(sim);
         }
         simulations = newSimulations;
-    
+
     }
-    
+
     /**Toggles the pause state of the simulation*/
-    public void TogglePause() 
+    public void TogglePause()
     {
         paused = !paused;
-        foreach (GameObject S in simulations) {
+        foreach (GameObject S in simulations)
+        {
             S.GetComponent<Simulator>().paused = paused;
         }
     }

@@ -17,13 +17,15 @@ using System.Globalization;
 */
 public class UISpawner : MonoBehaviour
 {
-    /**Reference to the (x,y,z) spawn location and the atomic properties of the particle*/
+    /**Reference to the (x,y,z) spawn location InputFeilds*/
     public InputField[] inputs;
-
     /**Reference to the timescale slider*/
     public Slider timescale;
     /**Reference to the boxSize slider*/
     public Slider boxSize;
+    /**Reference to the text representation of the size of the box
+    (eg for a size of 1 the length would be 10 unity units*/
+    public Text boxSizeText;
     /**Reference to the text representation of the unit scales*/
     public Text scales;
     /**Reference to the text representation of the coefficient of the time scale
@@ -32,7 +34,6 @@ public class UISpawner : MonoBehaviour
     /**Reference to the text representation of the exponent of the time scale
     (eg for a timescale of 1.2e-9 the exponent would be -9)*/
     public InputField exponent;
-
 
     /**Reference to the corresponding simulator object*/
     public Simulator simulator;
@@ -63,8 +64,8 @@ public class UISpawner : MonoBehaviour
     public void AttemptCreateParticle()
     {
         bool abort = false;
-        float[] val = new float[6];
-        for (int i = 0; i < 6; i++)
+        float[] val = new float[3];
+        for (int i = 0; i < 3; i++)
         {
 
             if (!float.TryParse(inputs[i].text, out val[i]))
@@ -72,15 +73,26 @@ public class UISpawner : MonoBehaviour
                 inputs[i].image.color = Color.red;
                 abort = true;
             }
+
         }
 
         if (!abort)
         {
-            Vector3 pos = new Vector3(val[0], val[1], val[2]); 
-            float mass=val[3]; 
-            float radius=val[4];
-            int charge=(int)val[5];
-            simulator.AddNewParticle(pos, mass, radius, charge);
+            bool[] inBounds = isParticleInBounds(new Vector3(val[0], val[1], val[2]));
+
+            if (inBounds[0] && inBounds[1] && inBounds[2]) 
+            {
+                Vector3 pos = new Vector3(val[0], val[1], val[2]);
+                simulator.AddNewParticle(pos);
+                ClearColour();
+            }
+            else 
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (!inBounds[i]) inputs[i].image.color = Color.red;
+                }
+            }
         }
     }
 
@@ -90,12 +102,6 @@ public class UISpawner : MonoBehaviour
     public void RandomCreate()
     {
         simulator.AddNewParticleRandom();
-    }
-
-    public void getInputOnClick()
-    {
-
-
     }
 
     /**
@@ -108,6 +114,7 @@ public class UISpawner : MonoBehaviour
         simulator = sim.GetComponent<Simulator>();
         exponent.text = simulator.scales.time.EXP.ToString();
         UpdateScales();
+        UpdateBoxSize();
     }
 
     /**
@@ -115,7 +122,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ClearColour()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 3; i++)
         {
             inputs[i].image.color = Color.white;
         }
@@ -128,12 +135,13 @@ public class UISpawner : MonoBehaviour
     */
     public void UpdateScales()
     {
+        if (simulator == null) return;
         float coeff = (float)Convert.ToDouble(timescale.value);
         int exp;
         Int32.TryParse(exponent.text, out exp);
         simulator.UpdateTime(coeff, exp);
 
-        coefficient.text = timescale.value.ToString("0.00") + " x 10^"; ;
+        coefficient.text = timescale.value.ToString("0.00") + " x 10^";
         exponent.text = simulator.scales.time.EXP.ToString();
 
         scales.text = "System 1:\n";
@@ -156,6 +164,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ToggleDestroyT()
     {
+        if (simulator == null) return;
         simulator.ToggleDestroy(true);
     }
 
@@ -164,6 +173,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ToggleDestroyF()
     {
+        if (simulator == null) return;
         simulator.ToggleDestroy(false);
     }
 
@@ -172,8 +182,30 @@ public class UISpawner : MonoBehaviour
     */
     public void UpdateBoxSize()
     {
+        if (simulator == null) return;
         float coeff = (float)Convert.ToDouble(boxSize.value);
+        boxSizeText.text = boxSize.value.ToString("0");
         simulator.UpdateBoxSize(coeff);
+    }
+
+    /**
+    Checks if the particle to be added is within the bounds of the box
+    @param pos - the position of the particle to be added
+    @radius - the radius of the particle to be added
+    */
+    private bool[] isParticleInBounds(Vector3 pos, float radius = 1f)
+    {
+        bool[] inBounds = {true, true, true};
+
+        float halfLength = simulator.boxLength/2 - radius;
+        float fullLength = simulator.boxLength + simulator.wallThickness - radius;
+        float minimum = simulator.wallThickness + radius;
+
+        if (pos[0] < -halfLength || pos[0] > halfLength) inBounds[0] = false;
+        if (pos[1] < minimum || pos[1] > fullLength) inBounds[1] = false;
+        if (pos[2] < minimum || pos[2] > fullLength) inBounds[2] = false;
+
+        return inBounds;
     }
 
 }

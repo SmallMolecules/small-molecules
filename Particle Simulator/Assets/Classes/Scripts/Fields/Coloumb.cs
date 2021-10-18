@@ -13,13 +13,13 @@ using UnityEngine;
     */
 public class Coloumb : DynamicField
 {
+    float constant;
     /**Contructor method - calls base constructor. This is where
     the constant SI units should be registered.
     @param sim - the parent Simulator (Simulator)*/
     public Coloumb(Simulator sim) : base(sim)
     {
-        int[] units = { 1, 3, -2, -2 };
-        RegisterConstant("con", 8.988E+9f, units);
+        constant = sim.scales.ConstantFromSI(8.988E+9f, 1, 3, -2, -2);
     }
 
     /**
@@ -40,7 +40,7 @@ public class Coloumb : DynamicField
             r = 0.5f;
         }
 
-        float coeff = constants["con"] * q1 * q2 / r;
+        float coeff = constant * q1 * q2 / r;
         return coeff * Vector3.Normalize(A.GetPos() - B.GetPos());
     }
 }
