@@ -122,7 +122,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ClearColour()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 6; i++)
         {
             inputs[i].image.color = Color.white;
         }
