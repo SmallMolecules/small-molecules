@@ -19,6 +19,10 @@ public class UISpawner : MonoBehaviour
 {
     /**Reference to the (x,y,z) spawn location and the atomic properties input fields*/
     public InputField[] inputs;
+
+    /** Reference to panel holding premade elements**/
+    public GameObject premadepanel;
+
     /**Reference to the timescale slider*/
     public Slider timescale;
     /**Reference to the boxSize slider*/
@@ -105,6 +109,20 @@ public class UISpawner : MonoBehaviour
     }
 
     /**
+    Function to open panel which contains premade elements
+    */
+    public void panelOpener()
+    {
+        if (premadepanel !=null){
+
+            bool isActive=premadepanel.activeSelf;
+            premadepanel.SetActive(!isActive);
+
+        }
+    }
+
+
+    /**
     Binds the "simulator" property of this object to 
     the input GameObject
     @param Simulator to attach (GameObject)
@@ -122,7 +140,7 @@ public class UISpawner : MonoBehaviour
     */
     public void ClearColour()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 6; i++)
         {
             inputs[i].image.color = Color.white;
         }
@@ -207,5 +225,36 @@ public class UISpawner : MonoBehaviour
 
         return inBounds;
     }
+
+    /** hard coded premade trial elements with 0 charge**/
+
+    public void spawnH(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(0.53f), 1.007f, 0.53f, 0);
+    }
+
+    public void spawnHe(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(0.31f), 4.002f, 0.31f, 0);
+    }
+
+    public void spawnLi(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(1.67f), 6.941f, 1.67f, 0);
+    }
+
+    public void spawnBe(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(1.12f), 9.012f, 1.12f, 0);
+    }
+
+    public void spawnB(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(0.87f), 10.811f, 0.87f, 0);
+    }
+
+    public void spawnC(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(0.67f), 12.011f, 0.67f, 0);
+    }
+
+    public void spawnO(){
+        simulator.AddNewParticle(simulator.generateRandomCoords(0.484f), 15.999f, 0.484f, 0);
+    }
+    
 
 }

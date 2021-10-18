@@ -24,7 +24,7 @@ public class Particle
     public int charge;
 
     /**Vector velocity of the particle. Dictates the position.*/
-    private Vector3 velocity;
+    public Vector3 velocity;
     /**Vector position of the particle. Dictates the GameObject position */
     private Vector3 position;
 
