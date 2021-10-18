@@ -272,39 +272,44 @@ public class Simulator : MonoBehaviour
         float fullLength = boxLength + wallThickness - radius;
         float minimum = wallThickness + radius;
 
+        
         float x = pos.x;
+        float vx = p.velocity.x;
+        float vy = p.velocity.y;
+        float vz = p.velocity.z;
 
-        if (pos.x < -halfLength)
-        {
+        if (pos.x < -halfLength) {
             x = -halfLength;
+            vx = -vx;
         }
-        if (pos.x > halfLength)
-        {
-            x = halfLength;
+        if (pos.x > halfLength) {   
+            x = halfLength; 
+            vx = -vx;
         };
 
         float y = pos.y;
-        if (pos.y < minimum)
-        {
-            y = minimum;
+        if (pos.y < minimum) {
+            y = minimum; 
+            vy = -vy;
         }
 
-        if (pos.y > fullLength)
-        {
+        if (pos.y > fullLength) {
             y = fullLength;
+            vy = -vy;
         }
 
         float z = pos.z;
-        if (pos.z < minimum)
-        {
-            z = minimum;
+        if (pos.z < minimum) {
+            z = minimum; 
+            vz = -vz;
         }
 
-        if (pos.z > fullLength)
-        {
+        if (pos.z > fullLength) {
             z = fullLength;
+            vz = -vz;
         }
 
+        p.velocity = new Vector3(vx, vy, vz);
         p.particle.transform.position = transform.position + new Vector3(x, y, z);
 
     }
