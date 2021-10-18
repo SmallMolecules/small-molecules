@@ -143,7 +143,7 @@ public class Simulator : MonoBehaviour
     @param mass (float)
     @param radius (float)
     @param charge (int)*/
-    public void AddNewParticle(Vector3 pos, float mass = 1, float radius = 0.5f, int charge = 0)
+    public void AddNewParticle(Vector3 pos, float mass, float radius, int charge)
     {
         GameObject sphere = Instantiate(particleSpawner, transform.position, transform.rotation);
         // sphere.transform.parent = box.transform;
@@ -156,7 +156,8 @@ public class Simulator : MonoBehaviour
     */
     public void AddNewParticleRandom()
     {
-        AddNewParticle(generateRandomCoords());
+        float mass=1f; float radius= 0.5f;int charge=0;
+        AddNewParticle(generateRandomCoords(), mass, radius, charge);
     }
 
     /**Called by the UI elements to change the time scale
