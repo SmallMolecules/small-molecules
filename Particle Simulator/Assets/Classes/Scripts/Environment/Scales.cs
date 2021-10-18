@@ -84,7 +84,6 @@ public class Scales
         Scale LENGTH = Pow(length, -m);
         Scale TIME = Pow(time, -s - 2);
         Scale CHARGE = Pow(charge, -q);
-        Debug.Log(Multiply(Multiply(MASS, LENGTH), Multiply(TIME, CHARGE)).EXP);
         return v * Multiply(Multiply(MASS, LENGTH), Multiply(TIME, CHARGE)).VAL;
     }
 
