@@ -25,7 +25,7 @@ public class PauseResume : MonoBehaviour
     public Button systemButton;
     /**Reference to the FPS display text*/
     public Text fps;
-    
+
     /**GameObject to spawn for the simulator sub-menu*/
     public GameObject simulatorUISpawner;
 
@@ -39,7 +39,7 @@ public class PauseResume : MonoBehaviour
     System.DateTime _lastTime; // marks the beginning the measurement began
     int _framesRendered; // an increasing count
     int _fps; // the FPS calculated from the last measurement
- 
+
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html
     */
@@ -50,9 +50,8 @@ public class PauseResume : MonoBehaviour
         systemButton.GetComponent<Image>().color = offColor;
 
         manager = GameObject.Find("Manager").GetComponent<SimulationManager>();
-        
     }
- 
+
     /**
     \see @link https://docs.unity3d.com/ScriptReference/MonoBehaviour.Update.html
     */
@@ -62,13 +61,12 @@ public class PauseResume : MonoBehaviour
 
         if ((System.DateTime.Now - _lastTime).TotalSeconds >= 1)
         {
-            _fps = _framesRendered;                     
-            _framesRendered = 0;            
+            _fps = _framesRendered;
+            _framesRendered = 0;
             _lastTime = System.DateTime.Now;
         }
 
         fps.text = String.Format("FPS:\t{0}", _fps);
-        
     }
 
     /**
@@ -95,14 +93,14 @@ public class PauseResume : MonoBehaviour
     simulations managed by the simulation manager object
     @param GameObject sim
     */
-    public void NewSimulator(GameObject sim) 
+    public void NewSimulator(GameObject sim)
     {
         GameObject UIentry = Instantiate(simulatorUISpawner);
-        UIentry.transform.SetParent(pauseScreen.transform, false); 
+        UIentry.transform.SetParent(pauseScreen.transform, false);
 
         UISpawner script = UIentry.GetComponent<UISpawner>();
 
-        systemButton.onClick.AddListener (script.Show);
+        systemButton.onClick.AddListener(script.Show);
 
         script.AttachSimulator(sim);
     }
@@ -111,15 +109,17 @@ public class PauseResume : MonoBehaviour
     Callback function used to toggle a button between the "selected" colour
     and the "unselected" colour.
     */
-    public void ToggleSelectedColour() 
+    public void ToggleSelectedColour()
     {
         Color orig = systemButton.GetComponent<Image>().color;
-        if (orig.Equals(offColor)) {
+        if (orig.Equals(offColor))
+        {
             systemButton.GetComponent<Image>().color = onnColor;
         }
-        else {
-           systemButton.GetComponent<Image>().color = offColor;
-        }    
+        else
+        {
+            systemButton.GetComponent<Image>().color = offColor;
+        }
     }
 
 }

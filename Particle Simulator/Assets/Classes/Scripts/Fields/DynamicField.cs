@@ -46,7 +46,7 @@ public class DynamicField
     */
     public void ApplyForce(Particle A, Particle B)
     {
-        Vector3 F = FieldDynamics(A, B);
+        Vector3 F = FieldDynamics(A, B) * scales.time.VAL * scales.time.VAL;
 
         A.AddForce(F);
         B.AddForce(-F);

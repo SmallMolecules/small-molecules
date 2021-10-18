@@ -68,7 +68,7 @@ public class Simulator : MonoBehaviour
     [HideInInspector] public float boxLength;
     [HideInInspector] public float wallThickness;
 
-    private System.Random rand = new System.Random(9);
+    private System.Random rand = new System.Random();
     void Start()
     {
         manager = transform.parent.gameObject.GetComponent<SimulationManager>();
@@ -88,11 +88,11 @@ public class Simulator : MonoBehaviour
         }
 
         // dynamic feilds added here
-        dynamicFields.Add(new LennardJones(this));
-        dynamicFields.Add(new Coloumb(this));
+        // dynamicFields.Add(new LennardJones(this));
+        // dynamicFields.Add(new Coloumb(this));
 
         // static fields added here
-        // staticFields.Add(new Wind(this));
+        staticFields.Add(new Wind(this));
     }
 
     /**
@@ -171,14 +171,6 @@ public class Simulator : MonoBehaviour
     public void UpdateTime(float coeff, int exp)
     {
         scales.SetTime(coeff, exp);
-    }
-
-    /**Called by the UI elements to change the length scale
-    @param coeff - the coefficient of the length scale (float)
-    @param exp - the exponent of the length scale (int)*/
-    public void UpdateLength(float coeff, int index)
-    {
-        scales.SetLength(coeff, index);
     }
 
     /**Removes a particle, A, from the simulation
@@ -272,39 +264,45 @@ public class Simulator : MonoBehaviour
         float fullLength = boxLength + wallThickness - radius;
         float minimum = wallThickness + radius;
 
-        
+
         float x = pos.x;
         float vx = p.velocity.x;
         float vy = p.velocity.y;
         float vz = p.velocity.z;
 
-        if (pos.x < -halfLength) {
+        if (pos.x < -halfLength)
+        {
             x = -halfLength;
             vx = -vx;
         }
-        if (pos.x > halfLength) {   
-            x = halfLength; 
+        if (pos.x > halfLength)
+        {
+            x = halfLength;
             vx = -vx;
         };
 
         float y = pos.y;
-        if (pos.y < minimum) {
-            y = minimum; 
+        if (pos.y < minimum)
+        {
+            y = minimum;
             vy = -vy;
         }
 
-        if (pos.y > fullLength) {
+        if (pos.y > fullLength)
+        {
             y = fullLength;
             vy = -vy;
         }
 
         float z = pos.z;
-        if (pos.z < minimum) {
-            z = minimum; 
+        if (pos.z < minimum)
+        {
+            z = minimum;
             vz = -vz;
         }
 
-        if (pos.z > fullLength) {
+        if (pos.z > fullLength)
+        {
             z = fullLength;
             vz = -vz;
         }
@@ -313,6 +311,4 @@ public class Simulator : MonoBehaviour
         p.particle.transform.localPosition = new Vector3(x, y, z);
 
     }
-
-
 }

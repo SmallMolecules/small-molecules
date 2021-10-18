@@ -19,14 +19,12 @@ public class LennardJones : DynamicField
     /**The dispersion energy*/
     float epsilon;
     /**Contructor method - calls base constructor. This is where
-    the constant SI units should be registered.
+    the constant SI units should be assigned.
     @param sim - the parent Simulator (Simulator)*/
     public LennardJones(Simulator sim) : base(sim)
     {
-        // sigma = sim.scales.ConstantFromSI(1.66E-21f, 1, 2, -2, 0);
         sigma = 2f;
-        epsilon = 1E+12f;
-        // Debug.Log("sigma = " + sigma.ToString());
+        epsilon = 1E+18f;
     }
 
     /**
