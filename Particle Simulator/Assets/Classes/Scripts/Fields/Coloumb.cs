@@ -35,9 +35,9 @@ public class Coloumb : DynamicField
 
         float r = Vector3.Distance(A.GetPos(), B.GetPos());
 
-        if (r < 2f)
+        if (r < A.radius + B.radius)
         {
-            r = 0.5f;
+            r = A.radius + B.radius;
         }
 
         float coeff = constant * q1 * q2 / r;

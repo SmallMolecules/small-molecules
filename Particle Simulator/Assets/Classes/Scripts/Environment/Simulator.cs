@@ -88,7 +88,9 @@ public class Simulator : MonoBehaviour
         }
 
         dynamicFields.Add(new LennardJones(this));
-        dynamicFields.Add(new Coloumb(this));
+        // dynamicFields.Add(new Coloumb(this));
+
+        // staticFields.Add(new Wind(this));
     }
 
     /**

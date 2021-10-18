@@ -13,13 +13,15 @@ using UnityEngine;
     */
 public class Wind : StaticField
 {
+    /** the magnitude of the wind force*/
     float wind;
     /**Contructor method - calls base constructor. This is where
     the constant SI units should be registered.
     @param sim - the parent Simulator (Simulator)*/
     public Wind(Simulator sim) : base(sim)
     {
-        wind = sim.scales.ConstantFromSI(1.0E+10f, 1, 1, -2, 0);
+        // simulates a constant force of 10^-10 Kg m s^-2
+        wind = sim.scales.ConstantFromSI(1.0E-10f, 1, 1, -2, 0);
     }
 
     /**
