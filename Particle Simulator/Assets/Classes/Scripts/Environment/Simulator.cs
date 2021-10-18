@@ -88,11 +88,11 @@ public class Simulator : MonoBehaviour
         }
 
         // dynamic feilds added here
-        // dynamicFields.Add(new LennardJones(this));
-        // dynamicFields.Add(new Coloumb(this));
+        dynamicFields.Add(new LennardJones(this));
+        dynamicFields.Add(new Coloumb(this));
 
         // static fields added here
-        staticFields.Add(new Wind(this));
+        // staticFields.Add(new Wind(this));
     }
 
     /**
@@ -165,12 +165,19 @@ public class Simulator : MonoBehaviour
         AddNewParticle(generateRandomCoords(), mass, radius, charge);
     }
 
-    /**Called by the UI elements to change the time scale
+    /**Called by the UI elements to change the time scale. Also updates
+    the velocities of all the paritlces by calculating the ratio of the 
+    time-scale change.
     @param coeff - the coefficient of the time scale (float)
     @param exp - the exponent of the time scale (int)*/
     public void UpdateTime(float coeff, int exp)
     {
+        Scale ratio = new Scale(coeff / scales.time.COEFF, exp - scales.time.EXP);
         scales.SetTime(coeff, exp);
+        foreach (Particle A in particles)
+        {
+            A.adjustVelocity(ratio.VAL);
+        }
     }
 
     /**Removes a particle, A, from the simulation
@@ -228,6 +235,7 @@ public class Simulator : MonoBehaviour
     */
     public void UpdateBoxSize(float coeff)
     {
+        if (box == null) return;
         box.transform.localScale = new Vector3(coeff, coeff, coeff);
         boxLength = box.transform.localScale.x * BOX_LENGTH_SCALE;
         wallThickness = boxLength * BOX_THICKNESS_SCALE;
