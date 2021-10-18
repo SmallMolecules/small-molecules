@@ -63,10 +63,10 @@ public class Simulator : MonoBehaviour
     The values are obtained from the box prefab. Changing the constant will not change 
     the box prefab thickness
     */
-    public float BOX_THICKNESS_SCALE = 0.025f;
-    public float BOX_LENGTH_SCALE = 10;
-    public float boxLength;
-    public float wallThickness;
+    [HideInInspector] public float BOX_THICKNESS_SCALE = 0.025f;
+    [HideInInspector] public float BOX_LENGTH_SCALE = 10;
+    [HideInInspector] public float boxLength;
+    [HideInInspector] public float wallThickness;
 
     private System.Random rand = new System.Random(9);
     void Start()
