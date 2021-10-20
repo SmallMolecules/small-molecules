@@ -30,4 +30,8 @@ To run the simulator, simply add the folder *small-molecules/Particle Simulator*
 
 For further instruction on how to use the simulator as a user, consult ``user guide.pdf``.
 
+## Testing Documentation
+
+Here's a link to our [testing document](https://docs.google.com/spreadsheets/d/1wpCCPccvMUeEcXEjofOUoO43CoP6j_dKm06bM-PkwEo/edit?usp=sharing) google sheet.
+
 
