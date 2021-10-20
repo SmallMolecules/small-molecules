@@ -65,7 +65,6 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classDynamicField-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -78,8 +77,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:acbbf46767a08f45c3b2d737dd2e9e90f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#acbbf46767a08f45c3b2d737dd2e9e90f">UpdateConstants</a> ()</td></tr>
-<tr class="separator:acbbf46767a08f45c3b2d737dd2e9e90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf04ad56f23ab63fb8ab3b7c8f07c84c"><td class="memItemLeft" align="right" valign="top">virtual Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#aaf04ad56f23ab63fb8ab3b7c8f07c84c">FieldDynamics</a> (<a class="el" href="classParticle.html">Particle</a> A, <a class="el" href="classParticle.html">Particle</a> B)</td></tr>
 <tr class="separator:aaf04ad56f23ab63fb8ab3b7c8f07c84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34eb408e5dab140d4e2e67388ecae0eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#a34eb408e5dab140d4e2e67388ecae0eb">ApplyForce</a> (<a class="el" href="classParticle.html">Particle</a> A, <a class="el" href="classParticle.html">Particle</a> B)</td></tr>
@@ -89,20 +86,11 @@ Public Member Functions</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:aafcee4182a1285bdc7517d2d29a078c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#aafcee4182a1285bdc7517d2d29a078c7">DynamicField</a> (<a class="el" href="classSimulator.html">Simulator</a> sim)</td></tr>
 <tr class="separator:aafcee4182a1285bdc7517d2d29a078c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7fbaf8c5b3eb071726992cdd82522e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#ac7fbaf8c5b3eb071726992cdd82522e6">RegisterConstant</a> (string name, float val, int[] unit)</td></tr>
-<tr class="separator:ac7fbaf8c5b3eb071726992cdd82522e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr class="memitem:a01438eef03ea7169c36e7ee74193617c"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#a01438eef03ea7169c36e7ee74193617c">constants</a></td></tr>
-<tr class="separator:a01438eef03ea7169c36e7ee74193617c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a17122427cb53bc44c94a81e3a0ea11c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classScales.html">Scales</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#a17122427cb53bc44c94a81e3a0ea11c7">scales</a></td></tr>
 <tr class="separator:a17122427cb53bc44c94a81e3a0ea11c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a471fb9c31930a2c01c2ca3b15ddfe092"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, int[]&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#a471fb9c31930a2c01c2ca3b15ddfe092">units</a></td></tr>
-<tr class="separator:a471fb9c31930a2c01c2ca3b15ddfe092"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A base class for dynamic field implementations. </p>
@@ -234,106 +222,7 @@ Dhruv Jobanputra </dd></dl>
 
 </div>
 </div>
-<a id="ac7fbaf8c5b3eb071726992cdd82522e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7fbaf8c5b3eb071726992cdd82522e6">&#9670;&nbsp;</a></span>RegisterConstant()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DynamicField.RegisterConstant </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>val</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int[]&#160;</td>
-          <td class="paramname"><em>unit</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Called by an extension class to regester an SI constant to be updated with the scales of the simulator. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>- name of the constant (string) </td></tr>
-    <tr><td class="paramname">val</td><td>- float value of the constant in SI units (float) </td></tr>
-    <tr><td class="paramname">unit</td><td>- int array of the multiplicities of the SI unit (int[4]) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="acbbf46767a08f45c3b2d737dd2e9e90f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbbf46767a08f45c3b2d737dd2e9e90f">&#9670;&nbsp;</a></span>UpdateConstants()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void DynamicField.UpdateConstants </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Called by the simulator to update each unit when a <a class="el" href="structScale.html" title="Struct for holding scale data.">Scale</a> update event occurs </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a01438eef03ea7169c36e7ee74193617c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01438eef03ea7169c36e7ee74193617c">&#9670;&nbsp;</a></span>constants</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Dictionary&lt;string, float&gt; DynamicField.constants</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A dictionary of constants. The key value is the string name and the value is the float value of the constant </p>
-
-</div>
-</div>
 <a id="a17122427cb53bc44c94a81e3a0ea11c7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a17122427cb53bc44c94a81e3a0ea11c7">&#9670;&nbsp;</a></span>scales</h2>
 
@@ -354,29 +243,6 @@ Dhruv Jobanputra </dd></dl>
 </table>
 </div><div class="memdoc">
 <p>Reference to the scales object of the parent simulator </p>
-
-</div>
-</div>
-<a id="a471fb9c31930a2c01c2ca3b15ddfe092"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a471fb9c31930a2c01c2ca3b15ddfe092">&#9670;&nbsp;</a></span>units</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Dictionary&lt;string, int[]&gt; DynamicField.units</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>A Dictionary of the units of the constants for internal use. The key value is the string name and the value is an int array of the unit exponents in the form {kg, m, s, C}. </p>
 
 </div>
 </div>

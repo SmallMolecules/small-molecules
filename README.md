@@ -1,6 +1,4 @@
-# Installation Guide and Information
-
-## About this Framework
+# About this Framework
 
 This framework creates a many body particle physics simulator in C#, implemented in Unity, for educational purporses. The 3D environment will be incorperated into virtual reality to enhance the educational experience and provide interactivity. 
 
@@ -8,7 +6,21 @@ The framework is designed to enable further expansion by developers and teachers
 
 To view the documentation for this framework, first follow the guide to install the framework, and open the file ``index.html`` located in the ``html/`` folder in any web-browser. The main page has a guide for developers.
 
-## Installing Unity
+## Compiling Documentation
+
+The documentation is compiled using ``doxygen`` according to the ``documentation-settings`` file. The results are compiled into the ``html`` folder. To view it, open the ``index.html`` file in a web browser. The documentation is generated from the in-code comments and the ``DEV_GUIDE.md`` markdown file. 
+
+To compile, install [doxygen](https://www.doxygen.nl/index.html) and navigate to the directory containing ``documentation-settings``, and run the command in bash
+
+> doxygen documentation-settings
+
+This will create/replace the ``html`` folder with a new compilation.
+
+## Testing Documentation
+
+Here's a link to our [testing document](https://docs.google.com/spreadsheets/d/1wpCCPccvMUeEcXEjofOUoO43CoP6j_dKm06bM-PkwEo/edit?usp=sharing) google sheet.
+
+# Installation Guide
 
 To install this framework, first you need to install unity on your system. To do that, navigate to Unity's [Downloads Page](https://unity.com/download) and install Unity Hub. After downloading and intsallting, create a Unity account or sign in with an existing one. From the unity hub you can download version 2020.3.16 or locate an existing install. It's from here that you can manage your installs of Unity and your projects.
 
@@ -30,8 +42,5 @@ To run the simulator, simply add the folder *small-molecules/Particle Simulator*
 
 For further instruction on how to use the simulator as a user, consult ``user guide.pdf``.
 
-## Testing Documentation
-
-Here's a link to our [testing document](https://docs.google.com/spreadsheets/d/1wpCCPccvMUeEcXEjofOUoO43CoP6j_dKm06bM-PkwEo/edit?usp=sharing) google sheet.
 
 

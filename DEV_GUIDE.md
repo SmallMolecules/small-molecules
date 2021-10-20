@@ -73,13 +73,3 @@ public Coloumb(Simulator sim) : base(sim)
 See StaticField and DynamicField for more details.
 
 Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone.
-
-## Compiling Documentation
-
-The documentation is compiled using ``doxygen`` according to the ``documentation-settings`` file. The results are compiled into the ``html`` folder. To view it, open the ``index.html`` file in a web browser. The documentation is generated from the in-code comments and the ``DEV_GUIDE.md`` markdown file. 
-
-To compile, install [doxygen](https://www.doxygen.nl/index.html) and navigate to the directory containing ``documentation-settings``, and run the command in bash
-
-> doxygen documentation-settings
-
-This will create/replace the ``html`` folder with a new compilation.

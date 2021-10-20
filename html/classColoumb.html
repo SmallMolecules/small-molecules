@@ -64,6 +64,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classColoumb-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Coloumb Class Reference</div>  </div>
@@ -80,21 +81,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aac980803bd77e06cd0c6b1e4c0e66fe2"><td class="memItemLeft" align="right" valign="top">override Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColoumb.html#aac980803bd77e06cd0c6b1e4c0e66fe2">FieldDynamics</a> (<a class="el" href="classParticle.html">Particle</a> A, <a class="el" href="classParticle.html">Particle</a> B)</td></tr>
 <tr class="separator:aac980803bd77e06cd0c6b1e4c0e66fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classDynamicField"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classDynamicField')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classDynamicField.html">DynamicField</a></td></tr>
-<tr class="memitem:acbbf46767a08f45c3b2d737dd2e9e90f inherit pub_methods_classDynamicField"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#acbbf46767a08f45c3b2d737dd2e9e90f">UpdateConstants</a> ()</td></tr>
-<tr class="separator:acbbf46767a08f45c3b2d737dd2e9e90f inherit pub_methods_classDynamicField"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34eb408e5dab140d4e2e67388ecae0eb inherit pub_methods_classDynamicField"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#a34eb408e5dab140d4e2e67388ecae0eb">ApplyForce</a> (<a class="el" href="classParticle.html">Particle</a> A, <a class="el" href="classParticle.html">Particle</a> B)</td></tr>
 <tr class="separator:a34eb408e5dab140d4e2e67388ecae0eb inherit pub_methods_classDynamicField"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:adbbf38010b197906de184d24c32f5c4f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classColoumb.html#adbbf38010b197906de184d24c32f5c4f">couloumbConstant</a></td></tr>
+<tr class="separator:adbbf38010b197906de184d24c32f5c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_methods_classDynamicField"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classDynamicField')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classDynamicField.html">DynamicField</a></td></tr>
 <tr class="memitem:aafcee4182a1285bdc7517d2d29a078c7 inherit pro_methods_classDynamicField"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#aafcee4182a1285bdc7517d2d29a078c7">DynamicField</a> (<a class="el" href="classSimulator.html">Simulator</a> sim)</td></tr>
 <tr class="separator:aafcee4182a1285bdc7517d2d29a078c7 inherit pro_methods_classDynamicField"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7fbaf8c5b3eb071726992cdd82522e6 inherit pro_methods_classDynamicField"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#ac7fbaf8c5b3eb071726992cdd82522e6">RegisterConstant</a> (string name, float val, int[] unit)</td></tr>
-<tr class="separator:ac7fbaf8c5b3eb071726992cdd82522e6 inherit pro_methods_classDynamicField"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classDynamicField"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classDynamicField')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classDynamicField.html">DynamicField</a></td></tr>
-<tr class="memitem:a01438eef03ea7169c36e7ee74193617c inherit pro_attribs_classDynamicField"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDynamicField.html#a01438eef03ea7169c36e7ee74193617c">constants</a></td></tr>
-<tr class="separator:a01438eef03ea7169c36e7ee74193617c inherit pro_attribs_classDynamicField"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A <a class="el" href="classDynamicField.html" title="A base class for dynamic field implementations.">DynamicField</a> implementation of the Couloumb potential. </p>
@@ -127,7 +126,7 @@ Dhruv Jobanputra </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Contructor method - calls base constructor. This is where the constant SI units should be registered. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Contructor method - calls base constructor. This is where the constant SI units should be assigned. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">sim</td><td>- the parent <a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> (<a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a>) </td></tr>
   </table>
@@ -180,6 +179,29 @@ Dhruv Jobanputra </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>force on A by B (Vector3) </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classDynamicField.html#aaf04ad56f23ab63fb8ab3b7c8f07c84c">DynamicField</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="adbbf38010b197906de184d24c32f5c4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbbf38010b197906de184d24c32f5c4f">&#9670;&nbsp;</a></span>couloumbConstant</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Coloumb.couloumbConstant</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>

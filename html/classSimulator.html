@@ -78,20 +78,20 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad4f6be36c1e523092741646edc4cd61a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ad4f6be36c1e523092741646edc4cd61a">AddNewParticle</a> (Vector3 pos, float mass=1, float radius=0.5f, int charge=0)</td></tr>
-<tr class="separator:ad4f6be36c1e523092741646edc4cd61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1d0eaa344b4c59294ed7ec716119d1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ae1d0eaa344b4c59294ed7ec716119d1e">AddNewParticle</a> (Vector3 pos, float mass, float radius, int charge)</td></tr>
+<tr class="separator:ae1d0eaa344b4c59294ed7ec716119d1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ae18ecdaa319c2b2dd8d51e4986cf3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a5ae18ecdaa319c2b2dd8d51e4986cf3a">AddNewParticleRandom</a> ()</td></tr>
 <tr class="separator:a5ae18ecdaa319c2b2dd8d51e4986cf3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab365bdd407c4f5265e60b697cf4fb023"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ab365bdd407c4f5265e60b697cf4fb023">UpdateTime</a> (float coeff, int exp)</td></tr>
 <tr class="separator:ab365bdd407c4f5265e60b697cf4fb023"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10e962aaa9531db98c83c0ef1641d745"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a10e962aaa9531db98c83c0ef1641d745">UpdateLength</a> (float coeff, int index)</td></tr>
-<tr class="separator:a10e962aaa9531db98c83c0ef1641d745"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4219a6d5fcc1ec94a18a3d40917be6f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a4219a6d5fcc1ec94a18a3d40917be6f5">TogglePause</a> ()</td></tr>
 <tr class="separator:a4219a6d5fcc1ec94a18a3d40917be6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a7168665f848b59def75e0284725357"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a8a7168665f848b59def75e0284725357">ToggleDestroy</a> (bool set)</td></tr>
 <tr class="separator:a8a7168665f848b59def75e0284725357"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff86ceeb941cf4bc2b0b3248bc981bdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aff86ceeb941cf4bc2b0b3248bc981bdf">UpdateBoxSize</a> (float coeff)</td></tr>
 <tr class="separator:aff86ceeb941cf4bc2b0b3248bc981bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78d2e3095834619b795415e7c5ba50b"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#ac78d2e3095834619b795415e7c5ba50b">GenerateRandomCoords</a> (float radius=1f)</td></tr>
+<tr class="separator:ac78d2e3095834619b795415e7c5ba50b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -99,14 +99,18 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a05a392d2018405da2cf5f52754be7b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ddc13e6ea54f5d753aab33cf7c2cf04"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a4ddc13e6ea54f5d753aab33cf7c2cf04">paused</a></td></tr>
 <tr class="separator:a4ddc13e6ea54f5d753aab33cf7c2cf04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8389095f01ecab898a2730981c436d55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a8389095f01ecab898a2730981c436d55">destroy</a> = false</td></tr>
-<tr class="separator:a8389095f01ecab898a2730981c436d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acad3838e7d8d4b73fa48e93f1d015bb5"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#acad3838e7d8d4b73fa48e93f1d015bb5">particleSpawner</a></td></tr>
 <tr class="separator:acad3838e7d8d4b73fa48e93f1d015bb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a52b8860eade5bba6bcca2c4f95d4b2c3"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a52b8860eade5bba6bcca2c4f95d4b2c3">boxEnvironment</a></td></tr>
 <tr class="separator:a52b8860eade5bba6bcca2c4f95d4b2c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed78a23783d285b6d1dc6f8142e1c0c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aed78a23783d285b6d1dc6f8142e1c0c6">seed</a></td></tr>
-<tr class="separator:aed78a23783d285b6d1dc6f8142e1c0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78491e4a8e80be371e8538c121a3f690"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a78491e4a8e80be371e8538c121a3f690">BOX_THICKNESS_SCALE</a> = 0.025f</td></tr>
+<tr class="separator:a78491e4a8e80be371e8538c121a3f690"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a071f61893d2e9f5ed2fa65f2f6a486dd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a071f61893d2e9f5ed2fa65f2f6a486dd">BOX_LENGTH_SCALE</a> = 10</td></tr>
+<tr class="separator:a071f61893d2e9f5ed2fa65f2f6a486dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d7ab26532b086d62ff0b07b758525ec"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a5d7ab26532b086d62ff0b07b758525ec">boxLength</a></td></tr>
+<tr class="separator:a5d7ab26532b086d62ff0b07b758525ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ee5e1be6b596a5ce889bdb2f5a5cbe2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a7ee5e1be6b596a5ce889bdb2f5a5cbe2">wallThickness</a></td></tr>
+<tr class="separator:a7ee5e1be6b596a5ce889bdb2f5a5cbe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -122,9 +126,13 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a82b2b58d1d274014fe40ee7ce95f4e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45178d9b980a56f49e5c450c2f5764b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a45178d9b980a56f49e5c450c2f5764b4">HandleDestroyParticle</a> ()</td></tr>
 <tr class="separator:a45178d9b980a56f49e5c450c2f5764b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a954676d4272765dc77d19a8e77580cda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a954676d4272765dc77d19a8e77580cda">CheckOutOfBounds</a> (<a class="el" href="classParticle.html">Particle</a> p)</td></tr>
+<tr class="separator:a954676d4272765dc77d19a8e77580cda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
+<tr class="memitem:a8389095f01ecab898a2730981c436d55"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a8389095f01ecab898a2730981c436d55">destroy</a> = false</td></tr>
+<tr class="separator:a8389095f01ecab898a2730981c436d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18e4653901440f45cd6aca11db768773"><td class="memItemLeft" align="right" valign="top">GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a18e4653901440f45cd6aca11db768773">box</a></td></tr>
 <tr class="separator:a18e4653901440f45cd6aca11db768773"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afdc26a935a71868fa506042ad03abcef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSimulationManager.html">SimulationManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#afdc26a935a71868fa506042ad03abcef">manager</a></td></tr>
@@ -135,7 +143,9 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a9405d09a1b12e9f4678e9d43e18e49cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa24ca64ad9c7fa083e7be6bdc486dc37"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classStaticField.html">StaticField</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aa24ca64ad9c7fa083e7be6bdc486dc37">staticFields</a> = new List&lt;<a class="el" href="classStaticField.html">StaticField</a>&gt;()</td></tr>
 <tr class="separator:aa24ca64ad9c7fa083e7be6bdc486dc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a326d241ffc7498ad655e21ee743b576e"><td class="memItemLeft" align="right" valign="top">System.Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a326d241ffc7498ad655e21ee743b576e">rand</a> = new System.Random(9)</td></tr>
+<tr class="memitem:aed78a23783d285b6d1dc6f8142e1c0c6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#aed78a23783d285b6d1dc6f8142e1c0c6">seed</a></td></tr>
+<tr class="separator:aed78a23783d285b6d1dc6f8142e1c0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a326d241ffc7498ad655e21ee743b576e"><td class="memItemLeft" align="right" valign="top">System.Random&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSimulator.html#a326d241ffc7498ad655e21ee743b576e">rand</a> = new System.Random()</td></tr>
 <tr class="separator:a326d241ffc7498ad655e21ee743b576e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -146,8 +156,8 @@ Dhruv Jobanputra </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>September 2021 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classSimulator.html" title="Class for managing the properites of a simulator instance.">Simulator</a> <a class="el" href="classScales.html" title="Class for managing scaling factors for a simulator.">Scales</a> </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ad4f6be36c1e523092741646edc4cd61a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4f6be36c1e523092741646edc4cd61a">&#9670;&nbsp;</a></span>AddNewParticle()</h2>
+<a id="ae1d0eaa344b4c59294ed7ec716119d1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1d0eaa344b4c59294ed7ec716119d1e">&#9670;&nbsp;</a></span>AddNewParticle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -165,19 +175,19 @@ Dhruv Jobanputra </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>mass</em> = <code>1</code>, </td>
+          <td class="paramname"><em>mass</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>radius</em> = <code>0.5f</code>, </td>
+          <td class="paramname"><em>radius</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>charge</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>charge</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -226,6 +236,70 @@ Dhruv Jobanputra </dd></dl>
 </table>
 </div><div class="memdoc">
 <p>Adds a particle at a random position with default physical properties /see AddNewParticle </p>
+
+</div>
+</div>
+<a id="a954676d4272765dc77d19a8e77580cda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a954676d4272765dc77d19a8e77580cda">&#9670;&nbsp;</a></span>CheckOutOfBounds()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Simulator.CheckOutOfBounds </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classParticle.html">Particle</a>&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Checks if the particle is outside the bounds of the boxand puts it back in </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>- the particle being checked </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac78d2e3095834619b795415e7c5ba50b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78d2e3095834619b795415e7c5ba50b">&#9670;&nbsp;</a></span>GenerateRandomCoords()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 Simulator.GenerateRandomCoords </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>radius</em> = <code>1f</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Generates a random coordinate that is inside the bounds of the box </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">radius</td><td>- the size of the particle to be added </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -428,49 +502,6 @@ Dhruv Jobanputra </dd></dl>
 
 </div>
 </div>
-<a id="a10e962aaa9531db98c83c0ef1641d745"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10e962aaa9531db98c83c0ef1641d745">&#9670;&nbsp;</a></span>UpdateLength()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Simulator.UpdateLength </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>coeff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>index</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Called by the UI elements to change the length scale </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">coeff</td><td>- the coefficient of the length scale (float) </td></tr>
-    <tr><td class="paramname">exp</td><td>- the exponent of the length scale (int) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a56057e3c0fdb48182af45fb1a0515817"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a56057e3c0fdb48182af45fb1a0515817">&#9670;&nbsp;</a></span>UpdatePositions()</h2>
 
@@ -530,7 +561,7 @@ Dhruv Jobanputra </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Called by the UI elements to change the time scale </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Called by the UI elements to change the time scale. Also updates the velocities of all the paritlces by calculating the ratio of the time-scale change. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">coeff</td><td>- the coefficient of the time scale (float) </td></tr>
     <tr><td class="paramname">exp</td><td>- the exponent of the time scale (int) </td></tr>
@@ -596,6 +627,35 @@ Dhruv Jobanputra </dd></dl>
 
 </div>
 </div>
+<a id="a071f61893d2e9f5ed2fa65f2f6a486dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a071f61893d2e9f5ed2fa65f2f6a486dd">&#9670;&nbsp;</a></span>BOX_LENGTH_SCALE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Simulator.BOX_LENGTH_SCALE = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78491e4a8e80be371e8538c121a3f690"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78491e4a8e80be371e8538c121a3f690">&#9670;&nbsp;</a></span>BOX_THICKNESS_SCALE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Simulator.BOX_THICKNESS_SCALE = 0.025f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="">Ratio of wall thickness to length of the inside of the sides is 1:40 Ratio of unity scale to unity length is 1:10 The values are obtained from the box prefab. Changing the constant will not change the box prefab thickness </a></dd></dl>
+
+</div>
+</div>
 <a id="a52b8860eade5bba6bcca2c4f95d4b2c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a52b8860eade5bba6bcca2c4f95d4b2c3">&#9670;&nbsp;</a></span>boxEnvironment</h2>
 
@@ -611,16 +671,38 @@ Dhruv Jobanputra </dd></dl>
 
 </div>
 </div>
-<a id="a8389095f01ecab898a2730981c436d55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8389095f01ecab898a2730981c436d55">&#9670;&nbsp;</a></span>destroy</h2>
+<a id="a5d7ab26532b086d62ff0b07b758525ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d7ab26532b086d62ff0b07b758525ec">&#9670;&nbsp;</a></span>boxLength</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
+          <td class="memname">float Simulator.boxLength</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8389095f01ecab898a2730981c436d55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8389095f01ecab898a2730981c436d55">&#9670;&nbsp;</a></span>destroy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
           <td class="memname">bool Simulator.destroy = false</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Specifies if destroy mode has been activated </p>
 
@@ -735,7 +817,7 @@ Dhruv Jobanputra </dd></dl>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">System.Random Simulator.rand = new System.Random(9)</td>
+          <td class="memname">System.Random Simulator.rand = new System.Random()</td>
         </tr>
       </table>
   </td>
@@ -744,7 +826,6 @@ Dhruv Jobanputra </dd></dl>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="">https://docs.unity3d.com/ScriptReference/MonoBehaviour.Start.html</a></dd></dl>
 
 </div>
 </div>
@@ -768,11 +849,19 @@ Dhruv Jobanputra </dd></dl>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int Simulator.seed</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>System.Random object for random number generation. Each time program starts, a random seed is generated and used to construct this object The seed used to generate this simulator's random object </p>
 
@@ -798,6 +887,20 @@ Dhruv Jobanputra </dd></dl>
 </table>
 </div><div class="memdoc">
 <p>List of the static fields /see <a class="el" href="classStaticField.html" title="A base class for static field implementations.">StaticField</a> </p>
+
+</div>
+</div>
+<a id="a7ee5e1be6b596a5ce889bdb2f5a5cbe2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ee5e1be6b596a5ce889bdb2f5a5cbe2">&#9670;&nbsp;</a></span>wallThickness</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Simulator.wallThickness</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
