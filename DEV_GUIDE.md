@@ -38,43 +38,48 @@ The particle's velocity is initialised to some value and updated by a fields's `
 
 ## Scales and the Scale Struct
 
-Each simulator contains an Scales object - an object that contains multiple scale structs each representing the conversion between some Unity unit and the corresponding real-world representation. The Scales can be updated through the callback methods used in by UI elements or by calling the inbuilt functions. 
+Each simulator contains an Scales object - an object that contains multiple scale structs each representing the conversion between some Unity unit and the corresponding real-world representation. The Scales can be updated through the callback methods used in by UI elements or by calling the inbuilt functions.
 
-There is a scale field for the length and time scale (which can change), and static values for the mass and charge values.
+There is a scale field for time scale, and static values for the length, mass and charge values.
 
-The scale struct is necessary over a floating point representation of the value as the presicion required in calcualtions of unit conversions exceed the range of allowable float values. It contains the coefficient, exponent and float value of some conversion factor. The Scales class can multiply the coefficient and exponent of each scale seperately in order to maintain the precision.
+The scale struct is necessary over a floating point representation of the value as the presicion required in calcualtions of unit conversions exceed the range of allowable float values (For example ``ConstantFromSI`` in the Scales class). It contains the coefficient, exponent and float value of some conversion factor. The Scales class can multiply the coefficient and exponent of each scale seperately in order to maintain the precision.
 
 ## Dynamic and Static Field Classes
 
 The dynamic and static fields classes are super classes that should be extended to provide functionality for the ``AddForce()`` method (see Coloumb and Wind for two examples of an implementation). 
 
-Each field class contains two dictionaries, shown below:
+If you wish to implement your own field, you must register your own constants in the constructor. 
 
 ```cs
-protected Dictionary<string, float> constants;
-private Dictionary<string, int[]> units;
+private float myConst;
+
+public Coloumb(Simulator sim) : base(sim)
+{
+    myConst = 2f;
+}
 ```
 
-If you wish to implement your own field, you must use the ``RegisterConstant(string name, float val, int[] unit)`` function. This function converts the SI value of the constant to unity units for use in interal calculation by the framework. Apon any time or length scaling of the simulator, this value, stored in ``constants``, will be updated according to the values stored in ``units``. 
 
-The value of the units dictionary is an int array of size 4 that specify the index of the mass (kg), length (m), time (s) and charge (Q) units. For example, if your units are of the form kg m s<sup>-2</sup>, the unit value would be {1, 1, -2, 0}.
-
-See StaticField and DynamicField for more details. 
-
-Using an example from the Coloumb class, we can see how the constructor should be implemented.
+If you want to implement from SI units - for example, if your constant is of the form 10.7 kg m s<sup>-2</sup>, and the you would assign it as:
 
 ```cs
 public Coloumb(Simulator sim) : base(sim)
 {
-    int[] units = { 1, 3, -2, -2 };
-    RegisterConstant("coloumb", 8.988E+9f, units);
+    // input is (value, kg-multiplicity, m-multiplicity, s-multiplicity, q-multiplicity)
+    myConst = sim.scales.ConstantFromSI(10.7, 1, 1, -2, 0);
 }
 ```
-To access your constants from your ``FieldDynamics`` override function simply reference it as follows:
 
-```cs
-float coloumb = constants["coloumb"];
-```
-
+See StaticField and DynamicField for more details.
 
 Note: avoid using functions that have a (1/r) dependence as these lead to singularities which break the realism of the simulation. Instead split the dynamics into two regimes - one where outside the collision zone and one inside the collision zone.
+
+## Compiling Documentation
+
+The documentation is compiled using ``doxygen`` according to the ``documentation-settings`` file. The results are compiled into the ``html`` folder. To view it, open the ``index.html`` file in a web browser. The documentation is generated from the in-code comments and the ``DEV_GUIDE.md`` markdown file. 
+
+To compile, install [doxygen](https://www.doxygen.nl/index.html) and navigate to the directory containing ``documentation-settings``, and run the command in bash
+
+> doxygen documentation-settings
+
+This will create/replace the ``html`` folder with a new compilation.
